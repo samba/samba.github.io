@@ -15,25 +15,6 @@ links:
 p. So I guess this is a site about me and the things I work on... A lot of information is available about me on the web already, so if you're really curious, feel free to search.
 
 
-<div id='postsdiv' class='section small'>
-h2. Posts
-
-<div class='pad'>
-{% for post in site.posts %}
-* "{{ post.subtitle }}":{{ post.url }}
-{% endfor %}
-</div></div>
-
-<div id='contact' class='section small'>
-h2. Contact
-
-<div class='pad'>
-p. In the interest and privacy and avoiding SPAM, this is minimal (for now)...
-* AOL IM: optikknight
-* Skype: sam.briesemeister
-* IRC: samba on freenode
-</div></div>
-
 <div id='employment' class='section medium'>
 h2. Employment
 
@@ -46,6 +27,16 @@ p. So far I've been: (sr) systems engineer, software developer, IT Analyst 1, st
 
 p. Lately I'm thinking about breaking out and exploring some humanitarian interests. I see myself as a problem solver, so I'm considering logistics, communications, and other facets of running worldwide organizations. (If you know of openings or have ideas, please do contact me.)
 
+</div></div>
+
+<div id='contact' class='section small'>
+h2. Contact
+
+<div class='pad'>
+p. In the interest and privacy and avoiding SPAM, this is minimal (for now)...
+* AOL IM: optikknight
+* Skype: sam.briesemeister
+* IRC: samba on freenode
 </div></div>
 
 
@@ -66,6 +57,16 @@ p. Some of the tools I use:
 * Google AppEngine (_much_ than setting up my own massive hosting/storage/monitoring network)
 
 </div></div>
+
+<div id='postsdiv' class='section small'>
+h2. Posts
+
+<div class='pad'>
+{% for post in site.posts %}
+* "{{ post.subtitle }}":{{ post.url }}
+{% endfor %}
+</div></div>
+
 
 <div id='ideas' class='section big'>
 h2. Ideas
