@@ -22,12 +22,12 @@ h1, h2, h3 {
 }
 
 div#postsdiv, div#contact {
-	width: 30em;
+	width: 20em;
 	float: left;
 }
 
 div#employment, div#projects, div#ideas {
-	width: 50em;
+	width: 30em;
 	float: left;
 }
 

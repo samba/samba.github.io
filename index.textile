@@ -23,6 +23,14 @@ h2. Posts
 {% endfor %}
 </div>
 
+<div id='contact'>
+h2. Contact
+
+p. In the interest and privacy and avoiding SPAM, this is minimal (for now)...
+* AOL IM: optikknight
+* Skype: sam.briesemeister
+* IRC: samba on freenode
+</div>
 
 <div id='employment'>
 h2. Employment
@@ -70,11 +78,3 @@ p. I'm thinking increasingly about social problems around the world, many of whi
 
 </div>
 
-<div id='contact'>
-h2. Contact
-
-p. In the interest and privacy and avoiding SPAM, this is minimal (for now)...
-* AOL IM: optikknight
-* Skype: sam.briesemeister
-* IRC: samba on freenode
-</div>
