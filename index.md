@@ -3,12 +3,12 @@ title: Sam Briesemeister
 layout: default
 
 links:
-	github: http://github.com/samba
-	analyticspros: http://www.analyticspros.com/
-	usafutura:	http://www.usafutura.com/
-	befreely: http://befreely.blogspot.com/
-	formlessandvoid: http://formlessandvoid.blogspot.com/
-	twentythreenineteen: http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/
+  github: http://github.com/samba
+  analyticspros: http://www.analyticspros.com/
+  usafutura:  http://www.usafutura.com/
+  befreely: http://befreely.blogspot.com/
+  formlessandvoid: http://formlessandvoid.blogspot.com/
+  twentythreenineteen: http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/
 
 ---
 
