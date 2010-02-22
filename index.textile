@@ -17,6 +17,7 @@ p. So I guess this is a site about me and the things I work on... A lot of infor
 
 <div id='postsdiv'>
 h2. Posts
+
 {% for post in site.posts %}
 * "{{ post.subtitle }}":{{ post.url }}
 {% endfor %}
@@ -25,6 +26,7 @@ h2. Posts
 
 <div id='employment'>
 h2. Employment
+
 * Primary: "Analytics Pros, Inc":{{ page.links.analyticspros }}
 * Side job: "FE Corporation":{{ page.links.usafutura }} (under construction...)
 
@@ -38,6 +40,7 @@ p. Lately I'm thinking about breaking out and exploring some humanitarian intere
 
 <div id='projects'>
 h2. Projects
+
 p. There are many... (I'll update this in the next revision of this page.)
 
 
@@ -45,6 +48,7 @@ p. There are many... (I'll update this in the next revision of this page.)
 
 <div id='ideas'>
 h2. Ideas
+
 p. First, blogs and such, where they'll be explained in more detail...
 * Technical/professional blog: "Be Freely":{{ page.links.befreely }}
 ** Knowledgebase, miscellany: "Twenty3Nineteen": {{ page.links.twentythreenineteen }}
@@ -59,6 +63,7 @@ p. I'm thinking increasingly about social problems around the world, many of whi
 
 <div id='contact'>
 h2. Contact
+
 p. In the interest and privacy and avoiding SPAM, this is minimal (for now)...
 * AOL IM: optikknight
 * Skype: sam.briesemeister
