@@ -15,7 +15,7 @@ links:
 p. So I guess this is a site about me and the things I work on... A lot of information is available about me on the web already, so if you're really curious, feel free to search.
 
 
-<div id='postsdiv' class='section'>
+<div id='postsdiv' class='section small'>
 h2. Posts
 
 <div class='pad'>
@@ -24,7 +24,7 @@ h2. Posts
 {% endfor %}
 </div></div>
 
-<div id='contact' class='section'>
+<div id='contact' class='section small'>
 h2. Contact
 
 <div class='pad'>
@@ -34,7 +34,7 @@ p. In the interest and privacy and avoiding SPAM, this is minimal (for now)...
 * IRC: samba on freenode
 </div></div>
 
-<div id='employment' class='section'>
+<div id='employment' class='section medium'>
 h2. Employment
 
 <div class='pad'>
@@ -49,7 +49,7 @@ p. Lately I'm thinking about breaking out and exploring some humanitarian intere
 </div></div>
 
 
-<div id='projects' class='section'>
+<div id='projects' class='section medium'>
 h2. Projects
 
 <div class='pad'>
@@ -67,7 +67,7 @@ p. Some of the tools I use:
 
 </div></div>
 
-<div id='ideas' class='section'>
+<div id='ideas' class='section big'>
 h2. Ideas
 
 <div class='pad'>

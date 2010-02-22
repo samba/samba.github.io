@@ -24,7 +24,7 @@ h1, h2, h3 {
 }
 
 div.section {
-	border: 1px #EEEEFF dashed;
+	border: 1px #EEEEFF solid;
 	margin: 0.2em;
 	padding: 0;
 
@@ -34,13 +34,18 @@ div.section div.pad {
 	margin: 0.2em;
 }
 
-div#postsdiv, div#contact {
+div.section.small {
 	width: 20em;
 	float: left;
 }
 
-div#employment, div#projects, div#ideas {
-	width: 30em;
+div.section.medium {
+	width: 40em;
+	float: left;
+}
+
+div.section.big {
+	width: 60em;
 	float: left;
 }
 
