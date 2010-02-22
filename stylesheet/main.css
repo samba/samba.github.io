@@ -10,9 +10,24 @@ h2 {
 	font-size: 115%;
 }
 
-h1, h2 {
+h3 {
+	font-size: 107%;
+}
+
+h1, h2, h3 {
 	background-color: #EEEEFF; 
 	border-width: 0 0 1px 0;
 	border-style: solid;
 	border-color: #AAAACC;
 }
+
+div#postsdiv, div#contact {
+	width: 30em;
+	float: left;
+}
+
+div#employment, div#projects, div#ideas {
+	width: 50em;
+	float: left;
+}
+
