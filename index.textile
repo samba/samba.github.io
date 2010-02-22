@@ -41,8 +41,17 @@ p. Lately I'm thinking about breaking out and exploring some humanitarian intere
 <div id='projects'>
 h2. Projects
 
-p. There are many... (I'll update this in the next revision of this page.)
+p. There are many... so here's a selection of them:
+* dotfiles: configuration and settings for a linux shell environment
+* server administration tools, scheduled processes, etc 
+* SSH key management system
+* desktop provisioning scripts/packages (so I can more easily re-install my laptop with new releases of my favorite OS) 
+* statistical analysis of log files (e.g. what is an "unusual" SSH login?) 
 
+p. Some of the tools I use:
+* Linux: Ubuntu, Debian, Gentoo
+* Google Apps (they host my network mail, it's nice.)
+* Google AppEngine (_much_ than setting up my own massive hosting/storage/monitoring network)
 
 </div>
 
@@ -51,7 +60,7 @@ h2. Ideas
 
 p. First, blogs and such, where they'll be explained in more detail...
 * Technical/professional blog: "Be Freely":{{ page.links.befreely }}
-** Knowledgebase, miscellany: "Twenty3Nineteen": {{ page.links.twentythreenineteen }}
+** Knowledgebase, miscellany: "Twenty3Nineteen":{{ page.links.twentythreenineteen }}
 * Personal blog, on things spiritual, philosophical, etc: "Formless and Void":{{ page.links.formlessandvoid }} 
 
 p. My wife says I'm an "idea guy" - I suppose she's right: I work with ideas a lot, and I'm always searching for the best way to implement them. I'm a tinkerer, I use and recommend Open Source software, in part because of the philosophical, social, and economic _ideas_ behind it. I also care about getting important things done right (the first time), quickly. 
