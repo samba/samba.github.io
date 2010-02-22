@@ -1,0 +1,18 @@
+body {
+	font-family: sans-serif;
+}
+
+h1 {
+	font-size: 130%;
+}
+
+h2 {
+	font-size: 115%;
+}
+
+h1, h2 {
+	background-color: #EEEEFF; 
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	border-color: #AAAACC;
+}
