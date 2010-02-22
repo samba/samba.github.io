@@ -1,6 +1,18 @@
 body {
 	font-family: sans-serif;
+	margin: 3em auto 1em auto;
 }
+
+div#header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	height: 3em;
+}
+
+
 
 h1 {
 	font-size: 130%;
@@ -17,14 +29,14 @@ h3 {
 h1, h2, h3 {
 	margin: 0 0 0.2em 0;
 	padding: 0.1em;
-	background-color: #EEEEFF; 
+	background-color: #DDDDFF; 
 	border-width: 0 0 1px 0;
 	border-style: solid;
 	border-color: #AAAACC;
 }
 
 div.section {
-	border: 1px #EEEEFF solid;
+	border: 1px #DDDDFF solid;
 	margin: 0.2em;
 	padding: 0;
 

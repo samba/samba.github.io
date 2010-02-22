@@ -54,12 +54,12 @@ p. There are many... so here's a selection of them:
 p. Some of the tools I use:
 * Linux: Ubuntu, Debian, Gentoo
 * Google Apps (they host my network mail, it's nice.)
-* Google AppEngine (_much_ than setting up my own massive hosting/storage/monitoring network)
+* Google AppEngine (_much_ easier than setting up my own massive hosting/storage/monitoring network)
 
 </div></div>
 
 <div id='postsdiv' class='section small'>
-h2. Posts
+h2. Posts via GitHub
 
 <div class='pad'>
 {% for post in site.posts %}
