@@ -63,7 +63,7 @@ h2. Posts via GitHub
 
 <div class='pad'>
 {% for post in site.posts %}
-* "{{ post.subtitle }}":{{ post.url }}
+* "{{ post.title }}":{{ post.url }}
 {% endfor %}
 </div></div>
 
