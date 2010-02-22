@@ -21,6 +21,13 @@ h1, h2, h3 {
 	border-color: #AAAACC;
 }
 
+div#postsdiv, div#contact, div#employment, div#projects, div#ideas {
+	border: 1px #EEEEFF dashed;
+	margin: 0.2em;
+	padding: 0.3em;
+}
+
+
 div#postsdiv, div#contact {
 	width: 20em;
 	float: left;
