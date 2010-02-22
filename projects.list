@@ -1,0 +1,17 @@
+		<h2>Personal Projects</h2>
+			Let's see - how many shall I list?
+			<ul>
+				<li>My 'dotfiles' - configuration and settings for my shell environment (in Linux)</li>
+				<li>Server administration tools that I use on my home network</li>
+				<li>A distributed SSH key management system</li>
+				<li>Some scripts and packages to help me provision systems faster (i.e. set up my laptop every time I install a new release of my favorite operating system(s))</li>
+				<li>Statistical analysis for log files</li>
+			</ul>
+
+			And the nifty tools I use in my work (and these projects)...
+			<ul>
+				<li>Linux: Gentoo, Debian, Ubuntu</li>
+				<li>Google Apps</li>
+				<li>Google AppEngine</li>
+			</ul>
+
