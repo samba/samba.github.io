@@ -50,6 +50,7 @@ h2. Projects
 
 
 h2. Other resources
+
 <table id='resources'><tbody>
 {% for p in page.resources %}
 	<tr><td>"{{ p.name }}":{{ p.url }}</td><td>{{ p.description }}</td></tr>
