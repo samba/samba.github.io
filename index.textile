@@ -37,7 +37,7 @@ h2. About Me
 h2. Projects
 
 {% for p in page.projects %}
-* "{{ p.name }}":{{ page.links.github }}/{{p.name }} - {{ p.description }}
+* "{{ p.name }}":{{ page.links.github }}/{{p.name }}
 {% endfor %}
 
 
