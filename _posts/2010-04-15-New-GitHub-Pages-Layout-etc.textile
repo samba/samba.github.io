@@ -45,7 +45,7 @@ Also note that if the issues get fixed, the examples below will suddenly render 
 
 h3. List Break Example
 
-The list below is generated automatically using a @for@ loop and Textile markup.
+Automatically generated List using a @for@ loop and Textile markup - will explode into several @<ul>@...
 
 {% for i in page.entries %}
 * {{ i.name }}
@@ -54,7 +54,7 @@ The list below is generated automatically using a @for@ loop and Textile markup.
 
 h3. Table Example
 
-This table will have extra @<br>@ injected after @<tbody>@, and @<p>@ before @</tbody>@.
+Automatically generated Table will have extra @<br>@ injected after @<tbody>@, and @<p>@ before @</tbody>@.
 
 <table><tbody>{% for i in page.entries %}
 	<tr><td>{{ i.name }}</td><td>"{{ i.value }}":{{ page.links.google }}{{ i.value }}</td></tr>
