@@ -34,7 +34,7 @@ processes it, apparently. Some frustrating results...
 
 * The extra newlines break apart the Textile blocks, into separate parsable sections
 * Each row/entry of a tables or lists then gets its own block (@<ul>@ or @<table>@)
-* With some variation on the layout, it simply injects extra @<br>@. 
+* In some cases, it simply injects extra @<br>@. 
 
 You can imagine how problematic that becomes. I've included an example... 
 
@@ -51,8 +51,6 @@ h3. Table Example
 
 	This table will have extra @<br>@ injected
 
-<table>
-{% for i in page.entries %}
+<table>{% for i in page.entries %}
 	<tr><td>{{i.name}}</td><td>{{i.value}}</td></tr>
-{% endfor %}
-</table>
+{% endfor %}</table>
