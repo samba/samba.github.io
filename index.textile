@@ -32,7 +32,7 @@ resources:
 
 h2. Captain's Log
 
-<ul>{% for post in site.posts %}
+<ul>{% for post in site.posts limit:3 %}
 <li>%(date){{ post.date | date_to_string }}% "{{ post.title }}":{{ post.url }}</li>
 {% endfor %}</ul>
 
@@ -42,8 +42,12 @@ h2. About Me
 
 h2. Projects
 
-<table id='projects'><tbody>{% for p in page.projects %}<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>{% endfor %}</tbody></table>
-
+{% capture project_table %}
+{% for p in page.projects %}
+	|"{{ p.name }}":{{ page.links.github }}/{{ p.name }}|{{ p.description }}|
+{% endfor %}
+{% endcapture %}
+{{ project_table | strip_html }}
 
 
 
