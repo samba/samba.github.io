@@ -4,6 +4,8 @@ title: New GitHub Pages Layout, etc
 
 links:
   ghpage: http://github.com/samba/samba.github.com
+	gh_thispost: http://github.com/samba/samba.github.com/blob/master/_posts/2010-04-15-New-GitHub-Pages-Layout-etc.textile
+	gh_index: http://github.com/samba/samba.github.com/blob/master/index.textile
   google: http://www.google.com/search?q=
 
 entries:
@@ -36,7 +38,14 @@ processes it, apparently. Some frustrating results...
 * Each row/entry of a tables or lists then gets its own block (@<ul>@ or @<table>@)
 * In some cases, it simply injects extra @<br>@ and other line/paragraph markup
 
-You can imagine how problematic that becomes. I've included an example... 
+You can imagine how problematic that becomes. (Examples follow.) 
+
+Please check the following for source code:
+* "How to replicate it":{{ page.links.gh_thispost }} (this post)
+* "Workarounds I found":{{ page.links.gh_index }} (my GH page index)
+
+
+Also note that if the issues get fixed, the examples below will suddenly render properly, and my comments will be invalid ;)
 
 h3. List Break Example
 
