@@ -3,12 +3,11 @@ title: Sam Briesemeister
 layout: default
 
 links:
-  github: http://github.com/samba
-  analyticspros: http://www.analyticspros.com/
+  analyticspros: "Analytics Pros":http://www.analyticspros.com/
+  twentythreenineteen: "Twenty3Nineteen":http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/
+  befreely: "Be Freely":http://befreely.blogspot.com/
   usafutura:  http://www.usafutura.com/
-  befreely: http://befreely.blogspot.com/
   formlessandvoid: http://formlessandvoid.blogspot.com/
-  twentythreenineteen: http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/
 
 ---
 
@@ -19,10 +18,8 @@ h2. Captain's Log
 * %(date){{ post.date | date_to_string }}% "{{ post.title }}":{{ post.url }}
 {% endfor %}
 
-h2. About me
 
-* Sr Systems Engineer at "Analytics Pros, Inc":{{ page.links.analyticspros }}
-* @samba@ on @freenode@
+* Sr Systems Engineer at {{ page.links.analyticspros }}
 
 h2. Projects
 
@@ -35,5 +32,7 @@ p. There are many... so here's a selection of them:
 
 h2. Other resources
 
-* Technical/professional blog: "Be Freely":{{ page.links.befreely }}
-* Knowledgebase, miscellany: "Twenty3Nineteen":{{ page.links.twentythreenineteen }}
+* Technical/professional blog: {{ page.links.befreely }}
+* Knowledgebase, miscellany: {{ page.links.twentythreenineteen }}
+
+
