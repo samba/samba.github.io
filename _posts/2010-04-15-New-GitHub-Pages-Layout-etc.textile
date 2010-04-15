@@ -3,10 +3,10 @@ layout: post
 title: New GitHub Pages Layout, etc
 
 links:
-  ghpage: http://github.com/samba/samba.github.com
-	gh_thispost: http://github.com/samba/samba.github.com/blob/master/_posts/2010-04-15-New-GitHub-Pages-Layout-etc.textile
-	gh_index: http://github.com/samba/samba.github.com/blob/master/index.textile
   google: http://www.google.com/search?q=
+  ghpage: http://github.com/samba/samba.github.com
+  gh_thispost: http://github.com/samba/samba.github.com/blob/master/_posts/2010-04-15-New-GitHub-Pages-Layout-etc.textile
+  gh_index: http://github.com/samba/samba.github.com/blob/master/index.textile
 
 entries:
 - name: one
