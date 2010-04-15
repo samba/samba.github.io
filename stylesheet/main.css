@@ -18,13 +18,24 @@ h3 {
 }
 
 h2, h3 {
-	margin: 0 0 0.2em 0;
+	margin: 2em 0 0.2em 0;
 	padding: 0.2em;
 	border-width: 0 0 1px 0;
 	border-style: dotted;
 	border-color: #AAAACC;
 }
 
+div#header h1 h1 {
+	color: #333;
+}
+
+table#projects {
+	margin-left: 3em;
+}	
+
+table#projects td {
+	padding: 0.2em;
+}
 
 table#projects td + td {
  border-left: 1px #333 dotted;
@@ -33,10 +44,6 @@ table#projects td + td {
 
 table#projects th {
 	text-align: left;
-}
-
-div#header {
-	color: #333;
 }
 
 div#content {
