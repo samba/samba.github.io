@@ -26,8 +26,9 @@ h2, h3 {
 }
 
 
-table#projects td {
-	margin: 0.1em 1em 0.1em 0.1em;
+table#projects td + td {
+ border-left: 1px #333 dotted;
+ margin-left: 2em;
 }
 
 table#projects th {
