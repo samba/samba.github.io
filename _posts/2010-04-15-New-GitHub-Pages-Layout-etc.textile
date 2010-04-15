@@ -4,7 +4,7 @@ title: New GitHub Pages Layout, etc
 
 links:
   ghpage: http://github.com/samba/samba.github.com
-	google: http://www.google.com/search?q=
+  google: http://www.google.com/search?q=
 
 entries:
 - name: one
