@@ -12,7 +12,7 @@ links:
 
 projects:
 - name: dotfiles
-  description: configuration and settings for a linux shell environment
+  description: configuration and settings for a Linux shell environment
 - name: server-tools
   description: server administration tools, scheduled processes, etc 
 - name: sshkeymgmt
@@ -36,9 +36,11 @@ h2. About Me
 
 h2. Projects
 
-<ul>{% for p in page.projects %}
-<li>"{{ p.name }}":{{ page.links.github }}/{{p.name }}</li>
-{% endfor %}</ul>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+{% for p in page.projects %}
+	<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
+{% endfor %}
+</tbody></table>
 
 
 h2. Other resources
