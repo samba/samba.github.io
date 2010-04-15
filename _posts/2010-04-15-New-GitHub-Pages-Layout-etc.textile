@@ -4,7 +4,7 @@ title: New GitHub Pages Layout, etc
 
 links:
   ghpage: http://github.com/samba/samba.github.com
-
+	google: http://www.google.com/search?q=
 
 entries:
 - name: one
@@ -51,6 +51,6 @@ h3. Table Example
 
 	This table will have extra @<br>@ injected
 
-<table>{% for i in page.entries %}
-	<tr><td>{{i.name}}</td><td>{{i.value}}</td></tr>
-{% endfor %}</table>
+<table><tbody>{% for i in page.entries %}
+	<tr><td>{{ i.name }}</td><td>"{{ i.value }}":{{ page.links.google }}{{ i.value }}</td></tr>
+{% endfor %}</tbody></table>
