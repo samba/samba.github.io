@@ -18,12 +18,12 @@ h2. Captain's Log
 * %(date){{ post.date | date_to_string }}% "{{ post.title }}":{{ post.url }}
 {% endfor %}
 
+h2. About Me
 
 * Sr Systems Engineer at {{ page.links.analyticspros }}
 
 h2. Projects
 
-p. There are many... so here's a selection of them:
 * dotfiles: configuration and settings for a linux shell environment
 * server administration tools, scheduled processes, etc 
 * SSH key management system
@@ -34,5 +34,4 @@ h2. Other resources
 
 * Technical/professional blog: {{ page.links.befreely }}
 * Knowledgebase, miscellany: {{ page.links.twentythreenineteen }}
-
 
