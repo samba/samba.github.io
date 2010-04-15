@@ -43,13 +43,8 @@ h2. About Me
 h2. Projects
 
 <table id='projects'><tbody>{% for p in page.projects %}
-	<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
+<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
 {% endfor %}</tbody></table>
-
-{% for p in page.projects %}
-| "{{ p.name }}":{{ page.links.github }}/{{ p.name }} | {{ p.description }} |
-{% endfor %}</tbody></table>
-
 
 
 
@@ -57,7 +52,7 @@ h2. Projects
 h2. Other resources
 
 <table id='resources'><tbody>{% for p in page.resources %}
-	<tr><td>"{{ p.name }}":{{ p.url }}</td><td>{{ p.description }}</td></tr>
+<tr><td>"{{ p.name }}":{{ p.url }}</td><td>{{ p.description }}</td></tr>
 {% endfor %}</tbody></table>
 
 
