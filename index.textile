@@ -43,12 +43,13 @@ h2. About Me
 h2. Projects
 
 {% capture project_table %}
+<table>
 {% for p in page.projects %}
-|"{{ p.name }}":{{ page.links.github }}/{{ p.name }}|{{ p.description }}|
+	<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
 {% endfor %}
+</table>
 {% endcapture %}
-
-{{ project_table | strip_html | textilize }}
+{{ project_table | strip_newlines }}
 
 
 h2. Other resources
