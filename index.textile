@@ -23,10 +23,10 @@ projects:
 resources:
 - name: Be Freely
   url: http://befreely.blogspot.com/
-	description: My technical blog, sometimes relating to what I do professionally
+  description: My technical blog, sometimes relating to what I do professionally
 - name: Twenty3Nineteen
-	url: http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/
-	description: Knowledgebase for my personal projects, etc
+  url: http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/
+  description: Knowledgebase for my personal projects, etc
 ---
 
 
