@@ -46,9 +46,13 @@ div#footer div.contact {
 	float: left;
 }
 
-div#footer div.contact ul, div#footer div.contact ul a {
-	font-size: 90%;
+div#footer div.contact ul li, div#footer div.contact ul a {
 	color: #222;
+}
+
+div#footer div.contact ul li {
+	list-style-type: none;
+	font-size: 90%;
 }
 
 div#footer div.contact ul code {
