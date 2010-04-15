@@ -5,6 +5,12 @@ title: New GitHub Pages Layout, etc
 links:
   ghpage: http://github.com/samba/samba.github.com
 
+
+entries:
+- name: one
+- name: two
+- name: three
+
 ---
 
 I finally had a minute to rework my design and such. The previous draft was way too cluttered, and provided more info than most people wanted to know. 
@@ -16,3 +22,20 @@ Some resources that helped me along:
 * "Liquid for Designers":http://wiki.github.com/tobi/liquid/liquid-for-designers
 
 
+Unfortunately this iteration has highlighted some problems with the Liquid templating system (and Jekyll). 
+When using @\{\% for ... \%\}@ loops, it generates extra newlines - _before_ Textile processes it, apparently.
+This results in separate structures; e.g. when using the '*' to produce lists, it produces a separate @&lt;ul&gt;@ for each list. The same applies to tables, one table for each row.
+It has a similar effect with some variations on structure, where it translates newlines to @&lt;br&gt;@ - injecting them into a table, for example. (I've included a sample below.)
+
+You can how problematic that becomes. 
+
+Another issue I encountered, though somewhat less frustrating, is that the YAML parser is very sensitive to indentation characters - in particular, it seems to hate my tabs. Not nice - but I can live with it.
+
+<hr/>
+h3. List Break Example
+
+	The list below is generated automatically using a @for@ loop and Textile markup.
+
+{% for i in page.entries %}
+* {{ i.name }}
+{% endfor %}
