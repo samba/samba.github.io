@@ -35,7 +35,7 @@ table#projects th {
 }
 
 div#header {
-
+	color: #333;
 }
 
 div#content {
@@ -56,7 +56,7 @@ div#footer div.contact {
 }
 
 div#footer div.contact ul li, div#footer div.contact ul a {
-	color: #222;
+	color: #333;
 }
 
 div#footer div.contact ul li {
