@@ -29,22 +29,15 @@ div#header h1 h1 {
 	color: #333;
 }
 
-table#projects {
-	margin-left: 3em;
+table#projects, table#resources {
+	margin-left: 2em;
 }	
 
-table#projects td {
+table#projects td, table#resources td {
 	padding: 0.2em;
 }
 
-table#projects td + td {
- border-left: 1px #333 dotted;
- margin-left: 2em;
-}
 
-table#projects th {
-	text-align: left;
-}
 
 div#content {
 

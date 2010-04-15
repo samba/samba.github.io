@@ -4,8 +4,6 @@ layout: default
 
 links:
   analyticspros: '"Analytics Pros":http://www.analyticspros.com/'
-  twentythreenineteen: '"Twenty3Nineteen":http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/'
-  befreely: '"Be Freely":http://befreely.blogspot.com/'
   github: http://github.com/samba
   usafutura:  http://www.usafutura.com/
   formlessandvoid: http://formlessandvoid.blogspot.com/
@@ -21,6 +19,14 @@ projects:
   description: desktop provisioning scripts/packages for my own use 
 - name: logstat
   description: statistical analysis of log files (e.g. what is an "unusual" SSH login?) 
+
+resources:
+- name: Be Freely
+  url: http://befreely.blogspot.com/
+	description: My technical blog, sometimes relating to what I do professionally
+- name: Twenty3Nineteen
+	url: http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/
+	description: Knowledgebase for my personal projects, etc
 ---
 
 
@@ -36,7 +42,7 @@ h2. About Me
 
 h2. Projects
 
-<table id='projects'><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<table id='projects'><tbody>
 {% for p in page.projects %}
 	<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
 {% endfor %}
@@ -44,7 +50,11 @@ h2. Projects
 
 
 h2. Other resources
+<table id='resources'><tbody>
+{% for p in page.resources %}
+	<tr><td>"{{ p.name }}":{{ p.url }}</td><td>{{ p.description }}</td></tr>
+{% endfor %}
+</tbody></table>
 
-* Technical/professional blog: {{ page.links.befreely }}
-* Knowledgebase, miscellany: {{ page.links.twentythreenineteen }}
+
 
