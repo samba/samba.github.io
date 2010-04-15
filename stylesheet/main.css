@@ -1,34 +1,12 @@
 body {
 	font-family: sans-serif;
-	margin: 3em auto 1em auto;
-}
-
-div#header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 0;
-	height: 3em;
-	width: 100%;
+	margin: 1em auto 1em auto;
+	width: 30em;
 }
 
 
-/* from http://unindented.org/articles/2009/10/github-ribbon-using-css-transforms/ */
-.ribbon {
-  background-color: #a00;
-  overflow: hidden;
-}
-.ribbon a {
-  border: 1px solid #faa;
-  color: #fff;
-  display: block;
-  font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
-  margin: 0.05em 0;
-  padding: 0.5em 3.5em;
-  text-align: center;
-  text-decoration: none;
-}
+
+
 
 h1 {
 	font-size: 130%;
@@ -44,36 +22,9 @@ h3 {
 
 h1, h2, h3 {
 	margin: 0 0 0.2em 0;
-	padding: 0.1em;
-	background-color: #DDDDFF; 
+	padding: 0.2em;
 	border-width: 0 0 1px 0;
-	border-style: solid;
+	border-style: dotted;
 	border-color: #AAAACC;
-}
-
-div.section {
-	border: 1px #DDDDFF solid;
-	margin: 0.2em;
-	padding: 0;
-
-}
-
-div.section div.pad {
-	margin: 0.2em;
-}
-
-div.section.small {
-	width: 20em;
-	float: left;
-}
-
-div.section.medium {
-	width: 40em;
-	float: left;
-}
-
-div.section.big {
-	width: 60em;
-	float: left;
 }
 
