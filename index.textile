@@ -32,9 +32,9 @@ resources:
 
 h2. Captain's Log
 
-<ul>{% for post in site.posts limit:3 %}
-<li>%(date){{ post.date | date_to_string }}% "{{ post.title }}":{{ post.url }}</li>
-{% endfor %}</ul>
+{% for post in site.posts limit:3 %}
+* %(date){{ post.date | date_to_string }}% "{{ post.title }}":{{ post.url }}
+{% endfor %}
 
 h2. About Me
 
