@@ -3,9 +3,9 @@ title: Sam Briesemeister
 layout: default
 
 links:
-  analyticspros: "Analytics Pros":http://www.analyticspros.com/
-  twentythreenineteen: "Twenty3Nineteen":http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/
-  befreely: "Be Freely":http://befreely.blogspot.com/
+  analyticspros: '"Analytics Pros":http://www.analyticspros.com/'
+  twentythreenineteen: '"Twenty3Nineteen":http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/'
+  befreely: '"Be Freely":http://befreely.blogspot.com/'
   usafutura:  http://www.usafutura.com/
   formlessandvoid: http://formlessandvoid.blogspot.com/
 
