@@ -44,11 +44,11 @@ h2. Projects
 
 {% capture project_table %}
 {% for p in page.projects %}
-	|"{{ p.name }}":{{ page.links.github }}/{{ p.name }}|{{ p.description }}|
+|"{{ p.name }}":{{ page.links.github }}/{{ p.name }}|{{ p.description }}|
 {% endfor %}
 {% endcapture %}
 
-notextile. {{ project_table | strip_html | remove:'	' | replace:'',''}}
+{{ project_table | strip_html | textilize }}
 
 
 h2. Other resources
