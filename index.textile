@@ -47,7 +47,7 @@ h2. Projects
 	|"{{ p.name }}":{{ page.links.github }}/{{ p.name }}|{{ p.description }}|
 {% endfor %}
 {% endcapture %}
-pre. {{ project_table | strip_newlines }}
+pre. {{ project_table }}
 
 
 
