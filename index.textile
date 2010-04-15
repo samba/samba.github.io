@@ -6,9 +6,21 @@ links:
   analyticspros: '"Analytics Pros":http://www.analyticspros.com/'
   twentythreenineteen: '"Twenty3Nineteen":http://sites.google.com/a/befreely.dyndns.org/twenty3nineteen/'
   befreely: '"Be Freely":http://befreely.blogspot.com/'
+	github: http://github.com/samba
   usafutura:  http://www.usafutura.com/
   formlessandvoid: http://formlessandvoid.blogspot.com/
 
+projects:
+- name: dotfiles
+	description: configuration and settings for a linux shell environment
+- name: server-tools
+	description: server administration tools, scheduled processes, etc 
+- name: sshkeymgmt
+	description: SSH key management system
+- name: workstationpkg
+	description: desktop provisioning scripts/packages for my own use 
+- name: logstat
+	description: statistical analysis of log files (e.g. what is an "unusual" SSH login?) 
 ---
 
 
@@ -24,11 +36,10 @@ h2. About Me
 
 h2. Projects
 
-* dotfiles: configuration and settings for a linux shell environment
-* server administration tools, scheduled processes, etc 
-* SSH key management system
-* desktop provisioning scripts/packages for my own use 
-* statistical analysis of log files (e.g. what is an "unusual" SSH login?) 
+{% for p in page.projects %}
+* "{{ p.name }}":{{ page.links.github }}/{{p.name }} - {{ p.description }}
+{% endfor %}
+
 
 h2. Other resources
 
