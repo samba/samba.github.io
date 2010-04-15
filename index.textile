@@ -47,9 +47,8 @@ h2. Projects
 	|"{{ p.name }}":{{ page.links.github }}/{{ p.name }}|{{ p.description }}|
 {% endfor %}
 {% endcapture %}
-==
-{{ project_table | strip_html | remove:'	' | replace:'',''}}
-==
+
+notextile. {{ project_table | strip_html | remove:'	' | replace:'',''}}
 
 
 h2. Other resources
