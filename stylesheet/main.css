@@ -25,6 +25,15 @@ h2, h3 {
 	border-color: #AAAACC;
 }
 
+
+table#projects td {
+	margin: 0.1em 1em 0.1em 0.1em;
+}
+
+table#projects th {
+	text-align: left;
+}
+
 div#header {
 
 }

@@ -36,7 +36,7 @@ h2. About Me
 
 h2. Projects
 
-<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<table id='projects'><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 {% for p in page.projects %}
 	<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
 {% endfor %}
