@@ -3,7 +3,7 @@ layout: post
 title: New GitHub Pages Layout, etc
 
 links:
-	ghpage: http://github.com/samba/samba.github.com
+  ghpage: http://github.com/samba/samba.github.com
 
 ---
 
