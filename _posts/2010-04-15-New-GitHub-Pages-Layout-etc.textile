@@ -51,6 +51,8 @@ h3. Table Example
 
 	This table will have extra @<br>@ injected
 
+<table>
 {% for i in page.entries %}
-|{{i.name}}|{{i.value}}|
+	<tr><td>{{i.name}}</td><td>{{i.value}}</td></tr>
 {% endfor %}
+</table>
