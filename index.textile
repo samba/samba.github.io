@@ -43,7 +43,7 @@ h2. About Me
 h2. Projects
 
 {% capture project_table %}
-<table>
+<table class='indent'>
 {% for p in page.projects %}
 	<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
 {% endfor %}
@@ -54,7 +54,14 @@ h2. Projects
 
 h2. Other resources
 
-<table id='resources'><tbody>{% for p in page.resources %}<tr><td>"{{ p.name }}":{{ p.url }}</td><td>{{ p.description }}</td></tr>{% endfor %}</tbody></table>
+{% capture resource_table %}
+<table class='indent'>
+{% for p in page.resources %}
+	<tr><td>"{{ p.name }}":{{ p.url }}</td><td>{{ p.description }}</td></tr>
+{% endfor %}
+</table>
+{% endcapture %}
+{{ resource_table | strip_newlines }}
 
 
 

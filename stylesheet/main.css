@@ -29,15 +29,17 @@ div#header h1 h1 {
 	color: #333;
 }
 
-table#projects, table#resources {
+table.indent {
 	margin-left: 2em;
 }	
 
-table#projects td, table#resources td {
+table.indent td {
 	padding: 0.2em;
 }
 
-
+table.indent td + td {
+	margin-left: 2em;
+}
 
 div#content {
 
