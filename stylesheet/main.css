@@ -34,7 +34,7 @@ div#content {
 }
 
 div#footer {
-	margin-top: 3em;
+	margin-top: 8em;
 	border-width: 1px 0 0 0;
 	border-style: dotted;
 	border-color: #AAC;
@@ -48,7 +48,7 @@ div#footer div.contact {
 
 div#footer div.contact ul, div#footer div.contact ul a {
 	font-size: 90%;
-	color: #EEE;
+	color: #222;
 }
 
 div#footer div.contact ul code {
