@@ -20,16 +20,13 @@ entries:
 
 I finally had a minute to rework my design and such. The previous draft was way too cluttered, and provided more info than most people wanted to know. 
 
-I don't think the new draft is final, but it's an improvement. If you browse "the code":{{ page.links.ghpage }}, 
-you'll see that it uses YAML more extensively to define datastructures, and then loops over them to generate content. Good stuff.
+I don't think the new draft is final, but it's an improvement. If you browse "the code":{{ page.links.ghpage }}, you'll see that it uses YAML more extensively to define datastructures, and then loops over them to generate content. Good stuff.
 
 Some resources that helped me along:
 * "Liquid for Designers":http://wiki.github.com/tobi/liquid/liquid-for-designers
 
 
-Unfortunately this iteration has highlighted some trouble points with the GitHub Pages subsystems - 
-Liquid and Jekyll, I think. First, the YAML parser is very sensitive to indentation characters; 
-in particular, it seems to hate my tabs. Not nice - but I can live with it.
+Unfortunately this iteration has highlighted some trouble points with the GitHub Pages subsystems - Liquid and Jekyll, I think. First, the YAML parser is very sensitive to indentation characters; in particular, it seems to hate my tabs. Not nice - but I can live with it.
 
 Far more trouble some: when using @for@ loops, it generates extra newlines - _before_ Textile 
 processes it, apparently. Some frustrating results...
