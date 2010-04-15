@@ -46,6 +46,13 @@ h2. Projects
 	<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
 {% endfor %}</tbody></table>
 
+{% for p in page.projects %}
+	|"{{ p.name }}":{{ page.links.github }}/{{ p.name }}|{{ p.description }}|
+{% endfor %}</tbody></table>
+
+
+
+
 
 h2. Other resources
 
