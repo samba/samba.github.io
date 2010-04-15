@@ -29,7 +29,7 @@ Unfortunately this iteration has highlighted some trouble points with the GitHub
 Liquid and Jekyll, I think. First, the YAML parser is very sensitive to indentation characters; 
 in particular, it seems to hate my tabs. Not nice - but I can live with it.
 
-Far more trouble some: when using @{% for ... %}@ loops, it generates extra newlines - _before_ Textile 
+Far more trouble some: when using @for@ loops, it generates extra newlines - _before_ Textile 
 processes it, apparently. Some frustrating results...
 
 * The extra newlines break apart the Textile blocks, into separate parsable sections
