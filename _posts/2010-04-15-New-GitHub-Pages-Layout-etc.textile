@@ -8,8 +8,11 @@ links:
 
 entries:
 - name: one
+  value: peach
 - name: two
+  value: cherries
 - name: three
+  value: apples
 
 ---
 
@@ -22,20 +25,32 @@ Some resources that helped me along:
 * "Liquid for Designers":http://wiki.github.com/tobi/liquid/liquid-for-designers
 
 
-Unfortunately this iteration has highlighted some problems with the Liquid templating system (and Jekyll). 
-When using @\{\% for ... \%\}@ loops, it generates extra newlines - _before_ Textile processes it, apparently.
-This results in separate structures; e.g. when using the '*' to produce lists, it produces a separate @&lt;ul&gt;@ for each list. The same applies to tables, one table for each row.
-It has a similar effect with some variations on structure, where it translates newlines to @&lt;br&gt;@ - injecting them into a table, for example. (I've included a sample below.)
+Unfortunately this iteration has highlighted some trouble points with the GitHub Pages subsystems - 
+Liquid and Jekyll, I think. First, the YAML parser is very sensitive to indentation characters; 
+in particular, it seems to hate my tabs. Not nice - but I can live with it.
 
-You can how problematic that becomes. 
+Far more trouble some: when using @{% for ... %}@ loops, it generates extra newlines - _before_ Textile 
+processes it, apparently. Some frustrating results...
 
-Another issue I encountered, though somewhat less frustrating, is that the YAML parser is very sensitive to indentation characters - in particular, it seems to hate my tabs. Not nice - but I can live with it.
+* The extra newlines break apart the Textile blocks, into separate parsable sections
+* Each row/entry of a tables or lists then gets its own block (@<ul>@ or @<table>@)
+* With some variation on the layout, it simply injects extra @<br>@. 
 
-<hr/>
+You can imagine how problematic that becomes. I've included an example... 
+
 h3. List Break Example
 
 	The list below is generated automatically using a @for@ loop and Textile markup.
 
 {% for i in page.entries %}
 * {{ i.name }}
+{% endfor %}
+
+
+h3. Table Example
+
+	This table will have extra @<br>@ injected
+
+{% for i in page.entries %}
+|{{i.name}}|{{i.value}}|
 {% endfor %}
