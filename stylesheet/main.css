@@ -46,5 +46,11 @@ div#footer div.contact {
 }
 
 div#footer div.contact ul {
-		
+	font-size: 80%;
+	color: #CCC;
+}
+
+div#footer div.contact ul code {
+	text-decoration: underline;
+	font-weight: normal;
 }
