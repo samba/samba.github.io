@@ -30,28 +30,9 @@ resources:
 ---
 
 
-
-<div class='contentblock leftshift reference' id='projects'>
-h2. Projects
-
-{% for p in page.projects %}
-div(project). "{{ p.name }}":{{ page.links.github }}/{{ p.name }} %(description){{ p.description }}%
-{% endfor %}
-</div>
-
-<div class='contentblock leftshift reference' id='resources'>
-h2. Other resources
-
-{% for p in page.resources %}
-div(resource). "{{ p.name }}":{{ p.url }} %(description){{ p.description }}%
-{% endfor %}
-</div>
-
-
-
 <!-- Github Blog Posts -->
 {% for post in site.posts limit:3 %}
-div(post). "{{ post.title }}":{{ post.url }} %(date){{ post.date | date_to_string }}%
+div(post). "{{ post.title }}":{{ post.url }} %(date){{ post.date | date_to_string }}% %(excerpt){{ post.excerpt }}%
 {% endfor %}
 
 
@@ -59,5 +40,25 @@ div(post). "{{ post.title }}":{{ post.url }} %(date){{ post.date | date_to_strin
 h2. About Me
 
 * Sr Systems Engineer at {{ page.links.analyticspros }}
+
+
+
+
+<div id='projects'>
+h2. Projects
+
+{% for p in page.projects %}
+div(project). "{{ p.name }}":{{ page.links.github }}/{{ p.name }} %(description){{ p.description }}%
+{% endfor %}
+</div>
+
+<div id='resources'>
+h2. Other resources
+
+{% for p in page.resources %}
+div(resource). "{{ p.name }}":{{ p.url }} %(description){{ p.description }}%
+{% endfor %}
+</div>
+
 
 
