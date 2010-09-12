@@ -70,6 +70,7 @@ div.metablock {
 div#content {
   min-height: 100%;
   height: auto !important;
+  height: 100%;
   margin: 0 auto -3em;
 }
 
@@ -85,6 +86,6 @@ div#footer { /* TODO add transparency */
 ul#contact li {
   display: block;
   float: left;
-  width: 20%;
+  margin: 0.5em 1em 0.5em 1em;
 }
 
