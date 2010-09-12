@@ -56,6 +56,13 @@ div.project a, div.resource a {
 }
 
 
+div.contentblock {
+  border-style: dotted;
+  border-color: #D0D0D0;
+  border-width: 1px 1px 1px 1px;
+  padding: 0;
+  margin: 0.2em;
+}
 
 div.metablock {
   border-style: dotted;
@@ -76,12 +83,12 @@ div.metablock {
 
 
 div#content {
-  min-height: 70%;
-  overflow: scroll;
+  overflow: auto;
   margin: 0 auto -3em;
 }
 
 div#footer {
+  height: 3em;
   background-color: white;
   width: 100%;
 }
