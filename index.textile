@@ -32,7 +32,7 @@ resources:
 
 <!-- Github Blog Posts -->
 {% for post in site.posts limit:3 %}
-div(post). "{{ post.title }}":{{ post.url }} %(date){{ post.date | date_to_string }}% %(excerpt){{ post.excerpt }}%
+div(post). "{{ post.title }}":{{ post.url }} %(date){{ post.date | date_to_string }}% {% if post.excerpt %}%(excerpt){{ post.excerpt }}%{% endif %}
 {% endfor %}
 
 
