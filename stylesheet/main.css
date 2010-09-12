@@ -3,6 +3,7 @@ html, body {
 	margin: 1em auto 1em auto;
 	width: 55em;
   height: 100%;
+  background-image: url('/image/bigtree.jpg') no-repeat fixed;
 }
 
 
