@@ -76,11 +76,18 @@ div.metablock {
   padding: 0;
   margin: 0.2em;
   color: #D0D0D0;
-  font-size: 70%;
+  font-size: 80%;
+}
+
+
+div#footer {
+  position: fixed;
+  bottom: 0;
 }
 
 ul#contact li {
   display: inline;
   clear: none;
+  width: 20%;
 }
 
