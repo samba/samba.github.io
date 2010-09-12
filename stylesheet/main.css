@@ -75,6 +75,10 @@ div#content {
 
 div#footer {
   height: 3em;
+  margin-top: -3em;
+  z-index: 10;
+  position: relative;
+  clear: both;
   background-color: white;
   width: 100%;
 }
