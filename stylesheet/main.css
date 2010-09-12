@@ -1,11 +1,9 @@
-body {
+html, body {
 	font-family: sans-serif;
 	margin: 1em auto 1em auto;
 	width: 55em;
+  height: 100%;
 }
-
-
-
 
 
 div.rightshift {
@@ -20,8 +18,6 @@ div.leftshift {
   clear: left;
   width: 20%;
 }
-
-
 
 
 div.interior {
@@ -43,29 +39,15 @@ div.post span.date {
   color: #D0D0D0;
 }
 
-div.contentblock {
-  border-style: solid;
-  border-color: #D0D0D0;
-  border-width: 1px 1px 1px 1px;
-  padding: 0;
-  margin: 0.2em;
-}
-
-div.contentblock h2 {
-  margin: 0.3em;
-  background-color: white;
-  border-width: 0 0 1px 0;
-  border-color: #00C;
-  border-style: dotted;
-}
-
 
 
 div.project a, div.resource a {
   display: block;
+  float: left;
+  clear: both;
   margin-left: 5%;
   width: 20%;
-} 
+}
 
 
 
@@ -80,9 +62,17 @@ div.metablock {
 }
 
 
+div#content {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+
 div#footer {
-  position: fixed;
-  bottom: 0;
+  height: 4em;
+  background-color: white;
+  width: 100%;
 }
 
 ul#contact li {
