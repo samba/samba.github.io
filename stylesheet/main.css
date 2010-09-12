@@ -10,7 +10,6 @@ body {
 
 div.rightshift {
   float: right;
-  clear: right;
   width: 30%;
 }
 
@@ -18,7 +17,6 @@ div.rightshift {
 
 div.leftshift {
   float: left;
-  clear: left;
   width: 20%;
 }
 

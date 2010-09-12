@@ -52,7 +52,7 @@ h2. Other resources
 </ul>
 </div>
 
-
+<div 
 
 h2. Captain's Log
 
