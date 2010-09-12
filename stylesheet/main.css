@@ -75,14 +75,8 @@ div.metablock {
 
 
 div#content {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -3em;
-}
-
-div#footer, div.push {
-  height: 3em;
+  min-height: 70%;
+  margin: 0 auto -3em auto;
 }
 
 div#footer { /* TODO add transparency */

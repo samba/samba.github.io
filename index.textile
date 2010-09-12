@@ -41,11 +41,15 @@ h2. About Me
 
 * Sr Systems Engineer at {{ page.links.analyticspros }}
 
+Currently my work is focused on web analytics and related systems...
+* Maintaining Javascript frameworks and delivery platforms
+* Maintaining Urchin Hosted, our cloud-based Urchin analytics service platform
+* Integrating our products with clients' systems
 
 
 
 <div id='projects'>
-h2. Projects
+h2. Side Projects
 
 {% for p in page.projects %}
 div(project). "{{ p.name }}":{{ page.links.github }}/{{ p.name }} %(description){{ p.description }}%
