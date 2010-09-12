@@ -71,14 +71,14 @@ div#content {
   min-height: 100%;
   height: auto !important;
   margin: 0 auto -3em;
+  background: white;
+}
+
+div#footer, div.push {
+  height: 3em;
 }
 
 div#footer {
-  height: 3em;
-  margin-top: -3em;
-  z-index: 10;
-  position: relative;
-  clear: both;
   background-color: white;
   width: 100%;
 }
