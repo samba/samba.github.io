@@ -1,2 +1,9 @@
 baseurl: 'http://samba.github.com'
 permalink: /posts/:title
+lsi: true
+markdown: maruku
+
+pygments: true
+
+rdiscount:
+  extensions: [smart]
