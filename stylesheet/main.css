@@ -14,6 +14,17 @@ div.rightshift {
   width: 30%;
 }
 
+
+
+div.left {
+  float: left;
+  clear: left;
+  width: 20%;
+}
+
+
+
+
 div.interior {
   margin: 1em;
 }
@@ -59,5 +70,10 @@ div.metablock {
   padding: 0;
   margin: 0.2em;
   color: #D0D0D0;
+}
+
+ul#contact li {
+  display: inline;
+  clear: none;
 }
 

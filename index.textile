@@ -10,15 +10,15 @@ links:
 
 projects:
 - name: dotfiles
-  description: configuration and settings for a Linux shell environment
+  description: Linux shell and working environment configuration 
 - name: server-tools
-  description: server administration tools, scheduled processes, etc 
+  description: scripts, configuration, and schedulers
 - name: sshkeymgmt
-  description: SSH key management system
+  description: key manager for SSH
 - name: workstationpkg
-  description: desktop provisioning scripts/packages for my own use 
+  description: provisioning and setup scripts for my own systems
 - name: logstat
-  description: statistical analysis of log files (e.g. what is an "unusual" SSH login?) 
+  description: an attempt at finding irregularities in SSH events 
 
 resources:
 - name: Be Freely
@@ -31,7 +31,7 @@ resources:
 
 
 
-<div class='contentblock rightshift reference'>
+<div class='contentblock'>
 h2. Captain's Log
 
 <ul>
@@ -43,7 +43,7 @@ h2. Captain's Log
 
 
 
-<div class='contentblock rightshift reference'>
+<div class='contentblock leftshift reference'>
 h2. Projects
 
 <ul id='projects'>
@@ -58,7 +58,7 @@ h2. About Me
 * Sr Systems Engineer at {{ page.links.analyticspros }}
 
 
-
+<div class='contentblock leftshift reference'>
 h2. Other resources
 
 <ul id='resources'>
@@ -66,6 +66,6 @@ h2. Other resources
 	<li>"{{ p.name }}":{{ p.url }} %(description){{ p.description }}%</li>
 {% endfor %}
 </ul>
-
+</div>
 
 
