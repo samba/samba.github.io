@@ -46,14 +46,11 @@ h2. Captain's Log
 <div class='contentblock rightshift'>
 h2. Projects
 
-{% capture project_table %}
-<table class='indent'>
+<ul id='projects'>
 {% for p in page.projects %}
-	<tr><td>"{{ p.name }}":{{ page.links.github }}/{{ p.name }}</td><td>{{ p.description }}</td></tr>
+	<li>"{{ p.name }}":{{ page.links.github }}/{{ p.name }} %(description){{ p.description }}%</li>
 {% endfor %}
-</table>
-{% endcapture %}
-{{ project_table | strip_newlines }}
+</ul>
 </div>
 
 h2. About Me
@@ -64,14 +61,11 @@ h2. About Me
 
 h2. Other resources
 
-{% capture resource_table %}
-<table class='indent'>
+<li id='resources'>
 {% for p in page.resources %}
-	<tr><td>"{{ p.name }}":{{ p.url }}</td><td>{{ p.description }}</td></tr>
+	<li>"{{ p.name }}":{{ p.url }} %(description){{ p.description }}%</li>
 {% endfor %}
-</table>
-{% endcapture %}
-{{ resource_table | strip_newlines }}
+</li>
 
 
 

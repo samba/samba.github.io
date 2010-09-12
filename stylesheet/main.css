@@ -15,7 +15,7 @@ span.date {
 
 div.rightshift {
   float: right;
-  clear: none;
+  clear: right;
   width: 30%;
 }
 
