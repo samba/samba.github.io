@@ -31,7 +31,7 @@ resources:
 
 
 
-<div class='contentblock rightshift'>
+<div class='contentblock rightshift reference'>
 h2. Captain's Log
 
 <ul>
@@ -43,7 +43,7 @@ h2. Captain's Log
 
 
 
-<div class='contentblock rightshift'>
+<div class='contentblock rightshift reference'>
 h2. Projects
 
 <ul id='projects'>
