@@ -71,3 +71,46 @@ div#footer div.contact ul code {
 	text-decoration: underline;
 	font-weight: normal;
 }
+
+
+
+
+
+div.rightshift {
+  float: right;
+  clear: none;
+}
+
+
+div.contentblock {
+  border-style: dotted;
+  border-color: #AAC;
+  border-width: 1px 1px 1px 1px;
+  padding: 0;
+  margin: 0.2em;
+}
+
+div.contentblock * {
+  margin: 1em;
+}
+
+div.contentblock h2 {
+  width: 100%;
+  padding: 0.2em;
+  margin: 0;
+}
+
+
+div.metablock {
+  border-style: dotted;
+  border-color: #BBD;
+  border-width: 1px 1px 1px 1px;
+  padding: 0;
+  margin: 0.2em;
+}
+
+div.metablock * {
+  margin 1em;
+  color: #99A;
+}
+

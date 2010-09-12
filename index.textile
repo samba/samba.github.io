@@ -30,6 +30,8 @@ resources:
 ---
 
 
+
+<div class='contentblock rightshift'>
 h2. Captain's Log
 
 <ul>
@@ -37,6 +39,10 @@ h2. Captain's Log
 	<li>%(date){{ post.date | date_to_string }}% "{{ post.title }}":{{ post.url }}</li>
 {% endfor %}
 </ul>
+</div>
+
+
+
 
 h2. About Me
 

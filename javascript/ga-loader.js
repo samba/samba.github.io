@@ -1,5 +1,5 @@
 
-// My scriptified version of Google Analytics loader.
+// My scriptified version of the old Google Analytics loader.
 
 
 (function(){
