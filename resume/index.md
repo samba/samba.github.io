@@ -47,16 +47,26 @@ interests:
 
 
 
-h2. Employment
+## Employment
 
 {% for e in employers %}
-div(employer). <span class='date'>{{ e.period }}</span> <span class='name'>{{ e.name }}</span> <span class='title'>{{ e.title }}</span> <div class='description'>{{ e.description }}</div>
+<div class='employer'>
+  <span class='date'>{{ e.period }}</span>
+  <span class='name'>{{ e.name }}</span>
+  <span class='title'>{{ e.title }}</span>
+  <div class='description'>{{ e.description }}</div>
+ </div>
 {% endfor %}
 
 h2. Education
 
 {% for e in education %}
-div(edu). <span class='date'>{{ e.period }}</span> <span class='name'>{{ e.name }}</span> <span class='title'>{{ e.degree }}</span> <div class='description'>{{ e.activities }}</div>
+<div class='edu'>
+  <span class='date'>{{ e.period }}</span>
+  <span class='name'>{{ e.name }}</span>
+  <span class='title'>{{ e.degree }}</span>
+  <div class='description'>{{ e.activities }}
+</div>
 {% endfor %}
 
 h2. Interests

@@ -34,36 +34,48 @@ resources:
 
 <!-- Github Blog Posts -->
 {% for post in site.posts limit:3 %}
-div(post). "{{ post.title }}":{{ post.url }} <span class='date'>{{ post.date | date_to_string }}</span> <span class='excerpt'>{% if post.excerpt %}{{ post.excerpt }}{% endif %}</span>
+<div class='post'>
+  <a href="{{ post.url }}">{{ post.title }}</a>
+  <span class='date'>{{ post.date | date_to_string }}</span>
+  <span class='excerpt'>{% if post.excerpt %}{{ post.excerpt }}{% endif %}</span>
+</div>
 {% endfor %}
 
 
 
-h2. About Me
+<h2>About Me</h2>
 
-* Sr Systems Engineer at {{ page.links.analyticspros }}
+<ul><li>Sr Systems Engineer at {{ page.links.analyticspros }}</ul>
 
 Currently my work is focused on web analytics and related systems...
-* Maintaining Javascript frameworks and delivery platforms
-* Maintaining Urchin Hosted, our cloud-based Urchin analytics service platform
-* Integrating our products with clients' systems
+<ul>
+  <li>Maintaining Javascript frameworks and delivery platforms
+  <li>Maintaining Urchin Hosted, our cloud-based Urchin analytics service platform
+  <li>Integrating our products with clients' systems
+</li>
 
-See also: "my r&eacute;sum&eacute;":/resume
+See also: <a href="/resume">my r&eacute;sum&eacute;</a>
 
 
 <div id='projects'>
-h2. Side Projects
+  <h2>Side Projects</h2>
 
 {% for p in page.projects %}
-div(project). "{{ p.name }}":{{ page.links.github }}/{{ p.name }} %(description){{ p.description }}%
+<div class='project'>
+  <a href="{{ page.links.github }}/{{ p.name }}">{{ p.name }}</a>
+  <span class='description'>{{ p.description }}</span>
+</div>
 {% endfor %}
 </div>
 
 <div id='resources'>
-h2. Other resources
+  <h2>Other resources</h2>
 
 {% for p in page.resources %}
-div(resource). "{{ p.name }}":{{ p.url }} %(description){{ p.description }}%
+<div class='resource'>
+  <a href="{{ p.url }}">{{ p.name }}</a>
+  <span class="description">{{ p.description }}</span>
+</div>
 {% endfor %}
 </div>
 
