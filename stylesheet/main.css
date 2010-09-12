@@ -62,6 +62,7 @@ div.contentblock h2 {
 
 
 div.project a, div.resource a {
+  display: block;
   margin-left: 5%;
   width: 20%;
 } 
