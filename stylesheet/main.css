@@ -28,14 +28,14 @@ div.reference a {
   white-space: nowrap;
 }
 
-span.date {
+div.reference span.date {
   font-size: 0.8em;
-  color: #00C;
+  color: #D0D0D0;
 }
 
 div.contentblock {
   border-style: solid;
-  border-color: #00C;
+  border-color: #D0D0D0;
   border-width: 1px 1px 1px 1px;
   padding: 0;
   margin: 0.2em;
@@ -58,10 +58,6 @@ div.metablock {
   border-width: 1px 1px 1px 1px;
   padding: 0;
   margin: 0.2em;
-}
-
-div.metablock * {
-  margin 1em;
-  color: #99A;
+  color: #D0D0D0;
 }
 

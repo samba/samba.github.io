@@ -61,11 +61,11 @@ h2. About Me
 
 h2. Other resources
 
-<li id='resources'>
+<ul id='resources'>
 {% for p in page.resources %}
 	<li>"{{ p.name }}":{{ p.url }} %(description){{ p.description }}%</li>
 {% endfor %}
-</li>
+</ul>
 
 
 
