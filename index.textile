@@ -29,6 +29,8 @@ resources:
   description: Knowledgebase for my personal projects, etc
 ---
 
+<div class='interior'>
+
 
 <!-- Github Blog Posts -->
 {% for post in site.posts limit:3 %}
@@ -65,4 +67,4 @@ div(resource). "{{ p.name }}":{{ p.url }} %(description){{ p.description }}%
 </div>
 
 
-
+</div>

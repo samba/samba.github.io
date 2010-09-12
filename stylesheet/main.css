@@ -84,7 +84,7 @@ div.metablock {
 
 div#content {
   overflow: auto;
-  margin: 0 auto -3em;
+  margin: 0 auto 3em;
 }
 
 div#footer {
