@@ -18,4 +18,5 @@ newpost:
 		echo -e "---\nlayout: default\ntitle: $$t\n---" > $$p; \
 		rm $$m; $$EDITOR $$p
 
-
+deploy:
+	git push github

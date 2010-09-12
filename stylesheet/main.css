@@ -73,7 +73,10 @@ div#footer div.contact ul code {
 }
 
 
-
+span.date {
+  font-size: 0.8em;
+  color: #BBD;
+}
 
 
 div.rightshift {
@@ -98,6 +101,7 @@ div.contentblock h2 {
   width: 100%;
   padding: 0.2em;
   margin: 0;
+  background-color: #BBD;
 }
 
 

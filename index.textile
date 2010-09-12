@@ -43,11 +43,7 @@ h2. Captain's Log
 
 
 
-
-h2. About Me
-
-* Sr Systems Engineer at {{ page.links.analyticspros }}
-
+<div class='contentblock rightshift'>
 h2. Projects
 
 {% capture project_table %}
@@ -58,6 +54,12 @@ h2. Projects
 </table>
 {% endcapture %}
 {{ project_table | strip_newlines }}
+</div>
+
+h2. About Me
+
+* Sr Systems Engineer at {{ page.links.analyticspros }}
+
 
 
 h2. Other resources
