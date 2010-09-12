@@ -19,4 +19,4 @@ newpost:
 		rm $$m; $$EDITOR $$p
 
 deploy:
-	git push github
+	git commit -a && git push github
