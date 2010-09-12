@@ -5,72 +5,6 @@ body {
 }
 
 
-h1 {
-	font-size: 130%;
-}
-
-h2 {
-	font-size: 115%;
-}
-
-h3 {
-	font-size: 107%;
-}
-
-h2, h3 {
-	margin: 2em 0 0.2em 0;
-	padding: 0.2em;
-	border-width: 0 0 1px 0;
-	border-style: dotted;
-	border-color: #AAAACC;
-}
-
-div#header h1 h1 {
-	color: #333;
-}
-
-table.indent {
-	margin-left: 2em;
-}	
-
-table.indent td {
-	padding: 0.2em;
-}
-
-table.indent td + td {
-	margin-left: 2em;
-}
-
-div#content {
-
-}
-
-div#footer {
-	margin-top: 8em;
-	border-width: 1px 0 0 0;
-	border-style: dotted;
-	border-color: #AAC;
-}
-
-div#footer div.contact {
-	width: 40%;
-	display: block;
-	float: left;
-}
-
-div#footer div.contact ul li, div#footer div.contact ul a {
-	color: #333;
-}
-
-div#footer div.contact ul li {
-	list-style-type: none;
-	font-size: 90%;
-}
-
-div#footer div.contact ul code {
-	text-decoration: underline;
-	font-weight: normal;
-}
 
 
 span.date {
@@ -84,6 +18,11 @@ div.rightshift {
   clear: none;
 }
 
+div.interior {
+  margin: 1em;
+}
+
+
 
 div.contentblock {
   border-style: dotted;
@@ -93,16 +32,13 @@ div.contentblock {
   margin: 0.2em;
 }
 
-div.contentblock * {
-  margin: 1em;
-}
-
 div.contentblock h2 {
-  width: 100%;
   padding: 0.2em;
   margin: 0;
-  background-color: #BBD;
+  background-color: #66CCFF;
 }
+
+
 
 
 div.metablock {
