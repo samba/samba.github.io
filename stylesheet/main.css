@@ -83,7 +83,7 @@ div#footer { /* TODO add transparency */
 }
 
 ul#contact li {
-  display: inline;
+  display: block;
   float: left;
   clear: both;
   width: 20%;
