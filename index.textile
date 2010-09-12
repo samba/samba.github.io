@@ -31,18 +31,6 @@ resources:
 
 
 
-<div class='contentblock'>
-h2. Captain's Log
-
-<ul>
-{% for post in site.posts limit:3 %}
-	<li>%(date){{ post.date | date_to_string }}% "{{ post.title }}":{{ post.url }}</li>
-{% endfor %}
-</ul>
-</div>
-
-
-
 <div class='contentblock leftshift reference'>
 h2. Projects
 
@@ -52,10 +40,6 @@ h2. Projects
 {% endfor %}
 </ul>
 </div>
-
-h2. About Me
-
-* Sr Systems Engineer at {{ page.links.analyticspros }}
 
 
 <div class='contentblock leftshift reference'>
@@ -67,5 +51,19 @@ h2. Other resources
 {% endfor %}
 </ul>
 </div>
+
+
+
+h2. Captain's Log
+
+<ul>
+{% for post in site.posts limit:3 %}
+	<li>%(date){{ post.date | date_to_string }}% "{{ post.title }}":{{ post.url }}</li>
+{% endfor %}
+</ul>
+
+h2. About Me
+
+* Sr Systems Engineer at {{ page.links.analyticspros }}
 
 
