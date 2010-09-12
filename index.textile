@@ -48,6 +48,7 @@ Currently my work is focused on web analytics and related systems...
 * Maintaining Urchin Hosted, our cloud-based Urchin analytics service platform
 * Integrating our products with clients' systems
 
+See also: "my r&eacute;sum&eacute;":/resume
 
 
 <div id='projects'>
