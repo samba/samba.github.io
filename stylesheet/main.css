@@ -71,21 +71,21 @@ div#content {
   min-height: 100%;
   height: auto !important;
   margin: 0 auto -3em;
-  background: white;
 }
 
 div#footer, div.push {
   height: 3em;
 }
 
-div#footer {
+div#footer { /* TODO add transparency */
   background-color: white;
   width: 100%;
 }
 
 ul#contact li {
   display: inline;
-  clear: none;
+  float: left;
+  clear: both;
   width: 20%;
 }
 
