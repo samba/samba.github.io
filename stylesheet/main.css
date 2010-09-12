@@ -16,6 +16,7 @@ span.date {
 div.rightshift {
   float: right;
   clear: none;
+  width: 30%;
 }
 
 div.interior {
@@ -34,7 +35,7 @@ div.contentblock {
 
 div.contentblock h2 {
   margin: 0;
-  background-color: #00CCFF;
+  background-color: #AAC;
 }
 
 
