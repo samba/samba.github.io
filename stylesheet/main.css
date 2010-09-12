@@ -34,6 +34,10 @@ div.reference a {
   white-space: nowrap;
 }
 
+div.post {
+  padding: 1em 1em 1em 1em;
+}
+
 div.post span.date {
   font-size: 0.8em;
   color: #D0D0D0;
@@ -65,12 +69,11 @@ div.metablock {
 div#content {
   min-height: 100%;
   height: auto !important;
-  height: 100%;
-  margin: 0 auto -4em;
+  margin: 0 auto -3em;
 }
 
 div#footer {
-  height: 4em;
+  height: 3em;
   background-color: white;
   width: 100%;
 }
