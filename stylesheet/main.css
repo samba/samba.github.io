@@ -17,6 +17,7 @@ div.rightshift {
 
 div.leftshift {
   float: left;
+  clear: left;
   width: 20%;
 }
 
@@ -37,7 +38,7 @@ div.reference a {
   white-space: nowrap;
 }
 
-div.reference span.date {
+div.post span.date {
   font-size: 0.8em;
   color: #D0D0D0;
 }
