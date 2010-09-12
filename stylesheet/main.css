@@ -61,6 +61,12 @@ div.contentblock h2 {
 
 
 
+div.project a, div.resource a {
+  margin-left: 5%;
+  width: 20%;
+} 
+
+
 
 div.metablock {
   border-style: dotted;
