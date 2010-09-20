@@ -47,7 +47,7 @@ interests:
 
 
 
-## Employment
+h2. Employment
 
 {% for e in employers %}
 <div class='employer'>
