@@ -49,7 +49,7 @@ interests:
 
 <h2>Employment</h2>
 
-{% for e in employers %}
+{% for e in page.employers %}
 <div class='employer'>
   <span class='date'>{{ e.period }}</span>
   <span class='name'>{{ e.name }}</span>
@@ -59,7 +59,7 @@ interests:
 {% endfor %}
 
 <h2>Education</h2>
-{% for e in education %}
+{% for e in page.education %}
 <div class='edu'>
   <span class='date'>{{ e.period }}</span>
   <span class='name'>{{ e.name }}</span>
@@ -70,7 +70,7 @@ interests:
 
 <h2>Interests</h2>
 <ul>
-{% for i in interests %}
+{% for i in page.interests %}
 <li>{{ i }}
 {% endfor %}
 </ul>
