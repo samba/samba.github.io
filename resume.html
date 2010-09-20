@@ -43,11 +43,11 @@ interests:
 
 --
 
-***NOTE*** This is a work in progress.
+<strong>NOTE</strong> This is a work in progress.
 
 
 
-h2. Employment
+<h2>Employment</h2>
 
 {% for e in employers %}
 <div class='employer'>
@@ -58,8 +58,7 @@ h2. Employment
  </div>
 {% endfor %}
 
-h2. Education
-
+<h2>Education</h2>
 {% for e in education %}
 <div class='edu'>
   <span class='date'>{{ e.period }}</span>
@@ -69,8 +68,9 @@ h2. Education
 </div>
 {% endfor %}
 
-h2. Interests
-
+<h2>Interests</h2>
+<ul>
 {% for i in interests %}
-* {{ i }}
+<li>{{ i }}
 {% endfor %}
+</ul>
