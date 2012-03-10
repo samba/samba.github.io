@@ -7,6 +7,12 @@ html, body {
 }
 
 
+div.subtitle {
+  font-size: 120%;
+  margin: 0.5em 0.5em 2em 0.5em;
+  font-style: italic;
+}
+
 div.rightshift {
   float: right;
   width: 30%;
@@ -36,7 +42,7 @@ div.reference a {
 }
 
 div.post {
-  padding: 1em 1em 1em 1em;
+  padding: 0.75em 1em 1em 0.1em;
 }
 
 div.post span.date {
