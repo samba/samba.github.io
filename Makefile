@@ -1,5 +1,6 @@
 DIR=$(PWD)
 EDITABLE_TYPES='html md css js textile'
+EDITOR=$(shell which mvim || which vim)
 DATE:=$(shell date +%Y-%m-%d)
 
 editables: 
@@ -15,8 +16,8 @@ newpost:
 	m=$$(mktemp /tmp/post.XXX); echo -n 'Title: '; read t; \
 		echo $$t | $(MAKE) -s sanitize  > $$m; \
 		p="_posts/$(DATE)-$$(cat $$m).textile"; \
-		echo -e "---\nlayout: default\ntitle: $$t\n---" > $$p; \
-		rm $$m; $$EDITOR $$p
+		echo "---\nlayout: default\ntitle: $$t\n---" > $$p; \
+		rm $$m; $(EDITOR) $$p
 
 deploy:
 	git commit -a && git push github

@@ -2,7 +2,7 @@ html, body {
 	font-family: sans-serif;
 	margin: 1em auto 1em auto;
 	width: 55em;
-  background: white url('/image/bigtree.jpg') no-repeat fixed;
+  /* background: white url('/image/bigtree.jpg') no-repeat fixed; */
   overflow: auto;
 }
 
