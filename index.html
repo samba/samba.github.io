@@ -8,16 +8,11 @@ links:
 
 
 projects:
+- name: trombone
+  description: Converts Tomboy notes to Evernote format
 - name: dotfiles
   description: Linux shell and working environment configuration 
-- name: server-tools
-  description: scripts, configuration, and schedulers
-- name: sshkeymgmt
-  description: key manager for SSH
-- name: workstationpkg
-  description: provisioning and setup scripts for my own systems
-- name: logstat
-  description: an attempt at finding irregularities in SSH events 
+
 
 resources:
 - name: Be Freely
@@ -42,18 +37,6 @@ resources:
 
 
 
-<h2>About Me</h2>
-
-<ul><li>Sr Systems Engineer at {{ page.links.analyticspros }}</ul>
-
-Currently my work is focused on web analytics and related systems...
-<ul>
-  <li>Maintaining Javascript frameworks and delivery platforms
-  <li>Maintaining Urchin Hosted, our cloud-based Urchin analytics service platform
-  <li>Integrating our products with clients' systems
-</ul>
-
-
 <div id='projects'>
   <h2>Side Projects</h2>
 
@@ -63,6 +46,8 @@ Currently my work is focused on web analytics and related systems...
   <span class='description'>{{ p.description }}</span>
 </div>
 {% endfor %}
+
+<p><em>Consider this a <strong>very</strong> partial list...</em></p>
 </div>
 
 <div id='resources'>

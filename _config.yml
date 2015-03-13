@@ -1,4 +1,4 @@
-baseurl: 'http://samba.github.com'
+baseurl: /
 pygments: true
 permalink: /posts/:title
 lsi: true

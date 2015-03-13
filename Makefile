@@ -21,3 +21,10 @@ newpost:
 
 deploy:
 	git commit -a && git push github
+
+serve:
+	which bundle || sudo gem install bundler
+	bundle install
+	bundle update
+	bundle exec jekyll serve
+

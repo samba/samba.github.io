@@ -1,79 +1,32 @@
 ---
 title: Sam Briesemeister
-subtitle: Systems Engineer
+subtitle: Software &amp; Systems Engineer, Leader, Teacher, Innovator
 layout: default
 style: resume
 
-employers:
-- name: Analytics Pros
-  period: Feb 2009 - Current
-  title: Sr Systems Engineer
-  description: GACP; Created and maintained Javascript frameworks for integration with client websites and applications; Created "Dimensionator", a Google Analytics UI enhancement
-- name: FE Corporation
-  period: Mar 1999 - Current
-  title: IT Consultant
-  description: part-time, as-needed maintenance of servers, workstations, and website
-- name: SafeDesk Solutions
-  period: Jul 2008 - Oct 2009
-  title: Software Engineer
-  description: Design and implement boot-time system policy engine for Linux in WAN environments; Automated system configuration, maintenance. (Shell, Python, client-server contexts.)
-- name: Washington State University
-  period: Nov 2004 - Jun 2008
-  title: Information Systems Specialist
-  description: Deploy and maintain hybrid Windows/Linux network; Conduct system development projects for internal applications and web site integration
-- name: Cabin River Web Solutions
-  period: Mar 2000 - Sep 2004
-  title: Sr Software Development Consultant
-  description: Design and develop web-based project management solution, various encryption and database abstraction modules for team projects
-
-education:
-- name: University of Idaho
-  period: 2004 - 2008
-  degree: B.S. Business - Information Systems; minor Computer Science, minor German
-  activities: Sigma Phi Epsilon, WSU Linux Users Group
-- name: Yakima Valley Community College
-  period: 2000 - 2002
-  degree: AA
-
-interests:
-- Open-Source Software
-- Business and Entrepreneurship
-- Humanitarian efforts
-- Foreign languages
+social:
+  - name: about.me
+    url: http://about.me/sambriesemeister
+  - name: LinkedIn
+    url: http://linkedin.com/in/sambriesemeister
+  - name: Twitter
+    url: http://twitter.com/systemalias
 
 ---
 
 <div class='interior'>
-<strong>NOTE</strong> This is a work in progress.
 
+<h2>Find me Elsewhere</h2>
 
+<p>This document was never well-maintained, so I've just removed it. If you'd like to see my résumé, please contact me through social channels below.
 
-<h2>Employment</h2>
-
-{% for e in page.employers %}
-<div class='employer'>
-  <span class='date'>{{ e.period }}</span>
-  <span class='name'>{{ e.name }}</span>
-  <span class='title'>{{ e.title }}</span>
-  <div class='description'>{{ e.description }}</div>
- </div>
-{% endfor %}
-
-<h2>Education</h2>
-{% for e in page.education %}
-<div class='edu'>
-  <span class='date'>{{ e.period }}</span>
-  <span class='name'>{{ e.name }}</span>
-  <span class='title'>{{ e.degree }}</span>
-  <div class='description'>{{ e.activities }}
-</div>
-{% endfor %}
-
-<h2>Interests</h2>
-<ul>
-{% for i in page.interests %}
-<li>{{ i }}
+<ul class='social_networks'>
+{% for network in page.social %}
+  <li><a href="{{ network.url }}">{{ network.name }}</a></li>
 {% endfor %}
 </ul>
+
+
+
 
 </div>
