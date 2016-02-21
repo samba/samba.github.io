@@ -1,6 +1,8 @@
 ---
-layout: post 
+layout: post
 title: New GitHub Pages Layout, etc
+
+category: silly
 
 links:
   google: http://www.google.com/search?q=
@@ -18,7 +20,7 @@ entries:
 
 ---
 
-I finally had a minute to rework my design and such. The previous draft was way too cluttered, and provided more info than most people wanted to know. 
+I finally had a minute to rework my design and such. The previous draft was way too cluttered, and provided more info than most people wanted to know.
 
 I don't think the new draft is final, but it's an improvement. If you browse "the code":{{ page.links.ghpage }}, you'll see that it uses YAML more extensively to define datastructures, and then loops over them to generate content. Good stuff.
 
@@ -34,7 +36,7 @@ Far more trouble some: when using @for@ loops, it generates extra newlines - _be
 * Each row/entry of a tables or lists then gets its own block (@<ul>@ or @<table>@)
 * In some cases, it simply injects extra @<br>@ and other line/paragraph markup
 
-You can imagine how problematic that becomes. (Examples follow.) 
+You can imagine how problematic that becomes. (Examples follow.)
 
 Please check the following for source code:
 * "How to replicate it":{{ page.links.gh_thispost }} (this post)

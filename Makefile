@@ -1,30 +1,49 @@
 DIR=$(PWD)
 EDITABLE_TYPES='html md css js textile'
-EDITOR=$(shell which mvim || which vim)
+# EDITOR=$(shell which mvim || which vim)
 DATE:=$(shell date +%Y-%m-%d)
 
-editables: 
-	@find $(DIR) $(shell echo $(EDITABLE_TYPES) | sed -r "s/([a-z0-9]*)/-name%%'*.\1'/g; s/ / -o /g; s/%%/ /g;")
+# Which rules to evaluate perpetually
+AUTOBUILD:=.docker-build
 
-revisions: 
-	$$EDITOR $$($(MAKE) -s editables)
 
-sanitize:
-	tr -d '\n' | tr -s '[:punct:][:blank:][:cntrl:][:space:]' '-'
+# Which Pygments stylesheet to adapt?
+HIGHLIGHT_STYLE:=github
 
-newpost:
-	m=$$(mktemp /tmp/post.XXX); echo -n 'Title: '; read t; \
-		echo $$t | $(MAKE) -s sanitize  > $$m; \
-		p="_posts/$(DATE)-$$(cat $$m).textile"; \
-		echo "---\nlayout: default\ntitle: $$t\n---" > $$p; \
-		rm $$m; $(EDITOR) $$p
+
+.PHONY:  docker-setup docker-run deploy cleanslate
+
+
+all:  .docker-build
+
+
+watch:
+	(while true; do make --silent ${AUTOBUILD}; sleep 1; done) | grep -v 'make\[1\]'
+
+stylesheet/code.css:
+	docker run -it -v `pwd`:/root samba.github.io  \
+		bundle exec rougify style github > $@
 
 deploy:
 	git commit -a && git push github
 
-serve:
-	which bundle || sudo gem install bundler
-	bundle install
-	bundle update
-	bundle exec jekyll serve
+
+.docker-build: Dockerfile
+	docker build -t samba.github.io .
+	touch $@
+
+
+clean cleanslate:
+	docker run -it -v `pwd`:/root -p 4000:4000 samba.github.io  \
+		bundle exec jekyll clean
+
+docker-setup: .docker-build
+	docker run -it -v `pwd`:/root samba.github.io  bundle exec jekyll new . --force
+
+serve docker-run: .docker-build stylesheet/code.css
+	docker run -it -v `pwd`:/root -p 4000:4000 samba.github.io
+
+
+newpost:
+	sh scripts/newpost.sh
 

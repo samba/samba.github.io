@@ -2,34 +2,35 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>{{ page.title }}</title>
-		
-		<link rel='stylesheet' href='/stylesheet/main.css'/>
-		<link rel='stylesheet' href='/stylesheet/{{ page.style }}.css'/>
-		<script src='/javascript/ga-loader.js'></script>
+		{% include meta.html %}
+		{% include assets.html %}
 	</head>
 
 
 	<body>
-		<div id='header'>
-			<h1>{{ page.title  }}</h1>
-		{{ content }}
-		</div>
 
-	
-		<div id='related'>
-			<h2>Related Posts</h2>
-			<ul>
-				{% for post in site.related_posts %}
-				<li><span class='date'>{{ post.date | date_to_string }}</span> <a href='{{ post.url }}'>{{ post.title }}</a>
-				{% endfor %}
-			</ul>
-		</div>
-	
-		<div id='back'>
-			<a href='{{ site.baseurl }}'>Home</a>		
-		</div>
+		{% include header.html %}
+		{% include nav.html %}
+
+
+		<article id='post'>
+			<header>
+				<h1>{{ page.title }}</h1>
+
+				<span class='postmeta'>
+					Posted by <span class='author'>{{ page.author|site.github.owner_name }}</span>
+					on <span class="timestamp">{{page.date|date:"%d. %b %Y"}}</span>
+				</span>
+			</header>
+			{{ content }}
+		</article>
+
+		<aside>
+		{% include related.html %}
+		</aside>
+
+
+		{% include footer.html %}
 
 	</body>
 

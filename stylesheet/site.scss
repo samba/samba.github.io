@@ -1,0 +1,99 @@
+---
+# A SASS stylesheet in Jekyll. Winning.
+---
+
+$text-color: rgba(0, 0, 0, 1);
+$text-subtle-color: rgba(0, 0, 0, 0.75);
+
+
+/** Fonts selected
+https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic
+- Merriweather
+- Merriweather Sans
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic);
+
+
+@media screen {
+	body p, body span.haiku, body li, header, article, section {
+		font-family: 'Merriweather Sans', sans-serif;
+	}
+
+	body {
+		h1, h2, h3, h4, h5, h6 {
+			font-family: 'Merriweather', serif;
+		}
+	}
+}
+
+@mixin subtle-text {
+	color: $text-subtle-color;
+	font: {
+		size: 0.9em;
+	}
+}
+
+@mixin inset($depth: 1em, $radius: 0.25em) {
+	border: {
+		style: solid;
+		radius: $radius;
+		color: rgba(0, 0, 0, 0.25);
+		width: 1px;
+	}
+
+	box-shadow: ($depth/30) ($depth/30) $depth 0em rgba(0, 0, 0, 0.25) inset;
+
+	padding: ($radius);
+
+}
+
+@mixin transparent {
+	background-color: transparent;
+}
+
+HEADER {
+
+	h1 {
+		margin: 0;
+	}
+
+	span.postmeta {
+		@include subtle-text;
+	}
+
+	margin: {
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 1.5em;
+	}
+}
+
+
+DIV.highlighter-rouge {
+
+
+	@include inset;
+
+	pre.highlight {
+		margin: {
+			top: 0;
+			bottom: 0;
+			left: 0.5em;
+			right: 0.5em;
+		}
+
+		@include transparent;
+	}
+
+}
+
+
+@media (max-width: 1200px) {
+
+}
+
+@media (min-width: 1200px){
+
+}

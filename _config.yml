@@ -1,9 +1,38 @@
 baseurl: /
-pygments: true
-permalink: /posts/:title
-lsi: true
-# markdown: rdiscount
+
+params:
+  title: "Blog of Sam Briesemeister"
+  description: "Advancing business capability and agility with a product paradigm and continuous delivery principles."
+
+github: [metadata]
+
+permalink: /blog/:year/:categories/:title
+
+markdown: kramdown
+
+highlighter: rouge
 
 
-# rdiscount:
-#  extensions: [smart]
+kramdown:
+  input: GFM
+  hard_wrap: false
+  tables: true
+  autolink: true
+  auto_ids: true
+  syntax_highlighter: rouge
+
+rouge:
+  css_class: "codehilite"
+  scope: ".codehilite"
+
+gems:
+  - kramdown
+  - rouge
+  - sass
+
+exclude:
+  - node_modules
+  - Dockerfile
+  - Gemfile
+  - Makefile
+  - scripts

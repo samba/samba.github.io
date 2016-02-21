@@ -1,3 +1,6 @@
 .*.sw*
 *.lock
 _site
+.bash*
+.pry*
+.docker-build

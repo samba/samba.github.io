@@ -1,10 +1,11 @@
 ---
-layout: post 
+layout: post
 title: GitHub Pages & Blogs
-
+date: 2010-02-22 00:00:00
+category: null
 ---
 
-p. Today I finally bumped my GitHub page beyond a simple placeholder. Not bad. The deployment process is quite natural to anyone with any real Git experience, but there's a bit of a learning curve for the templating and formatting systems. 
+p. Today I finally bumped my GitHub page beyond a simple placeholder. Not bad. The deployment process is quite natural to anyone with any real Git experience, but there's a bit of a learning curve for the templating and formatting systems.
 
 Some pages I found handy in the process:
 * "Pushing a Blog with GitHub Pages and Jekyll":http://blog.envylabs.com/2009/08/publishing-a-blog-with-github-pages-and-jekyll/
