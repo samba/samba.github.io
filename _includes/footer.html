@@ -1,1 +1,36 @@
 <!-- footer -->
+
+
+<footer class='page-footer grey darken-2'>
+  <div class='container'>
+  <div class='row'>
+
+    <div class='col s7'>
+    {% include recent.html limit=10  omit_excerpt=true %}
+    </div>
+
+    <div class='col s5'>
+    {% if include.mode == 'post' %}
+    {% include related.html limit=10  omit_excerpt=true %}
+    {% else %}
+        <aside class='contact'>
+        <h5>Contact Me</h5>
+          <ul id='contactinfo'>
+            <li>Twitter: <a href='http://twitter.com/systemalias/'>@{{site.author.twitter}}</a></li>
+            <li>GitHub: <a href='http://github.com/samba/'>@samba</a></li>
+            <li><a href='http://www.linkedin.com/in/sambriesemeister'>LinkedIn</a></li>
+            <li><a href="http://about.me/sambriesemeister">about.me</a></li>
+          </ul>
+        </aside>
+    {% endif %}
+    </div>
+
+    </div>
+    </div>
+
+    <div class="footer-copyright grey darken-3">
+    <div class='container'>
+      &copy; {{site.github.owner_name|default: site.author.name}} {{page.date|default:site.time|date:"%Y"}}. All Rights Reserved.
+    </div>
+    </div>
+  </footer>

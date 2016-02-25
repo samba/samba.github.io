@@ -4,7 +4,13 @@
 
 $text-color: rgba(0, 0, 0, 1);
 $text-subtle-color: rgba(0, 0, 0, 0.75);
-
+$text-subtle-color-light: rgba(150, 150, 150, 75);
+$tag-color: rgba(120, 120, 120, 0.75);
+$tag-color-text: white;
+$category-color: rgba(50, 50, 120, 0.75);
+$tag-font-size: 0.8em;
+$link-color-dark: rgba(70, 70, 70, 1);
+$link-color-light: rgba(220, 220, 220, 1);
 
 /** Fonts selected
 https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic
@@ -14,18 +20,6 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 
 @import url(http://fonts.googleapis.com/css?family=Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic);
 
-
-@media screen {
-	body p, body span.haiku, body li, header, article, section {
-		font-family: 'Merriweather Sans', sans-serif;
-	}
-
-	body {
-		h1, h2, h3, h4, h5, h6 {
-			font-family: 'Merriweather', serif;
-		}
-	}
-}
 
 @mixin subtle-text {
 	color: $text-subtle-color;
@@ -42,7 +36,7 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 		width: 1px;
 	}
 
-	box-shadow: ($depth/30) ($depth/30) $depth 0em rgba(0, 0, 0, 0.25) inset;
+	box-shadow: ($depth/30) ($depth/30) ($depth/2) 0em rgba(0, 0, 0, 0.25) inset;
 
 	padding: ($radius);
 
@@ -52,13 +46,99 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 	background-color: transparent;
 }
 
+
+@mixin tag {
+	display: inline-block;
+	background-color: $tag-color;
+	color: $tag-color-text;
+	/* text-shadow: 0.1em 0.1em 0.1em rgba(255, 255, 255, 0.5); */
+	box-shadow: 0.1em 0.1em 0.25em rgba(0, 0, 0, 0.25);
+	border: {
+		radius: 0.25em;
+	}
+	padding: {
+		left:  0.3em;
+		right: 0.3em;
+		top: 0.25em;
+		bottom: 0.25em;
+	}
+	margin: 0.25em;
+
+	font: {
+		family: 'Merriweather Sans', sans-serif;
+		weight: 200;
+		size: $tag-font-size;
+	}
+
+}
+
+@mixin category {
+	@include tag;
+	background-color: $category-color;
+}
+
+footer aside.recent.posts, footer aside.related.posts {
+
+	li.postlink {
+		div.taglist {
+			display: inline-block;
+		}
+
+		span.date {
+			color: $text-subtle-color-light;
+		}
+
+		a {
+			color: $link-color-light;
+		}
+	}
+
+}
+
+
+@media screen {
+	html, body, body p, body span.haiku, body li, header, article, section {
+		font-family: 'Merriweather Sans', sans-serif;
+	}
+
+	body {
+		h1, h2, h3, h4, h5, h6 {
+			font-family: 'Merriweather', serif;
+		}
+	}
+
+	span.category {
+		@include category;
+	}
+
+	span.tag {
+		@include tag;
+	}
+
+
+	/* BEGIN sticky footer (a la Materialize) */
+	body {
+	  display: flex;
+	  min-height: 100vh;
+	  flex-direction: column;
+	}
+
+	main {
+	  flex: 1 0 auto;
+	}
+	/* END sticky footer */
+
+}
+
+
+
 HEADER {
 
 	h1 {
 		margin: 0;
 	}
 
-	span.postmeta {
+	span.postmeta, span.subtitle, span.subtle {
 		@include subtle-text;
 	}
 

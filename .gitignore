@@ -4,3 +4,4 @@ _site
 .bash*
 .pry*
 .docker-build
+.DS_Store

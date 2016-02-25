@@ -1,0 +1,29 @@
+
+
+{% if include.limit > 0 %}
+<aside class='recent posts'>
+<h5 class=''>Recent Posts</h5>
+<ul>
+	<!-- Jekyll provides these in reverse-chronological order anyway. -->
+	{% for post in site.posts limit:{include.limit} %}
+	<li class='postlink'>
+		<a href='{{ post.url }}'>{{ post.title }}</a>
+		<span class='date'>{{ post.date |date:"%d. %b %Y" }}</span>
+
+		<div class='taglist'>
+		<span class='category'>{{post.categories|join:"/"}}</span>
+		{% for tag in post.tags limit:10 %}
+			<span class='tag'>{{tag}}</span>
+		{% endfor %}
+		</div>
+
+		{% if post.excerpt and (!omit_excerpt) %}
+		<span class='excerpt'>{{ post.excerpt |markdownify }}</span>
+		{% endif %}
+	</li>
+	{% endfor %}
+</ul>
+</aside>
+{% else %}
+	<!-- recent posts disabled -->
+{% endif %}

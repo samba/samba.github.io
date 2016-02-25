@@ -2,38 +2,51 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<title>{{ page.title }}</title>
-		<link rel='stylesheet' href='/stylesheet/main.css'/>
-	    {% if page.style %}
-	    <link rel='stylesheet' href='/stylesheet/{{ page.style }}.css'/>
-	    {% endif %}
-		<script src='{{site.baseurl}}/javascript/main.js'></script>
+		{% include meta.html %}
+		{% include assets.html %}
 	</head>
 
 
 	<body>
-		<div id='header'>
-			<h1>{{ page.title  }}</h1>
-			<span class='subtitle'>{{ page.subtitle }}</span>
+
+
+		<header class='site gray darken-4'>
+		{% include header.html %}
+		<div class='row navbar-fixed'>
+			{% include nav.html mode='page' %}
+		</div>
+		</header>
+
+
+
+		<div class='container'>
+
+
+			<div class='row'>
+				<article class='page content'>
+					<header>
+						<h1>{{ page.title }}</h1>
+						{% if page.subtitle %}
+						<span class='subtitle'>{{ page.subtitle }}</span>
+						{% endif %}
+						<span class='postmeta'>
+						By <span class='author'>{{page.author|default:site.author.name}}</span>,
+						Published <span class="timestamp">{{page.date|default:site.time|date:"%d. %b %Y"}}</span>
+						</span>
+					</header>
+					{{ content }}
+				</article>
+			</div>
+
 		</div>
 
 
-    <div id='content' class='contentblock'> {{ content }} </div>
 
 
 
-
-    <div id='footer' class='metablock'>
-      <ul id='contact'>
-        <li>Contact me:
-        <li><a href='http://www.linkedin.com/in/sambriesemeister'>linkedin</a>
-        <li><a href='http://twitter.com/systemalias/'>twitter</a>
-        <li><a href='http://github.com/samba/'>github</a>
-      </ul>
-      <span style='clear: both'></span>
-		</div>
-
+		{% include footer.html %}
 	</body>
+
+
 
 </html>

@@ -9,29 +9,47 @@
 
 	<body>
 
+
+		<header class='site gray darken-4'>
 		{% include header.html %}
-		{% include nav.html %}
+		<div class='row navbar-fixed'>
+			{% include nav.html mode='page' %}
+		</div>
+		</header>
 
 
-		<article id='post'>
-			<header>
-				<h1>{{ page.title }}</h1>
 
-				<span class='postmeta'>
-					Posted by <span class='author'>{{ page.author|site.github.owner_name }}</span>
-					on <span class="timestamp">{{page.date|date:"%d. %b %Y"}}</span>
-				</span>
-			</header>
-			{{ content }}
-		</article>
-
-		<aside>
-		{% include related.html %}
-		</aside>
+		<div class='container'>
 
 
-		{% include footer.html %}
+			<div class='row'>
+				<article id='post' class='post content'>
+					<header>
+						<h1>{{ page.title }}</h1>
 
+						<span class='postmeta'>
+							Posted by <span class='author'>{{page.author|default:site.author.name}}</span>
+							on <span class="timestamp">{{page.date|date:"%d. %b %Y"}}</span>
+							under <span class='category'>{{page.categories|join:"/"}}</span>
+							tagged:
+							{% for tag in page.tags %}
+								<span class='tag'>{{ tag }}</span>
+							{% endfor %}
+						</span>
+					</header>
+					{{ content }}
+				</article>
+			</div>
+
+		</div>
+
+
+
+
+
+		{% include footer.html mode='post' %}
 	</body>
+
+
 
 </html>

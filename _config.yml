@@ -1,12 +1,30 @@
 baseurl: /
+permalink: /blog/:year/:categories/:title
 
-params:
-  title: "Blog of Sam Briesemeister"
-  description: "Advancing business capability and agility with a product paradigm and continuous delivery principles."
+# SEO kit will honor the following
+# title:
+# description:
+# url:
+# author:
+# google_site_verification:
+# logo:
+#
+name: "Think Big, Start Small"
+
+description: "Blog of Sam Briesemeister; advancing strategic business agility with continuous delivery in the evolving world of tech. On Software, DevOps, Business Intelligence, Analytics, Continuous Delivery, Technology, Ethics, Information Security, Politics, and life in general."
+
+author:
+  name: Sam Briesemeister
+  email: sam.briesemeister+blog@gmail.com
+  uri: http://samba.github.io/about
+  twitter: systemalias
+
+twitter:
+  username: systemalias
+
 
 github: [metadata]
 
-permalink: /blog/:year/:categories/:title
 
 markdown: kramdown
 
@@ -29,6 +47,13 @@ gems:
   - kramdown
   - rouge
   - sass
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-mentions
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-redirect-from
+
 
 exclude:
   - node_modules

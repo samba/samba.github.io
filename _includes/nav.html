@@ -1,1 +1,35 @@
 <!-- nav -->
+
+<nav class='grey darken-4'>
+
+<aside class='pages nav-wrapper'>
+<div class='container'>
+<a href="{{site.baseurl}}" class="brand-logo">{{site.name}}</a>
+<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+<ul class='site pages right hide-on-med-and-down'>
+{% for p in site.pages %}
+	{% if p.title and (p.tags contains "menu") %}
+	<li class="{% if p.url == page.url %}active{% endif %}">
+		<a class="page"
+			href='{{ p.permalink|default:p.url }}'>{{p.title}}</a>
+	</li>
+	{% endif %}
+{% endfor %}
+</ul>
+
+<ul id='nav-mobile' class='side-nav'>
+{% for p in site.pages %}
+	{% if p.title and (p.tags contains "menu") %}
+	<li class="{% if p.url == page.url %}active{% endif %}">
+		<a class="page"
+			href='{{ p.permalink|default:p.url }}'>{{p.title}}</a>
+	</li>
+	{% endif %}
+{% endfor %}
+</ul>
+</div>
+</aside>
+
+
+
+</nav>
