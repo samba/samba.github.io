@@ -21,7 +21,14 @@ Seriously though, `print` is useless.
 
 ### The standard Lorem Ipsum passage, used since the 1500s
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+"Lorem ipsum dolor sit amet, [consectetur](http://google.com/search?q=consectetur) adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+> This is a blockquote test.
+> It might even be awesome. 
+
+This sentence [contains a reference link][1] which follows bibliographic style.
+
+[1]:  http://google.com/search?q=bibliographic+reference
 
 ### Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 

@@ -11,6 +11,7 @@ $category-color: rgba(50, 50, 120, 0.75);
 $tag-font-size: 0.8em;
 $link-color-dark: rgba(70, 70, 70, 1);
 $link-color-light: rgba(220, 220, 220, 1);
+$link-color-intext: #039be5;
 
 /** Fonts selected
 https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic
@@ -36,7 +37,7 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 		width: 1px;
 	}
 
-	box-shadow: ($depth/30) ($depth/30) ($depth/2) 0em rgba(0, 0, 0, 0.25) inset;
+	box-shadow: ($depth/30) ($depth/30) ($depth/3) 0em rgba(0, 0, 0, 0.25) inset;
 
 	padding: ($radius);
 
@@ -118,6 +119,14 @@ footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
 	body {
 		h1, h2, h3, h4, h5, h6 {
 			font-family: 'Merriweather', serif;
+		}
+	}
+
+	article a {
+		border: {
+			width: 0 0 1px 0;
+			style: dotted;
+			color: $link-color-intext;
 		}
 	}
 
