@@ -77,7 +77,12 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 	background-color: $category-color;
 }
 
-footer aside.recent.posts, footer aside.related.posts {
+footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
+
+
+	li a {
+		color: $link-color-light;
+	}
 
 	li.postlink {
 		div.taglist {
@@ -88,13 +93,20 @@ footer aside.recent.posts, footer aside.related.posts {
 			color: $text-subtle-color-light;
 		}
 
-		a {
-			color: $link-color-light;
-		}
 	}
 
 }
 
+article {
+	ul {
+		list-style-type: initial;
+		padding: 0 0 0 2em;
+
+		li {
+			list-style-type: inherit;
+		}
+	}
+}
 
 @media screen {
 	html, body, body p, body span.haiku, body li, header, article, section {
@@ -138,7 +150,7 @@ HEADER {
 		margin: 0;
 	}
 
-	span.postmeta, span.subtitle, span.subtle {
+	div.postmeta, div.subtitle, div.subtle {
 		@include subtle-text;
 	}
 
