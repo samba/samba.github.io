@@ -38,6 +38,9 @@ kramdown:
   autolink: true
   auto_ids: true
   syntax_highlighter: rouge
+  parse_block_html: true
+  parse_span_html: true
+
 
 rouge:
   css_class: "codehilite"
