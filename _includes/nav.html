@@ -8,7 +8,7 @@
 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 <ul class='site pages right hide-on-med-and-down'>
 {% for p in site.pages %}
-	{% if (!p.published) or (p.tags contains "draft") %}{% continue %}{% endif %}
+	{% if (p.published==false) or (p.tags contains "draft") %}{% continue %}{% endif %}
 	{% if p.title and (p.tags contains "menu") %}
 	<li class="{% if p.url == page.url %}active{% endif %}">
 		<a class="page"

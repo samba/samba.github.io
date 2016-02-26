@@ -6,7 +6,7 @@
 <ul>
 	<!-- Jekyll provides these in reverse-chronological order anyway. -->
 	{% for post in site.posts limit:{include.limit} %}
-	{% if (post.tags contains 'draft') or (!post.published) %}{% continue %}{% endif %}
+	{% if (post.tags contains 'draft') or (post.published==false) %}{% continue %}{% endif %}
 	<li class='postlink'>
 		<a href='{{ post.url }}'>{{ post.title }}</a>
 		<span class='date'>{{ post.date |date:"%d. %b %Y" }}</span>
