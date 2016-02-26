@@ -5,13 +5,17 @@
   <div class='container'>
   <div class='row'>
 
-    <div class='col s7'>
-    {% include recent.html limit=10  omit_excerpt=true %}
-    </div>
-
-    <div class='col s5'>
+    <div class='col l7 m12 s12'>
     {% if include.mode == 'post' %}
     {% include related.html limit=10  omit_excerpt=true %}
+    {% else %}
+    {% include recent.html limit=10  omit_excerpt=true %}
+    {% endif %}
+    </div>
+
+    <div class='col l5 m12 s12'>
+    {% if include.mode == 'post' %}
+    {% include recent.html limit=10  omit_excerpt=true %}
     {% else %}
         <aside class='contact'>
         <h5>Contact Me</h5>
