@@ -27,12 +27,12 @@
 					<header>
 						<h1>{{ page.title }}</h1>
 						{% if page.subtitle %}
-						<span class='subtitle'>{{ page.subtitle }}</span>
+						<div class='subtitle'>{{ page.subtitle }}</div>
 						{% endif %}
-						<span class='postmeta'>
+						<div class='postmeta'>
 						By <span class='author'>{{page.author|default:site.author.name}}</span>,
 						Published <span class="timestamp">{{page.date|default:site.time|date:"%d. %b %Y"}}</span>
-						</span>
+						</div>
 					</header>
 					{{ content }}
 				</article>

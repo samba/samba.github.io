@@ -6,6 +6,7 @@
 {% assign post_limit_related = include.limit %}
 {% for post in site.posts limit:1000 %}
 	{% assign include_this_post = false %}
+	{% if (post.tags contains 'draft') or (!post.published) %}{% continue %}{% endif %}
 	{% for tag in post.tags limit:30 %}
 		{% if page.tags contains tag %}
 			{% assign include_this_post = true %}

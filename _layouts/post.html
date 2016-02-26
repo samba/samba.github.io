@@ -27,7 +27,7 @@
 					<header>
 						<h1>{{ page.title }}</h1>
 
-						<span class='postmeta'>
+						<div class='postmeta'>
 							Posted by <span class='author'>{{page.author|default:site.author.name}}</span>
 							on <span class="timestamp">{{page.date|date:"%d. %b %Y"}}</span>
 							under <span class='category'>{{page.categories|join:"/"}}</span>
@@ -35,7 +35,7 @@
 							{% for tag in page.tags %}
 								<span class='tag'>{{ tag }}</span>
 							{% endfor %}
-						</span>
+						</div>
 					</header>
 					{{ content }}
 				</article>
