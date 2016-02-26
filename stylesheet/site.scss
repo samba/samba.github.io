@@ -97,13 +97,15 @@ footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
 
 }
 
-article {
-	ul {
-		list-style-type: initial;
-		padding: 0 0 0 2em;
+@media all {
+	article {
+		ul {
+			list-style-type: initial;
+			padding: 0 0 0 2em;
 
-		li {
-			list-style-type: inherit;
+			li {
+				list-style-type: inherit;
+			}
 		}
 	}
 }
@@ -182,10 +184,34 @@ DIV.highlighter-rouge {
 }
 
 
-@media (max-width: 1200px) {
-
+@media (min-width: 992px){
+	/* Desktop environments */
 }
 
-@media (min-width: 1200px){
+@media (max-width: 992px){
+	/* Tablet and smaller */
 
+
+	aside.contact ul li {
+		display: inline-block;
+		float: left;
+		clear: none;
+		margin-right: 2em;
+	}
+}
+
+
+@media (max-width: 660px){
+	/* Tiny phones, etc */
+
+	nav a.brand-logo {
+		font-size: 1.25em;
+	}
+
+
+	aside.contact ul li {
+		display: block;
+		float: initial;
+		clear: initial;
+	}
 }
