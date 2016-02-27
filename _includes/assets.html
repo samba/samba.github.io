@@ -12,15 +12,79 @@
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
+<!--
+<script src='https://cdn.jsdelivr.net/jquery.anystretch/1.2.6/jquery.anystretch.min.js'></script>
+-->
 
+<script type="text/javascript">
+
+	function isPrintMode(){
+		var query = window.matchMedia && window.matchMedia('print');
+		return query && query.matches;
+	}
+
+</script>
+
+
+
+<!-- Google Tag Manager -->
+
+<script>
+(function(w,d,s,l,i,j,f,dl,k,q){
+  w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+  f=d.getElementsByTagName(s)[0], k=i.length;
+  q='//www.googletagmanager.com/gtm.js?id=@&l='+(l||'dataLayer');
+  while(k--){j=d.createElement(s);j.async=!0;j.src=q.replace('@',i[k]);f.parentNode.insertBefore(j,f);}
+}(window,document,'script','dataLayer',['GTM-52L37C']));
+</script>
+
+<!-- End Google Tag Manager -->
 
 <link rel='stylesheet' href='/stylesheet/site.css'/>
 <link rel='stylesheet' href='/stylesheet/code.css'/>
 
+{% include twitter_loader.html %}
+
 <script>
 (function($){
+
+	var RE_COLORS = /\b((darken|lighten)-[0-9]|gr[ae]y|blue|green|light|dark)\b/g;
+
+	function removeColorClasses(i, elem){
+		elem.setAttribute('class', elem.getAttribute('class').replace(RE_COLORS, ''));
+	}
+
+
 	$(document).ready(function(){
-		$('nav a.button-collapse').sideNav()
+
+		$('nav a.button-collapse').sideNav();
+		// $('header div.masthead').anystretch();
+
+		if(isPrintMode()){
+			$(document.body).find('[class]').each(removeColorClasses);
+		} else {
+			twttr.ready(function(){
+			twttr.widgets.load(document.body);
+
+			twttr.events.bind('rendered', function(e){
+				// Sanitize twitter button layout.
+				setTimeout(function(){
+					jQuery(e.target).filter('.twitter-share-button').css({
+						'display': 'inline-block',
+						'position': 'relative',
+						'top': '0.4em'
+					});
+					jQuery(e.target).filter('.twitter-timeline').css({
+						'width': null
+					});
+				}, 200);
+			});
+
+
+			});
+
+		}
+
 	});
 }(window.jQuery));
 </script>

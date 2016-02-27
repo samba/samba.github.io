@@ -1,17 +1,21 @@
-baseurl: /
-permalink: /blog/:year/:categories/:title
+
+
 
 # SEO kit will honor the following
-# title:
+# title:   this would override the document's <title> suffix, defaults to name
 # description:
 # url:
 # author:
 # google_site_verification:
 # logo:
 #
-name: "Think Big, Start Small"
+name: "Think Big, Start Small, Move Fast"
 
 description: "Blog of Sam Briesemeister; advancing strategic business agility with continuous delivery in the evolving world of tech. On Software, DevOps, Business Intelligence, Analytics, Continuous Delivery, Technology, Ethics, Information Security, Politics, and life in general."
+
+url: http://samba.github.io
+baseurl: /
+permalink: /blog/:year/:categories/:slug
 
 author:
   name: Sam Briesemeister
@@ -19,12 +23,18 @@ author:
   uri: http://samba.github.io/about
   twitter: systemalias
 
+
 twitter:
   username: systemalias
 
 
-github: [metadata]
+# These settings for display widgets
+twitter_feed:
+  username: systemalias
+  consumer_key: l92HsrzAmSpPRUtNoyLVcGEH#X
+  consumer_secret: qFQIfa71zs5PRntOe5fK1EIqF8xWWMeGZnJu2kbdk6p23qmze#D
 
+github: [metadata]
 
 markdown: kramdown
 
@@ -46,6 +56,28 @@ rouge:
   css_class: "codehilite"
   scope: ".codehilite"
 
+
+assets:
+  prefix: "/assets"
+  sources:
+    - assets/css
+    - assets/images
+    - assets/javascripts
+    - assets/stylesheets
+    - assets/fonts
+    - assets/img
+    - assets/js
+    - assets/shim
+  digest: true
+  assets:
+    - '*.png'
+    - '*.jpg'
+    - 'bundle.css'
+  features:
+    liquid: true
+
+
+
 gems:
   - kramdown
   - rouge
@@ -56,6 +88,7 @@ gems:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-redirect-from
+  - jekyll-assets
 
 
 exclude:

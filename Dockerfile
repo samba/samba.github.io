@@ -8,6 +8,7 @@ RUN apt-get update && apt-get upgrade -y
 # This provides Jekyll, Kramdown, etc as dependencies.
 RUN ruby -S gem install github-pages
 RUN ruby -S gem install therubyracer
+RUN ruby -S gem install jekyll-assets
 RUN mkdir /opt/bin
 
 COPY scripts/*.sh /opt/bin/

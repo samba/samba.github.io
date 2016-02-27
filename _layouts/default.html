@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		{% include meta.html %}
@@ -12,34 +13,70 @@
 
 		<header class='site gray darken-4'>
 		{% include header.html %}
-		<div class='row navbar-fixed'>
+		<div class='navbar-fixed'>
 			{% include nav.html mode='page' %}
+		</div>
+
+		<div class='masthead valign-wrapper' data-stretch="{% asset_path 'header_headshot.jpg' %}">
+		<div class='container valign'>
+		<div class='row '>
+
+		{% assign header_width = 'l12 m12 s12' %}
+		{% if page.header_haiku %}
+		{% assign header_width = 'l8 m12 s12' %}
+		{% endif %}
+
+		<h1 class='col {{header_width}}'>{{ page.title }}</h1>
+
+		{% if page.subtitle %}
+		<div class='subtitle'>{{ page.subtitle }}</div>
+		{% endif %}
+
+		{% if page.header_haiku %}
+		<aside class='header haiku light col l4 m12 s12 right'>
+		<blockquote class='border-light'>{{ page.header_haiku |join:"<br/>" }}</blockquote>
+		</aside>
+		{% endif %}
+
+
+		</div>
+		</div>
 		</div>
 		</header>
 
 
 
 		<div class='container'>
+		<div class='row'>
 
-
-			<div class='row'>
-				<article class='page content'>
-					<header>
-						<h1>{{ page.title }}</h1>
-						{% if page.subtitle %}
-						<div class='subtitle'>{{ page.subtitle }}</div>
-						{% endif %}
-						<div class='postmeta'>
-						By <span class='author'>{{page.author|default:site.author.name}}</span>,
-						Published <span class="timestamp">{{page.date|default:site.time|date:"%d. %b %Y"}}</span>
-						</div>
-					</header>
-					{{ content }}
-				</article>
-			</div>
+				<div class='postmeta'>
+				By <span class='author'>{{page.author|default:site.author.name}}</span>,
+				Published <span class="timestamp">{{page.date|default:site.time|date:"%d. %b %Y"}}</span>
+				</div>
+				{% include twitter_tweetbutton.html top_offset='0.5em' %}
 
 		</div>
+		</div>
 
+
+		<div class='container'>
+		<div class='row'>
+
+
+
+				<!-- twitter: {{page.twitter_feed.placement|default:"none"}} -->
+				{% if page.twitter_feed.placement == 'topright' %}
+				<aside class='twitter feed col l4 m4 s12 right'>
+				{% include twitter_widget.html %}
+				</aside>
+				{% endif %}
+
+				<article class='page content'>
+					{{ content | markdownify }}
+				</article>
+
+		</div>
+		</div>
 
 
 

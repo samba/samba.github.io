@@ -45,6 +45,9 @@ serve docker-run: .docker-build stylesheet/code.css _config.yml
 	docker run -e DRAFT="${DRAFT}" -it -v `pwd`:/root -p 4000:4000 samba.github.io
 
 
+docker-shell:
+	docker run -it -v `pwd`:/root -p 4000:4000 samba.github.io bash
+
 newpost:
 	sh scripts/newpost.sh
 

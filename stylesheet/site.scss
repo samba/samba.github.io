@@ -4,7 +4,7 @@
 
 $text-color: rgba(0, 0, 0, 1);
 $text-subtle-color: rgba(0, 0, 0, 0.75);
-$text-subtle-color-light: rgba(150, 150, 150, 75);
+$text-subtle-color-light: rgba(200, 200, 200, 75);
 $tag-color: rgba(120, 120, 120, 0.75);
 $tag-color-text: white;
 $category-color: rgba(50, 50, 120, 0.75);
@@ -12,6 +12,12 @@ $tag-font-size: 0.8em;
 $link-color-dark: rgba(70, 70, 70, 1);
 $link-color-light: rgba(220, 220, 220, 1);
 $link-color-intext: #039be5;
+$background-color-shade: rgba(220, 220, 220, 0.75);
+
+$section-font-color-dark: black;
+$section-font-color-light: white;
+$section-background-dark: black;
+$section-background-light: white;
 
 /** Fonts selected
 https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic
@@ -22,10 +28,45 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 @import url(http://fonts.googleapis.com/css?family=Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic);
 
 
-@mixin subtle-text {
-	color: $text-subtle-color;
+@mixin subtle-text($shade: 'dark') {
+
+	color: if($shade == 'light', $text-subtle-color-light, $text-subtle-color);
+
+	&.dark {
+		color: $text-subtle-color;
+	}
+
+	&.light {
+		color: $text-subtle-color-light;
+	}
+
 	font: {
 		size: 0.9em;
+	}
+}
+
+
+@mixin blockquote-border {
+	blockquote {
+		margin: 0em;
+		padding: 0 0 0 1.5em;
+		border: {
+			style: solid;
+			color: black;
+			width: 0 0 0 0.3em;
+		}
+
+		&.inset {
+			margin: 2em;
+		}
+
+		&.border-light {
+			border-color: rgba(200, 200, 200, 0.75);
+		}
+
+		&.border-dark {
+			border-color: rgba(0, 0, 0, 0.75);
+		}
 	}
 }
 
@@ -78,41 +119,17 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 	background-color: $category-color;
 }
 
-footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
 
-
-	li a {
-		color: $link-color-light;
+@mixin standard-list($style: initial, $position: outside) {
+	padding: 0 0 0 2em;
+	list-style-position: $position;
+	li {
+		list-style-type: $style;
 	}
-
-	li.postlink {
-		div.taglist {
-			display: inline-block;
-		}
-
-		span.date {
-			color: $text-subtle-color-light;
-		}
-
-	}
-
 }
 
 @media all {
-	article {
-		ul {
-			list-style-type: initial;
-			padding: 0 0 0 2em;
-
-			li {
-				list-style-type: inherit;
-			}
-		}
-	}
-}
-
-@media screen {
-	html, body, body p, body span.haiku, body li, header, article, section {
+	html, body, body p, body .haiku, body li, header, article, section {
 		font-family: 'Merriweather Sans', sans-serif;
 	}
 
@@ -122,13 +139,61 @@ footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
 		}
 	}
 
-	article a {
-		border: {
-			width: 0 0 1px 0;
-			style: dotted;
-			color: $link-color-intext;
+	article ul, ul.standard {
+		@include standard-list(disc);
+	}
+
+
+	div.postmeta, div.subtitle, div.subtle {
+		@include subtle-text;
+		display: inline-block;
+		margin: 0.25em 2em 0.25em 0.25em;
+	}
+
+
+	.haiku {
+		@include subtle-text;
+		@include blockquote-border;
+	}
+
+	header {
+
+		h1 {
+			margin: {
+				top: 0;
+				left: 0;
+				bottom: 0.5rem;
+				right: 0;
+			}
+		}
+
+		margin: {
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 1em;
 		}
 	}
+
+
+	div.highlighter-rouge {
+
+
+		@include inset;
+
+		pre.highlight {
+			margin: {
+				top: 0;
+				bottom: 0;
+				left: 0.5em;
+				right: 0.5em;
+			}
+
+			@include transparent;
+		}
+
+	}
+
 
 	span.category {
 		@include category;
@@ -138,6 +203,56 @@ footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
 		@include tag;
 	}
 
+	article a {
+		text-decoration: underline;
+	}
+
+}
+
+@media screen {
+
+	.print-only {
+		display: none;
+	}
+
+	footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
+
+
+		li a {
+			color: $link-color-light;
+		}
+
+		li.postlink {
+			div.taglist {
+				display: inline-block;
+			}
+
+			span.date {
+				color: $text-subtle-color-light;
+			}
+
+		}
+
+	}
+
+	article section:nth-child(even) {
+		background-color: $section-background-light;
+		color: $section-font-color-dark;
+	}
+
+	article section:nth-child(odd) {
+		background-color: $section-background-dark;
+		color: $section-font-color-dark;
+	}
+
+	article a {
+		text-decoration: none;
+		border: {
+			width: 0 0 0.1em 0;
+			style: dotted;
+			color: $link-color-intext;
+		}
+	}
 
 	/* BEGIN sticky footer (a la Materialize) */
 	body {
@@ -146,55 +261,105 @@ footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
 	  flex-direction: column;
 	}
 
-	main {
+	main, body {
 	  flex: 1 0 auto;
 	}
 	/* END sticky footer */
 
-}
 
+	header div.masthead {
+		height: 30em;
+		max-height: 300px;
 
+		/* lt ie8 */
+		-ms-background-position-x: center;
+		-ms-background-position-y: bottom;
+		/* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
+		-ms-behavior: url({% asset_path "backgroundsize.min.htc" %});
 
-HEADER {
-
-	h1 {
-		margin: 0;
-	}
-
-	div.postmeta, div.subtitle, div.subtle {
-		@include subtle-text;
-	}
-
-	margin: {
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 1.5em;
-	}
-}
-
-
-DIV.highlighter-rouge {
-
-
-	@include inset;
-
-	pre.highlight {
-		margin: {
-			top: 0;
-			bottom: 0;
-			left: 0.5em;
-			right: 0.5em;
+		background: {
+			color: black;
+			image: url({% asset_path "header_headshot.jpg" %});
+			position: right bottom;
+			origin: border-box;
+			size: cover, 100% auto;
+			/* size: contain; */
+			repeat: no-repeat;
+			attachment: local;
 		}
 
-		@include transparent;
+
+
+		h1 {
+			display: inline-block;
+			font-size: 3rem;
+			color: white;
+		}
+
+		div.container.middle {
+			position: relative;
+			top: 40%;
+		}
+
 	}
 
 }
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    /* Retina-specific stuff here */
+}
+
+/* 1.25 dpr */
+@media
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi){
+    /* Retina-specific stuff here */
+
+    @media (min-width: 1200px){
+	    header div.masthead {
+	    	max-height: 600px;
+	    	height: 600px;
+	    	font-size: 150%;
+	    }
+	}
+}
+
+/* 1.3 dpr */
+@media
+(-webkit-min-device-pixel-ratio: 1.3),
+(min-resolution: 124.8dpi){
+    /* Retina-specific stuff here */
+}
+
+/* 1.5 dpr */
+@media
+(-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi){
+    /* Retina-specific stuff here */
+}
+
 
 
 @media (min-width: 992px){
 	/* Desktop environments */
+
+	header div.masthead {
+		background-size: cover;
+	}
+
+}
+
+@mixin list-float {
+	display: inline-list-item;
+	float: left;
+	clear: none;
+	margin-right: 2em;
+}
+
+@mixin list-vertical {
+	display: list-item;
 }
 
 @media (max-width: 992px){
@@ -202,10 +367,7 @@ DIV.highlighter-rouge {
 
 
 	aside.contact ul li {
-		display: inline-block;
-		float: left;
-		clear: none;
-		margin-right: 2em;
+		@include list-float;
 	}
 }
 
@@ -214,13 +376,68 @@ DIV.highlighter-rouge {
 	/* Tiny phones, etc */
 
 	nav a.brand-logo {
-		font-size: 1.25em;
+		font-size: 1.15rem;
+		margin-left: 1em;
 	}
 
-
 	aside.contact ul li {
-		display: block;
-		float: initial;
-		clear: initial;
+		@include list-vertical;
+	}
+}
+
+@media print {
+
+	body, p, article, div {
+		font-size: 1rem;
+	}
+
+	h1 { font-size: 2rem; }
+	h2 { font-size: 1.75rem; }
+	h3 { font-size: 1.5rem; }
+	h4 { font-size: 1.3rem; }
+	h5 { font-size: 1.2rem; }
+	h6 { font-size: 1.15rem; }
+
+	a[href] {
+		text-decoration: underline;
+	}
+
+	a[title]::before {
+		content: attr(title) ": ";
+	}
+
+	a[href]::after {
+		content:" <" attr(href) "> ";
+		text-decoration: none;
+		font-weight: normal;
+		/* color: rgba(100, 100, 100, 0.8); */
+	}
+
+	nav, iframe, a.twitter-timeline, a.twitter-share-button {
+		display: none;
+	}
+
+	span.tag, span.category {
+		background: none;
+		border-style: none;
+		text-decoration: underline;
+		color: black;
+		box-shadow: none
+	}
+
+	.haiku {
+		@include subtle-text('dark');
+	}
+
+	header div.masthead,
+	footer.page-footer,
+	div.footer-copyright,
+	footer aside, footer aside a {
+		background: none !important;
+		color: black !important;
+	}
+
+	div.footer-copyright {
+		height: auto !important;
 	}
 }
