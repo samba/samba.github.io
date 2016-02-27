@@ -1,9 +1,10 @@
 ---
-title: Résumé
+title: Who am I?
 subtitle: Software & Systems Engineer, Leader, Teacher, Innovator
-layout: resume
+layout: default
 tags: menu
 published: true
+permalink: /who-is-sam
 ---
 
 A tenacious, entrepreneurial software and systems engineer, in Seattle, Washington.

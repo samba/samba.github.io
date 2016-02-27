@@ -2,37 +2,99 @@
 
 <nav class='grey darken-3'>
 
+{% assign logotext = nil %}
+
+
+{% capture navlist %}
+
+
+{% for entry in site.data.nav.pages %}
+
+	{% if entry.tag %}
+	{% for p in site.pages %}
+		{% if ((p.published) or (p.published == nil)) and !(p.tags contains "draft") %}
+		{% if p.title and (p.tags contains entry.tag) %}
+			<li class="{% if p.url == page.url %}active{% endif %}">
+				<a class="page"
+					href='{{ p.permalink|default:p.url }}'>{{p.title}}</a>
+			</li>
+		{% endif %}
+		{% endif %}
+	{% endfor %}
+	{% endif %}
+
+
+	{% if entry.url and entry.name %}
+	<li class="{% if entry.url == page.url %}active{% endif %}">
+		<a class="page"
+			href='{{ entry.url }}'>{{entry.name}}</a>
+	</li>
+	{% endif %}
+
+
+{% endfor %}
+
+
+<ul id='dropdown-nav-$type-topics' class='dropdown-content grey darken-2 white-text'>
+{% for tag in site.data.nav.topics %}
+<li><a class='white-text' href='/blog/#{{tag|slugify}}'>{{tag|capitalize}}</a></li>
+{% endfor %}
+</ul>
+
+<li><a href='#!' class='dropdown-button'
+	data-activates='dropdown-nav-$type-topics'>
+		Topics
+		<i class="material-icons right">arrow_drop_down</i>
+	</a></li>
+
+
+{% for key in site.data.nav.menus %}
+
+{% assign menu_id = key[0] | handelize | prepend:'dropdown-nav-$type-' %}
+
+<ul id='{{menu_id}}' class='dropdown-content grey darken-2 white-text'>
+	{% for entry in key[1] %}
+		{% if entry.target == 'new' %}
+			{% assign target = 'target="_blank"' %}
+		{% else %}
+			{% assign target = '' %}
+		{% endif %}
+		<li><a class='white-text' href="{{entry.url}}" {{target}}>{{entry.name}}</a></li>
+	{% endfor %}
+</ul>
+
+<li><a href='#!' class='dropdown-button'
+	data-activates="{{menu_id}}">
+		{{key[0]|capitalize}}
+		<i class="material-icons right">arrow_drop_down</i>
+	</a></li>
+
+{% endfor %}
+
+
+
+{% endcapture %}
+
+
 <aside class='pages nav-wrapper'>
 <div class='container'>
 <div class='row'>
-<a href="{{site.baseurl}}" class="brand-logo">{{site.name}}</a>
+{% assign logotext = logotext|default:"(home)" %}
+{% if logotext %}
+<a href="{{site.baseurl}}" class="brand-logo">{{logotext}}</a>
+{% endif %}
 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
 <ul class='site pages right hide-on-med-and-down'>
-{% for p in site.pages %}
-	{% if (p.published==false) or (p.tags contains "draft") %}{% continue %}{% endif %}
-	{% if p.title and (p.tags contains "menu") %}
-	<li class="{% if p.url == page.url %}active{% endif %}">
-		<a class="page"
-			href='{{ p.permalink|default:p.url }}'>{{p.title}}</a>
-	</li>
-	{% endif %}
-{% endfor %}
+{{ navlist | replace: '$type', 'desktop' }}
 </ul>
 
 <ul id='nav-mobile' class='side-nav'>
-{% for p in site.pages %}
-	{% if p.title and (p.tags contains "menu") %}
-	<li class="{% if p.url == page.url %}active{% endif %}">
-		<a class="page"
-			href='{{ p.permalink|default:p.url }}'>{{p.title}}</a>
-	</li>
-	{% endif %}
-{% endfor %}
+{{ navlist | replace: '$type', 'mobile' }}
 </ul>
+
 </div>
 </div>
 </aside>
-
-
 
 </nav>

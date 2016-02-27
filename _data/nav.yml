@@ -1,0 +1,41 @@
+
+# An explicit list of links
+menus:
+  Security:
+    - url: https://keybase.io/samba/
+      name: keybase.io
+      target: new
+    - url: https://keybase.io/samba/key.asc
+      name: PGP Public Key
+      target: new
+    - url: /assets/sbriesemeister.rsa.pub
+      name: SSH Public Key
+      target: new
+
+
+
+projects:
+- name: trombone
+  description: Converts Tomboy notes to Evernote format
+  url: https://github.com/samba/trombone
+- name: Workspace
+  description: A "dotfiles" working environment suited for my Mac workflow
+  url: https://github.com/samba/Workspace
+- name: dotfiles  (legacy)
+  description: Linux shell and working environment configuration (legacy)
+  url: https://github.com/samba/dotfiles
+
+
+# Scan all pages by tag
+pages:
+  - tag: menu
+  - url: /blog/
+    name: Blog
+
+# Scan all posts by tag
+# This gets rendered as the Topics menu
+topics:
+  - Software Engineering
+  - Continuous Delivery
+  - Business Intelligence
+  - Politics & Security

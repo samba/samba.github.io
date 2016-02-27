@@ -12,46 +12,22 @@
 
 
 		<header class='site gray darken-4'>
-		{% include header.html %}
+
 		<div class='navbar-fixed'>
 			{% include nav.html mode='page' %}
 		</div>
 
-		<div class='masthead valign-wrapper' data-stretch="{% asset_path 'header_headshot.jpg' %}">
-		<div class='container valign'>
-		<div class='row '>
+		{% include header.html %}
 
-		{% assign header_width = 'l12 m12 s12' %}
-		{% if page.header_haiku %}
-		{% assign header_width = 'l8 m12 s12' %}
-		{% endif %}
-
-		<h1 class='col {{header_width}}'>{{ page.title }}</h1>
-
-		{% if page.subtitle %}
-		<div class='subtitle'>{{ page.subtitle }}</div>
-		{% endif %}
-
-		{% if page.header_haiku %}
-		<aside class='header haiku light col l4 m12 s12 right'>
-		<blockquote class='border-light'>{{ page.header_haiku |join:"<br/>" }}</blockquote>
-		</aside>
-		{% endif %}
-
-
-		</div>
-		</div>
-		</div>
 		</header>
-
-
 
 		<div class='container'>
 		<div class='row'>
 
 				<div class='postmeta'>
 				By <span class='author'>{{page.author|default:site.author.name}}</span>,
-				Published <span class="timestamp">{{page.date|default:site.time|date:"%d. %b %Y"}}</span>
+				published
+				<span class="timestamp">{{page.date|default:site.time|date:"%d. %b %Y"}}</span>
 				</div>
 				{% include twitter_tweetbutton.html top_offset='0.5em' %}
 
@@ -61,8 +37,6 @@
 
 		<div class='container'>
 		<div class='row'>
-
-
 
 				<!-- twitter: {{page.twitter_feed.placement|default:"none"}} -->
 				{% if page.twitter_feed.placement == 'topright' %}
@@ -78,12 +52,7 @@
 		</div>
 		</div>
 
-
-
-
 		{% include footer.html %}
 	</body>
-
-
 
 </html>

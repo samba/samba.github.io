@@ -48,7 +48,7 @@
 <script>
 (function($){
 
-	var RE_COLORS = /\b((darken|lighten)-[0-9]|gr[ae]y|blue|green|light|dark)\b/g;
+	var RE_COLORS = /\b((text-)?(darken|lighten)-[0-9]|(gr[ae]y|blue|green|light|dark)(-text)?)\b/g;
 
 	function removeColorClasses(i, elem){
 		elem.setAttribute('class', elem.getAttribute('class').replace(RE_COLORS, ''));
@@ -58,6 +58,7 @@
 	$(document).ready(function(){
 
 		$('nav a.button-collapse').sideNav();
+		//$('nav a.dropdown-button').dropdown({ hover: false });
 		// $('header div.masthead').anystretch();
 
 		if(isPrintMode()){

@@ -4,7 +4,7 @@
 
 $text-color: rgba(0, 0, 0, 1);
 $text-subtle-color: rgba(0, 0, 0, 0.75);
-$text-subtle-color-light: rgba(200, 200, 200, 75);
+$text-subtle-color-light: rgba(200, 200, 200, 0.60);
 $tag-color: rgba(120, 120, 120, 0.75);
 $tag-color-text: white;
 $category-color: rgba(50, 50, 120, 0.75);
@@ -150,6 +150,12 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 		margin: 0.25em 2em 0.25em 0.25em;
 	}
 
+	div.masthead {
+		div.subtitle, div.subtle {
+			@include subtle-text('light');
+		}
+	}
+
 
 	.haiku {
 		@include subtle-text;
@@ -279,8 +285,8 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 
 		background: {
 			color: black;
-			image: url({% asset_path "header_headshot.jpg" %});
-			position: right bottom;
+			image: url({% asset_path "header_seattle.jpg" %});
+			position: center top;
 			origin: border-box;
 			size: cover, 100% auto;
 			/* size: contain; */
@@ -372,7 +378,7 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 }
 
 
-@media (max-width: 660px){
+@media (max-width: 660px), (orientation: portait){
 	/* Tiny phones, etc */
 
 	nav a.brand-logo {
