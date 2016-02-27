@@ -11,32 +11,37 @@
 
 
 		<header class='site gray darken-4'>
-		{% include header.html %}
-		<div class='row navbar-fixed'>
+
+		<div class='navbar-fixed'>
 			{% include nav.html mode='page' %}
 		</div>
+		{% include header.html %}
 		</header>
 
 
 
 		<div class='container'>
 
+		</div>
+
+
+		<div class='container'>
+			<div class='row'>
+
+					<div class='postmeta'>
+					Posted by <span class='author'>{{page.author|default:site.author.name}}</span>
+					on <span class="timestamp">{{page.date|date:"%d. %b %Y"}}</span>
+					under <span class='category'>{{page.categories|join:"/"}}</span>
+					tagged:
+					{% for tag in page.tags %}
+						<span class='tag'>{{ tag }}</span>
+					{% endfor %}
+					</div>
+
+			</div>
 
 			<div class='row'>
 				<article id='post' class='post content'>
-					<header>
-						<h1>{{ page.title }}</h1>
-
-						<div class='postmeta'>
-							Posted by <span class='author'>{{page.author|default:site.author.name}}</span>
-							on <span class="timestamp">{{page.date|date:"%d. %b %Y"}}</span>
-							under <span class='category'>{{page.categories|join:"/"}}</span>
-							tagged:
-							{% for tag in page.tags %}
-								<span class='tag'>{{ tag }}</span>
-							{% endfor %}
-						</div>
-					</header>
 					{{ content | markdownify }}
 				</article>
 			</div>

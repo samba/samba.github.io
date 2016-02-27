@@ -50,7 +50,7 @@
 
 {% for key in site.data.nav.menus %}
 
-{% assign menu_id = key[0] | handelize | prepend:'dropdown-nav-$type-' %}
+{% assign menu_id = key[0] | slugify | prepend:'dropdown-nav-$type-' %}
 
 <ul id='{{menu_id}}' class='dropdown-content grey darken-2 white-text'>
 	{% for entry in key[1] %}
