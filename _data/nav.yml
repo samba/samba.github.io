@@ -11,6 +11,14 @@ menus:
     - url: /assets/sbriesemeister.rsa.pub
       name: SSH Public Key
       target: new
+  Contact:
+    - url: https://github.com/samba
+      name: GitHub
+    - url: https://twitter.com/systemalias
+      name: Twitter
+    - url: http://www.linkedin.com/in/sambriesemeister
+      name: LinkedIn
+
 
 
 
