@@ -16,7 +16,7 @@
 		{% if p.title and (p.tags contains entry.tag) %}
 			<li class="{% if p.url == page.url %}active{% endif %}">
 				<a class="page"
-					href='{{ p.permalink|default:p.url }}'>{{p.title}}</a>
+					href='{{ p.permalink|default:p.url }}'>{{p.display_title_override|default:p.title}}</a>
 			</li>
 		{% endif %}
 		{% endif %}

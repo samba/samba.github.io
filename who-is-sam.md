@@ -1,9 +1,14 @@
 ---
-title: About Me
+title: About Sam Briesemeister
 layout: base
 tags: menu
 published: true
-permalink: /who-is-sam
+permalink: /about/
+display_title_override: About Me
+
+redirect_from:
+    - /resume.html
+    - /who-is-sam
 
 professionality:
     - capability maturity models

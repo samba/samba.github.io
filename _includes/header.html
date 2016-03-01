@@ -9,7 +9,7 @@
 {% assign header_width = 'l8 m12 s12' %}
 {% endif %}
 
-<h1 id='pagetitle-header' class='col {{header_width}}'>{{ page.title }}</h1>
+<h1 id='pagetitle-header' class='col {{header_width}}'>{{ page.display_title_override|default:page.title }}</h1>
 
 {% if page.subtitle %}
 <div class='subtitle'>{{ page.subtitle }}</div>
