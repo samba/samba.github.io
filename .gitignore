@@ -5,3 +5,4 @@ _site
 .pry*
 .docker-build
 .DS_Store
+.asset-cache/
