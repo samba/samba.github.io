@@ -9,7 +9,7 @@
 	<div class='col s12 m6 l6'>
 		<div class='card {{cardclass}} grey lighten-4 z-depth-2'>
 			<div class='card-content dark-text'>
-				<h3 class='card-title inline'>{{post.title}}</h3>
+				<h3 class='card-title inline black-text'>{{post.title}}</h3>
 				<span class='date'>{{ post.date|date:'%d %b %Y'}}</span>
 				{% if post.excert or post.summary %}
 				{{post.excerpt|default:post.summary|default:post.description|markdownify}}
