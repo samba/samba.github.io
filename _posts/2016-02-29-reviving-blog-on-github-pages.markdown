@@ -1,6 +1,6 @@
 ---
 layout: post
-category: what?
+categories: git-based blog workflow
 title: Reviving Blog on GitHub Pages
 date: 2016-02-29 12:23:21
 author: Sam Briesemeister
