@@ -20,6 +20,7 @@ left_footer: norris
 {% for post in site.posts %}
 	<li data-tags="{{post.tags|join:","}}"><a href="{{post.url}}"><span class='date'>{{ post.date |date:"%d. %b %Y" }}</span> {{ post.title }}</a></li>
 {% endfor %}
+	<li class='noposts hidden'>Sorry! No posts match the selected tag.</li>
 </ul>
 
 <script>
@@ -37,6 +38,14 @@ left_footer: norris
 		});
 	}
 
+	function flipNoPostsMessage(list){
+		if(list.find('li[data-tags]:not(.hidden)').length == 0){
+			list.find('li.noposts').removeClass('hidden');
+		} else {
+			list.find('li.noposts').addClass('hidden');
+		}
+	}
+
 	function titleCase(text){
 		var first = text.charAt(0).toUpperCase();
 		return first + text.substr(1).replace(/\s([a-z])/g, function($0, l){
@@ -47,6 +56,8 @@ left_footer: norris
 	function applyHeader(tag){
 		var header = titleCase(tag.split('-').join(' '));
 		$('h1#pagetitle-header').text(header);
+		var title =document.title.split(' - ').slice(1);
+		document.title = header + ' - ' + title.join(' - ');
 	}
 
 
@@ -56,8 +67,10 @@ left_footer: norris
 				var tag = window.location.hash.substr(1);
 				filterTags($('#allposts'), tag);
 				applyHeader(tag);
+				flipNoPostsMessage($('#allposts'));
 			});
 		}
+
 	}
 
 	applyTagFilter();
