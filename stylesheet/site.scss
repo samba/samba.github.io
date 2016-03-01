@@ -396,11 +396,11 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 		-ms-background-position-x: center;
 		-ms-background-position-y: bottom;
 		/* ie8 workaround - http://louisremi.github.io/background-size-polyfill/ */
-		-ms-behavior: url({% asset_path "backgroundsize.min.htc" %});
+		-ms-behavior: url('/assets/shim/backgroundsize.min.htc');
 
 		background: {
 			color: black;
-			image: url({% asset_path "header_seattle.jpg" %});
+			image: url('/assets/img/header_seattle.jpg');
 			position: center top;
 			origin: border-box;
 			size: cover, 100% auto;
