@@ -91,7 +91,7 @@ gems:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-redirect-from
-  - jekyll-assets
+
 
 
 exclude:
