@@ -2,7 +2,7 @@
 
 <nav class='grey darken-3'>
 
-{% assign logotext = nil %}
+{% assign logotext = include.logotext|nil %}
 
 
 {% capture navlist %}
@@ -79,8 +79,8 @@
 <aside class='pages nav-wrapper'>
 <div class='container'>
 <div class='row'>
-{% assign logotext = logotext|default:"(home)" %}
-{% if logotext %}
+{% assign logotext = logotext|default:site.name %}
+{% if logotext and (page.url != site.baseurl) %}
 <a href="{{site.baseurl}}" class="brand-logo">{{logotext}}</a>
 {% endif %}
 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

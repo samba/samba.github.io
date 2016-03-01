@@ -1,0 +1,17 @@
+<div class='col s12 m12 l12'>
+<ul class='collection'>
+{% for post in site.posts limit:6 %}
+
+	<li class='collection-item nowrap'>
+		<a href='{{post.url}}'>
+			<h3 class='inline'>{{post.title}}</h3>
+			<span class='date italic'>{{ post.date|date:'%d %b %Y'}}</span>
+			{% assign excerpt = post.excerpt|replace:'<p>',''|replace:'</p>',''|strip_html %}
+			{% if !excerpt %}{% assign excerpt = post.content|truncatewords:50|strip_html %}{% endif %}
+			<span class='excerpt nowrap'>{{ excerpt|strip_html|strip_newlines }}</span>
+		</a>
+	</li>
+
+{% endfor %}
+</ul>
+</div>

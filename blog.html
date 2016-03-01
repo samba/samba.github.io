@@ -1,0 +1,72 @@
+---
+title: Blog
+subtitle: "Literally everying here posted as a dated publication."
+layout: default
+permalink: /blog/
+
+tags: menu
+
+twitter_feed:
+  placement: footer
+
+left_footer: norris
+
+---
+
+
+<div class='post-listing'>
+
+<ul class='standard' id='allposts'>
+{% for post in site.posts %}
+	<li data-tags="{{post.tags|join:","}}"><a href="{{post.url}}"><span class='date'>{{ post.date |date:"%d. %b %Y" }}</span> {{ post.title }}</a></li>
+{% endfor %}
+</ul>
+
+<script>
+(function($){
+
+	function filterTags(list, tag){
+		list.find('li[data-tags]').each(function(i, elem){
+			var posttags = elem.getAttribute('data-tags');
+			var tags_split = posttags.split(',');
+			if(!posttags.length || (-1 === tags_split.lastIndexOf(tag))){
+				$(elem).addClass('hidden');
+			} else {
+				$(elem).removeClass('hidden');
+			}
+		});
+	}
+
+	function titleCase(text){
+		var first = text.charAt(0).toUpperCase();
+		return first + text.substr(1).replace(/\s([a-z])/g, function($0, l){
+			return $0.substr(0, 1) + l.toUpperCase();
+		});
+	}
+
+	function applyHeader(tag){
+		var header = titleCase(tag.split('-').join(' '));
+		$('h1#pagetitle-header').text(header);
+	}
+
+
+	function applyTagFilter(){
+		if(window.location.hash){
+			$(document).ready(function(){
+				var tag = window.location.hash.substr(1);
+				filterTags($('#allposts'), tag);
+				applyHeader(tag);
+			});
+		}
+	}
+
+	applyTagFilter();
+
+	$(window).on('hashchange', applyTagFilter);
+
+
+}(window.jQuery));
+</script>
+
+
+</div>

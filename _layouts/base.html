@@ -46,29 +46,26 @@ exclude_author: true
 		</div>
 
 
+		<div class='page content'>
+		<!-- twitter: {{page.twitter_feed.placement|default:"none"}} -->
+		{% if page.twitter_feed.placement == 'topright' %}
+		<aside class='twitter feed col l4 m4 s12 right'>
+		{% include twitter_widget.html %}
+		</aside>
+		{% endif %}
+		{{ content }}
+		</div>
 
+
+		{% if page.tweetbutton.placement contains 'bottom' %}
 		<div class='container'>
 		<div class='row'>
-
-				<!-- twitter: {{page.twitter_feed.placement|default:"none"}} -->
-				{% if page.twitter_feed.placement == 'topright' %}
-				<aside class='twitter feed col l4 m4 s12 right'>
-				{% include twitter_widget.html %}
-				</aside>
-				{% endif %}
-
-				<article class='page content'>
-					{{ content | markdownify }}
-				</article>
-
-
-				{% if page.tweetbutton.placement contains 'bottom' %}
-				<aside class='inline'>
-					Discuss it: {% include twitter_tweetbutton.html top_offset='0.5em' %}
-				</aside>
-				{% endif %}
+		<aside class='inline'>
+			Discuss it: {% include twitter_tweetbutton.html top_offset='0.5em' %}
+		</aside>
 		</div>
 		</div>
+		{% endif %}
 
 		{% include footer.html %}
 	</body>

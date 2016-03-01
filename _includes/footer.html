@@ -26,30 +26,41 @@
 
 
     <div class='col l6 m12 s12'>
-    {% if left_footer == 'related' %}
+    {% for item in left_footer %}
+    {% if item == 'related' %}
         {% include related.html limit=10  omit_excerpt=true %}
-    {% elsif left_footer == 'recent' %}
+    {% elsif item == 'recent' %}
         {% include recent.html limit=10  omit_excerpt=true omit_tags=true %}
-    {% elsif left_footer == 'twitter' %}
+    {% elsif item == 'twitter' %}
         {% include twitter_widget.html %}
+    {% elsif item == 'contact' %}
+        {% include contact.html %}
+    {% elsif item == 'norris' %}
+        {% include chucknorris.html %}
     {% endif %}
+    {% endfor %}
     </div>
 
     <div class='col l6 m12 s12'>
-
-    {% if right_footer == 'related' %}
+    {% for item in right_footer %}
+    {% if item == 'related' %}
         {% include related.html limit=10  omit_excerpt=true %}
-    {% elsif right_footer == 'recent' %}
+    {% elsif item == 'recent' %}
         {% include recent.html limit=10  omit_excerpt=true omit_tags=true %}
-    {% elsif right_footer == 'twitter' %}
+    {% elsif item == 'twitter' %}
         {% include twitter_widget.html %}
-    {% elsif right_footer == 'contact' %}
+    {% elsif item == 'contact' %}
         {% include contact.html %}
+    {% elsif item == 'norris' %}
+        {% include chucknorris.html %}
     {% endif %}
+    {% endfor %}
     </div>
 
     </div>
+    <!-- another row could be inserted here. -->
     </div>
+
 
 
     <div class="footer-copyright grey darken-3">
@@ -65,6 +76,8 @@
             {{page.date|default:site.time|date:"%Y"}}. All Rights Reserved.
 
         </div>
+
+
         </div>
     </div>
 

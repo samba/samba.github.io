@@ -13,10 +13,11 @@ $link-color-dark: rgba(70, 70, 70, 1);
 $link-color-light: rgba(220, 220, 220, 1);
 $link-color-intext: #039be5;
 $background-color-shade: rgba(220, 220, 220, 0.75);
+$background-color-shade-dark: rgba(0, 0, 0, 0.75);
 
-$section-font-color-dark: black;
-$section-font-color-light: white;
-$section-background-dark: black;
+$section-font-color-dark: #303030;
+$section-font-color-light: #AAAAAA;
+$section-background-dark: #101010; /* rgba(0, 0, 0, 0.8); */
 $section-background-light: white;
 
 /** Fonts selected
@@ -61,11 +62,11 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 		}
 
 		&.border-light {
-			border-color: rgba(200, 200, 200, 0.75);
+			border-color: $background-color-shade;
 		}
 
 		&.border-dark {
-			border-color: rgba(0, 0, 0, 0.75);
+			border-color: $background-color-shade-dark;
 		}
 	}
 }
@@ -128,7 +129,51 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 	}
 }
 
+
+@mixin list-float {
+	display: inline-list-item;
+	float: left;
+	clear: none;
+	margin-right: 2em;
+}
+
+@mixin list-vertical {
+	display: list-item;
+}
+
+@mixin sane-headers {
+
+	h1 { font-size: 2.5rem !important; }
+	h2 { font-size: 2rem !important; }
+	h3 { font-size: 1.75rem !important; }
+	h4 { font-size: 1.3rem !important; }
+	h5 { font-size: 1.2rem !important; }
+	h6 { font-size: 1.15rem !important; }
+}
+
+@mixin zebra {
+
+	.stripe {
+
+		&:nth-child(odd) {
+			background-color: $section-background-light;
+			color: $section-font-color-dark;
+
+		}
+
+		&:nth-child(even) {
+			background-color: $section-background-dark;
+			color: $section-font-color-light;
+		}
+	}
+
+}
+
+
 @media all {
+
+	@include sane-headers;
+
 	html, body, body p, body .haiku, body li, header, article, section {
 		font-family: 'Merriweather Sans', sans-serif;
 	}
@@ -136,6 +181,20 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 	body {
 		h1, h2, h3, h4, h5, h6 {
 			font-family: 'Merriweather', serif;
+		}
+
+		.hidden {
+			display: none !important;
+		}
+
+		.nowrap {
+			white-space: nowrap !important;
+			text-wrap: nowrap !important;
+			overflow: hidden;
+		}
+
+		.italic {
+			font-style: italic;
 		}
 	}
 
@@ -156,10 +215,34 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 		}
 	}
 
+	nav a {
+		text-transform: uppercase;
+	}
+
+
+	nav ul.dropdown-content {
+		min-width: 15em;
+	}
 
 	.haiku {
 		@include subtle-text;
 		@include blockquote-border;
+	}
+
+	footer {
+		@include blockquote-border;
+
+
+		h1 { font-size: 2rem; }
+		h2 { font-size: 1.75rem; }
+		h3 { font-size: 1.5rem; }
+		h4 { font-size: 1.3rem; }
+		h5 { font-size: 1.2rem; }
+		h6 { font-size: 1.15rem; }
+
+		a {
+			color: $link-color-dark;
+		}
 	}
 
 	header {
@@ -200,6 +283,22 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 
 	}
 
+	div.card-content {
+		h3.card-title.inline {
+			line-height: 1em;
+			margin: {
+				top: 0.25em;
+				bottom: 0.25em;
+			}
+		}
+		p {
+			margin-top: 0.5em !important;
+		}
+	}
+
+	span.date {
+		white-space: nowrap;
+	}
 
 	span.category {
 		@include category;
@@ -213,6 +312,19 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 		text-decoration: underline;
 	}
 
+	article.row section.container {
+
+		h1, h2, h3, h4 {
+			font-style: italic;
+			margin: 0.5rem;
+		}
+
+		padding: {
+			top: 0.25rem;
+			bottom: 0.5rem;
+		}
+	}
+
 }
 
 @media screen {
@@ -220,6 +332,7 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 	.print-only {
 		display: none;
 	}
+
 
 	footer aside.recent.posts, footer aside.related.posts, footer aside.contact {
 
@@ -241,14 +354,16 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 
 	}
 
-	article section:nth-child(even) {
-		background-color: $section-background-light;
-		color: $section-font-color-dark;
+
+	div.zebra {
+		@include zebra;
 	}
 
-	article section:nth-child(odd) {
-		background-color: $section-background-dark;
-		color: $section-font-color-dark;
+
+	aside, h1, h2, h3, h4, h5, h6  {
+		&.inline {
+			display: inline-block;
+		}
 	}
 
 	article a {
@@ -311,6 +426,7 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 
 }
 
+
 @media
 (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi) {
@@ -357,20 +473,13 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 
 }
 
-@mixin list-float {
-	display: inline-list-item;
-	float: left;
-	clear: none;
-	margin-right: 2em;
-}
-
-@mixin list-vertical {
-	display: list-item;
-}
 
 @media (max-width: 992px){
 	/* Tablet and smaller */
 
+	footer aside {
+		margin-bottom: 2em;
+	}
 
 	aside.contact ul li {
 		@include list-float;
@@ -397,12 +506,6 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 		font-size: 1rem;
 	}
 
-	h1 { font-size: 2rem; }
-	h2 { font-size: 1.75rem; }
-	h3 { font-size: 1.5rem; }
-	h4 { font-size: 1.3rem; }
-	h5 { font-size: 1.2rem; }
-	h6 { font-size: 1.15rem; }
 
 	a[href] {
 		text-decoration: underline;

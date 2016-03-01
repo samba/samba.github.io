@@ -1,0 +1,25 @@
+
+
+	{% assign cardclass = "" %}
+	{% if include.card_size == 'small' %}
+		{% assign cardclass = include.card_size %}
+	{% endif %}
+
+	{% for post in site.posts limit:6 %}
+	<div class='col s12 m6 l6'>
+		<div class='card {{cardclass}} grey lighten-4 z-depth-2'>
+			<div class='card-content dark-text'>
+				<h3 class='card-title inline'>{{post.title}}</h3>
+				<span class='date'>{{ post.date|date:'%d %b %Y'}}</span>
+				{% if post.excert or post.summary %}
+				{{post.excerpt|default:post.summary|default:post.description|markdownify}}
+				{% else %}
+				<p>{{ post.content|truncatewords:50|strip_html|markdownify }}</p>
+				{% endif %}
+			</div>
+			<div class='card-action'>
+				<a href='{{post.url}}' class='black-text'>Read more</a>
+			</div>
+		</div>
+	</div>
+	{% endfor %}

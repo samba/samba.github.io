@@ -18,9 +18,13 @@
 
 <script type="text/javascript">
 
-	function isPrintMode(){
+	function isPrintMode(listener){
 		var query = window.matchMedia && window.matchMedia('print');
-		return query && query.matches;
+		var result = query && query.matches;
+		if(query && listener){
+			listener.call(query, result);
+			return query.addListener(listener);
+		} else return result;
 	}
 
 </script>
@@ -53,6 +57,7 @@
 	function removeColorClasses(i, elem){
 		elem.setAttribute('class', elem.getAttribute('class').replace(RE_COLORS, ''));
 	}
+
 
 
 	$(document).ready(function(){
