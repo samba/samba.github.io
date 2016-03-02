@@ -1,0 +1,38 @@
+---
+title: Ode to SSH
+date: 2010-02-07 23:35:00
+layout: post
+tags: ssh linux security
+categories: linux network-security
+---
+
+Dearest SSH,
+
+"Have I told you lately, that I [SSH] you?"
+
+> You encrypt my shell sessions.
+> You forward my TCP ports.
+> You proxy my HTTP sessions.
+> You compress my various tunneled applications.
+
+Now is one of those moments when I reflect on how much benefit I get from a particular open-source project. Sometimes it's awk, Linux in general, etc... this time it's SSH.
+
+Some of the things I use SSH for:
+
+- Secure terminal access to my servers (obviously)
+- Accessing my music archives from afar (DAAP over SSH)
+- Remote Desktop, only much safer (RDP over SSH)
+- Safely administering remote databases (MySQL over SSH)
+- Safer browsing from other networks - hotels, coffee shops, etc (SOCKS proxy via SSH)
+
+My working environment, with the benefit of SSH:
+
+- Using GNU Screen, I can resume my work anywhere.
+- With vim, I can have a sensible programming environment on very low bandwidth
+- Git lets me push code around between several machines efficiently
+- Rsync (or unison) lets me synchronize and maintain file systems very conveniently
+- I issue updates and test code (mostly web apps) from anywhere, as though I were on site
+
+Very rarely do I have to think about security - my SSH configuration lets me focus on business, rather than logistics. (Mind you, I had to think about it in order to set it up the first time, but once it's done, it's wonderful.)
+
+Dearest SSH, Thank you.
