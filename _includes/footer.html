@@ -10,27 +10,27 @@
   <div class='row'>
 
     {% if include.mode == 'post' %}
-        {% assign left_footer = 'related' %}
-        {% assign right_footer = 'recent' %}
+    {% assign left_footer = 'related'|split:" " %}
+        {% assign right_footer = 'recent'|split:" " %}
     {% else %}
-        {% assign left_footer = 'recent' %}
-        {% assign right_footer = 'contact' %}
+        {% assign left_footer = 'recent'|split:" " %}
+        {% assign right_footer = 'contact'|split:" " %}
     {% endif %}
 
     {% assign left_footer = page.left_footer|default:left_footer %}
     {% assign right_footer = page.right_footer|default:right_footer %}
 
     {% if page.twitter_feed.placement == 'footer' %}
-        {% assign right_footer = 'twitter' %}
+        {% assign right_footer = 'twitter'|split:" " %}
     {% endif %}
 
 
     <div class='col l6 m12 s12'>
     {% for item in left_footer %}
     {% if item == 'related' %}
-        {% include related.html limit=10  omit_excerpt=true %}
+        {% include related.html limit=8  omit_excerpt=true %}
     {% elsif item == 'recent' %}
-        {% include recent.html limit=10  omit_excerpt=true omit_tags=true %}
+        {% include recent.html limit=8  omit_excerpt=true omit_tags=true %}
     {% elsif item == 'twitter' %}
         {% include twitter_widget.html %}
     {% elsif item == 'contact' %}
@@ -44,9 +44,9 @@
     <div class='col l6 m12 s12'>
     {% for item in right_footer %}
     {% if item == 'related' %}
-        {% include related.html limit=10  omit_excerpt=true %}
+        {% include related.html limit=8  omit_excerpt=true %}
     {% elsif item == 'recent' %}
-        {% include recent.html limit=10  omit_excerpt=true omit_tags=true %}
+        {% include recent.html limit=8  omit_excerpt=true omit_tags=true %}
     {% elsif item == 'twitter' %}
         {% include twitter_widget.html %}
     {% elsif item == 'contact' %}
