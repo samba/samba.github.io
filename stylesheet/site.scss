@@ -20,6 +20,10 @@ $section-font-color-light: #AAAAAA;
 $section-background-dark: #101010; /* rgba(0, 0, 0, 0.8); */
 $section-background-light: white;
 
+$prussian-blue: #003153;  /* rgb(0, 49, 83) */
+$midnight-blue: #191970;
+$dark-midnight-blue: #003366;
+
 /** Fonts selected
 https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic
 - Merriweather
@@ -474,8 +478,25 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 }
 
 
+@mixin fix-materialize-menu {
+	nav ul.side-nav {
+		/* Fix font issues in menu for Materialize <= 0.97.1;
+		   This is resolved in subsequent releases, however the navigation is
+		   screwed up due to an event handling change. Reverted to support
+		   functional navigation, patching to resolve styling. */
+
+		a {
+			line-height: inherit;
+		}
+
+	}
+}
+
+
 @media (max-width: 992px){
 	/* Tablet and smaller */
+
+	@include fix-materialize-menu;
 
 	footer aside {
 		margin-bottom: 2em;
