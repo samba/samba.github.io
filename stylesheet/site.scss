@@ -443,13 +443,7 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 (min-resolution: 120dpi){
     /* Retina-specific stuff here */
 
-    @media (min-width: 1200px){
-	    header div.masthead {
-	    	max-height: 600px;
-	    	height: 600px;
-	    	font-size: 150%;
-	    }
-	}
+
 }
 
 /* 1.3 dpr */
@@ -466,6 +460,24 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
     /* Retina-specific stuff here */
 }
 
+
+@media (max-height: 1000px){
+    header div.masthead {
+    	max-height: 600px;
+    	height: 300px;
+    	font-size: 100%;
+    }
+}
+
+
+
+@media (min-height: 1000px){
+    header div.masthead {
+    	max-height: 600px;
+    	height: 600px;
+    	font-size: 150%;
+    }
+}
 
 
 @media (min-width: 992px){
