@@ -4,8 +4,13 @@
 <aside class='recent posts'>
 <h5 class=''>Recent Posts</h5>
 <ul class='standard'>
-	<!-- Jekyll provides these in reverse-chronological order anyway. -->
-	{% for post in site.posts limit:{include.limit} %}
+  <!-- Jekyll provides these in reverse-chronological order anyway. -->
+  {% assign posts = site.posts|group_by:'date.year' %}
+
+  {% for g in posts limit:2 %}
+  <!-- for year {{ g.name }} -->
+
+	{% for post in g.items limit:{include.limit} %}
 	{% if (post.tags contains 'draft') or (post.published==false) %}{% continue %}{% endif %}
 	<li class='postlink'>
 
@@ -24,11 +29,14 @@
 		</div>
 		{% endif %}
 
-		{% if post.excerpt and (!omit_excerpt) %}
+		{% if post.excerpt and (include.excerpt) %}
 		<span class='excerpt'>{{ post.excerpt |markdownify }}</span>
 		{% endif %}
 	</li>
-	{% endfor %}
+  	{% endfor %}
+
+  {% endfor %}
+
 </ul>
 </aside>
 {% else %}
