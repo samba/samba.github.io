@@ -361,6 +361,11 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 
 	div.zebra {
 		@include zebra;
+
+		article.stripe {
+			padding-top: 1em;
+			padding-bottom: 1em;
+		}
 	}
 
 

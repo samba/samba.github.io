@@ -31,7 +31,7 @@
 					<div class='postmeta'>
 					Posted by <span class='author'>{{page.author|default:site.author.name}}</span>
 					on <span class="timestamp">{{page.date|date:"%d. %b %Y"}}</span>
-					under <span class='category'>{{page.categories|join:"/"}}</span>
+					<!-- under <span class='category'>{{page.categories|join:"/"}}</span> -->
 					tagged:
 					{% for tag in page.tags %}
 						<span class='tag'>{{ tag }}</span>
@@ -48,6 +48,9 @@
 				<article id='post' class='post content'>
 					{{ content | markdownify }}
 				</article>
+				<aside class='inline'>
+				Let's discuss. {% include twitter_tweetbutton.html top_offset='0.5em' %}
+				</aside>
 			</div>
 
 		</div>
