@@ -1,5 +1,6 @@
 ---
 exclude_author: true
+exclude_meta: false
 ---
 
 
@@ -30,6 +31,7 @@ exclude_author: true
 		<div class='container'>
 		<div class='row'>
 
+			{% if !(exclude_meta) %}
 				<div class='postmeta'>
 				{% if !(exclude_author) %}
 				By <span class='author'>{{page.author|default:site.author.name}}</span>,
@@ -41,7 +43,7 @@ exclude_author: true
 				<aside class='inline'>
 				{% include twitter_tweetbutton.html top_offset='0.5em' %}
 				</aside>
-
+			{% endif %}
 		</div>
 		</div>
 

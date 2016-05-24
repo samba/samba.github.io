@@ -18,6 +18,9 @@ menus:
       name: Twitter
     - url: http://www.linkedin.com/in/sambriesemeister
       name: LinkedIn
+    - url: "#modalContactForm"
+      name: Email me
+      modal: true
 
 
 

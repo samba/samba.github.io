@@ -54,12 +54,16 @@
 
 <ul id='{{menu_id}}' class='dropdown-content grey darken-2 white-text'>
 	{% for entry in key[1] %}
+		{% assign extra_class = '' %}
+		{% if entry.modal == true %}
+			{% assign extra_class = 'modal-trigger' %}
+		{% endif %}
 		{% if entry.target == 'new' %}
 			{% assign target = 'target="_blank"' %}
 		{% else %}
 			{% assign target = '' %}
 		{% endif %}
-		<li><a class='white-text' href="{{entry.url}}" {{target}}>{{entry.name}}</a></li>
+		<li><a class='white-text {{extra_class}}' href="{{entry.url}}" {{target}}>{{entry.name}}</a></li>
 	{% endfor %}
 </ul>
 

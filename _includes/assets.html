@@ -74,7 +74,6 @@ window.dataLayer.push(firstEvent);
 	}
 
 
-
 	$(document).ready(function(){
 
 		$('nav a.button-collapse').sideNav();
@@ -85,25 +84,26 @@ window.dataLayer.push(firstEvent);
 			$(document.body).find('[class]').each(removeColorClasses);
 		} else {
 			twttr.ready(function(){
-			twttr.widgets.load(document.body);
+				twttr.widgets.load(document.body);
 
-			twttr.events.bind('rendered', function(e){
-				// Sanitize twitter button layout.
-				setTimeout(function(){
-					jQuery(e.target).filter('.twitter-share-button').css({
-						'display': 'inline-block',
-						'position': 'relative',
-						'top': '0.4em'
-					});
-					jQuery(e.target).filter('.twitter-timeline').css({
-						'width': null
-					});
-				}, 200);
+				twttr.events.bind('rendered', function(e){
+					// Sanitize twitter button layout.
+					setTimeout(function(){
+						jQuery(e.target).filter('.twitter-share-button').css({
+							'display': 'inline-block',
+							'position': 'relative',
+							'top': '0.4em'
+						});
+						jQuery(e.target).filter('.twitter-timeline').css({
+							'width': null
+						});
+					}, 200);
+				});
 			});
 
 
-			});
-
+			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			$('.modal-trigger').leanModal();
 		}
 
 	});

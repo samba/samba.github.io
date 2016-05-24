@@ -1,10 +1,9 @@
+
 <!-- footer -->
-
-
 <footer class='page-footer grey darken-2'>
 
 
-
+{% if (!(page.exclude_footer_zones) or page.exclude_footer_zones == nil) %}
   <div class='container'>
   <hr class='print-only'/>
   <div class='row'>
@@ -60,7 +59,7 @@
     </div>
     <!-- another row could be inserted here. -->
     </div>
-
+{% endif %}
 
 
     <div class="footer-copyright grey darken-3">
@@ -84,3 +83,15 @@
 
 
 </footer>
+
+
+<div class='modal' id='modalContactForm'>
+<div class='modal-content'>
+<h4>Contact Sam</h4>
+
+    <script type="text/javascript"> id = 203667; </script>
+    <script type="text/javascript" src="http://kontactr.com/wp.js"></script>
+
+</div>
+<div class='modal-footer'></div>
+</div>
