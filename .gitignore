@@ -6,3 +6,5 @@ _site
 .docker-build
 .DS_Store
 .asset-cache/
+.sass-cache
+.jekyll-metadata
