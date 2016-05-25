@@ -6,11 +6,9 @@ tags: devops business-intelligence
 layout: post
 ---
 
-This headline is of course an over-simplification, but please consider. 
-
 [Product integrity][1] (HBR, 1990) represents the alignment of business processes, workflow, and the production lifecycle that yield your product or service; the end result is your customers' experience of your company. Every process in your business must be oriented to delivering your _brand_ to the customer.
 
-You cannot change what you do not understand; Business Intelligence offers that understanding, of the business's operations, strategic positioning, and your market. Business Intelligence enables the pursuit of product integrity.
+You cannot change what you do not understand; Business Intelligence offers that understanding, of the business's operations, strategic positioning, and your market. Business Intelligence enables the pursuit of [product and organizational integrity][1].
 
 Unfortunately, [many companies][2] still [struggle to build significant user-adoption][3] of their business intelligence platforms. Many [approaches][4] have been [proposed][5] to improve adoption and overall success of BI endeavors, however they miss the larger context of _integrity_.
 
