@@ -269,6 +269,20 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 	}
 
 
+	figure.highlight {
+		@include inset;
+		pre {
+			margin: {
+				top: 0;
+				bottom: 0;
+				left: 0.5em;
+				right: 0.5em;
+			}
+
+			@include transparent;
+		}
+	}
+
 	div.highlighter-rouge {
 
 

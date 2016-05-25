@@ -1,7 +1,7 @@
 /*  A framework for automating detection of data attributes on event handlers. */
 (function(window, document, undefined){
 
-  var config = { DEBUG: true };
+  var config = { DEBUG: true, LISTEN_ALL: true };
 
   var exports = (window.pirate = window.pirate || {});
   var hasOwnProperty = Object.hasOwnProperty;
@@ -124,10 +124,14 @@
   exports.config = config;
 
 
-  function onready(e){
-    // Attach core listeners
+  function activatePirateListeners(){
     listen('click dblclick tap drag drop scroll', document.body, coreDispatch);
     listen('focus blur focusin focusout copy cut paste select popstate hashchange', window, coreDispatch);
+  }
+
+  function onready(e){
+    // Attach core listeners
+    if(config.LISTEN_ALL) activatePirateListeners()
   }
 
   // Inject a precursor to all calls on this method...
@@ -144,8 +148,10 @@
   // DataLayer can be intercepted, as it will have already applied. This
   // alleviates timing concerns.
   insert(window.dataLayer, 'push', function(){
+    var i;
     if(config.DEBUG){
-      console.info('DataLayer::push()', arguments);
+      for(i = 0; i < arguments.legnth; i++)
+        console.info('DataLayer::push()', arguments[i]);
     }
     var i = interceptors.length;
     while(i--){

@@ -14,16 +14,16 @@ google_site_verification: FZoDU79BdIo92Bmm-y8w7msNuiqSB7uENwumXr77zIs
 
 name: "Becoming Agile"
 
-description: "Blog of Sam Briesemeister; advancing strategic business agility with continuous delivery in the evolving world of tech. On Software, DevOps, Business Intelligence, Analytics, Continuous Delivery, Technology, Ethics, Information Security, Politics, and life in general."
+description: "Blog of Sam Briesemeister; advancing strategic business agility with DevOps in the evolving world of tech. On Software, Continuous Delivery, Business Intelligence, Analytics, Technology, Ethics, Information Security, Politics, and life in general."
 
-url: http://samba.github.io
+url: http://samb.io/
 baseurl: /
 permalink: /blog/:year/:categories/:slug
 
 author:
   name: Sam Briesemeister
   email: sam.briesemeister+blog@gmail.com
-  uri: http://samba.github.io/about
+  uri: http://samb.io/about
   twitter: systemalias
 
 
@@ -69,7 +69,6 @@ assets:
     - assets/stylesheets
     - assets/fonts
     - assets/img
-    - assets/js
     - assets/shim
   digest: true
   assets:

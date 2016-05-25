@@ -1,31 +1,108 @@
+---
+layout: null
+permalink: /pirate.html
+redirect_from:
+  - /assets/pirate.html
+
+
+title: Pirate Playground
+---
+
 <html>
   <head>
-    <script src='js/pirate.js'></script>
 
-
+    {% include meta.html %}
+    <script src='/js/pirate.js'></script>
+    <link rel='stylesheet' href='/stylesheet/grid.css'/>
+    {% include assets.html %}
     <style>
     body {
       margin: 2em;
-      border: 1px dashed gray;
     }
-    </style>
 
+    #demo fieldset {
+      border: 1px dashed red;
+    }
+
+    #demo fieldset input[type=text] {
+      font-size: 1rem;
+    }
+
+    </style>
 
   </head>
   <body data-environment='testkit'>
+
+    <div class='container' id='content'>
     <h1>Pirate playground</h1>
 
+    <div id='demo'>
+    <fieldset>
+      <legend>Demo zone</legend>
+      <div class='column left col-1-2'>
+        <input type='text' value='Test area.'></input>
+      </div>
 
-    <div class='column left'>
-
+      <div class='column col-1-2' data-subject-area='lists'>
+        <a class='link' data-interaction='navigation' href="javascript:void(0)">Link</a>
+      </div>
+    </fieldset>
     </div>
 
-    <div class='column right' data-subject-area='lists'>
 
-      <ul>
-        <li><a class='link' data-interaction='navigation' href="javascript:void(0)">Link</a></li>
-      </ul>
+    <div id='usage' class='row'>
+      <h2>Usage</h2>
+      <p>This page shows example structure for defining <code>data-</code> attributes.</p>
 
+      <p>
+        Requirements:
+        <ol>
+          <li>The content of <a href='/js/pirate.js'><code>pirate.js</code></a> must be loaded <em>after</em> Google Tag Manager. Including it as a custom Javascript within GTM is sufficient.</li>
+          <li>Data attributes (<code>data-</code> prefix) must be added to elements of interest in the page.</li>
+          <li>Click triggers and (most importantly) variables <code>Click Element</code> and <code>Form Element</code> must be activiated in Tag Manager.</li>
+          <li>Variables within Tag Manager must be configured to access related properties within the datalayer.</li>
+          <li>Triggers within Google Tag Manager must be configured with conditions related to those data attributes.</li>
+
+        </ol>
+      </p>
+
+      <h2>Example</h2>
+      <p>
+
+      Given the page structure:
+
+
+{% highlight html %}
+<div data-context='product'>
+  <ul data-product-category='loot'>
+    <li data-product-action='click'>
+      <a href='/product/loot/12345'>View Details</a>
+    </li>
+  </ul>
+</div>
+{% endhighlight %}
+
+
+      A click on the link will produce the following event in GTM's DataLayer:
+
+{% highlight javascript %}
+window.dataLayer.push({
+  'event': 'gtm.click',
+  'gtm.element': (linkElementClicked),
+  'productAction': 'click',
+  'productCategory': 'loot',
+  'context': 'product'
+});
+{% endhighlight %}
+
+
+      The kit intercepts all events to Google Tag Manager, and when <code>gtm.element</code> is provided, collects data attributes (inherited from parent elements) as properties on the event object, for use in Google Tag Manager variables.
+
+
+
+
+      </p>
+    </div>
 
     </div>
 
