@@ -9,5 +9,6 @@ case "${DRAFT:-nodraft}" in
 esac
 
 set -x
+[ -d .bundle ] || bundle install
 bundle exec jekyll serve --host=0.0.0.0 --watch --force_polling ${use_drafts}
 set +x

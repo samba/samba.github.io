@@ -29,7 +29,7 @@ deploy:
 
 
 .docker-build: Dockerfile
-	docker build -t samba.github.io .
+	docker build ${CACHE} -t samba.github.io .
 	touch $@
 
 
