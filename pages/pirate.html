@@ -103,6 +103,45 @@ window.dataLayer.push({
 
 
       </p>
+
+
+      <h2>Utility Methods</h2>
+      <p>
+      This framework also provides a global interface <code>pirate</code>.
+
+{% highlight javascript %}
+/** Register a handler method for DOM event listening, filtered by Regular Expression
+ * param {RegExp} filterExpressionOptional default null
+ * param {function(this: DOMElement, DOMEvent)} eventHandlerMethod
+ */
+window.pirate.gangway(
+  /eventNameExpr/i,
+  function(/* DOMEvent */ event){
+    // this: the DOM element producing the event
+    // ... do something with the element + event.
+  });
+
+
+/** Retrieve the inherited data context of a specific element.
+ * Converts hyphenated names to camel case, e.g. "data-test-value" => "testValue"
+ * param {DOMElement} element
+ * return {Object}
+ */
+window.pirate.pillage(element); // => Object
+
+/** Retrieve the inherited data context from one or more elements matching a CSS selector.
+ * Like `pillage` above, but evaluates the CSS selector, then pillages each matching element.
+ * param {String} cssSelectorExpression
+ * return {Array.<Object>}
+ */
+window.pirate.hornswaggle('li a.download'); // => [Object, Object...]
+
+
+{% endhighlight %}
+
+      </p>
+
+
     </div>
 
     </div>
