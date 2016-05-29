@@ -38,6 +38,7 @@ clean cleanslate:
 		bundle exec jekyll clean
 
 docker-setup: .docker-build
+	docker run -it -v `pwd`:/root samba.github.io  bundle install
 	docker run -it -v `pwd`:/root samba.github.io  bundle exec jekyll new . --force
 
 serve docker-run: .docker-build stylesheet/code.css _config.yml

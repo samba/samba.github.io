@@ -12,7 +12,10 @@ RUN ruby -S gem install jekyll-assets
 RUN mkdir /opt/bin
 
 COPY scripts/*.sh /opt/bin/
+COPY Gemfile /tmp/Gemfile
 RUN chmod +x /opt/bin/*.sh
+
+RUN bundle install --gemfile=/tmp/Gemfile
 
 CMD DRAFT="${DRAFT}" /opt/bin/serve.sh
 
