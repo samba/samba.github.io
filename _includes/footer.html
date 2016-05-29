@@ -3,68 +3,9 @@
 <footer class='page-footer grey darken-2'>
 
 
-{% if (!(page.exclude_footer_zones) or page.exclude_footer_zones == nil) %}
-  <div class='container'>
-  <hr class='print-only'/>
-  <div class='row'>
-
-    {% if include.mode == 'post' %}
-    {% assign left_footer = 'related'|split:" " %}
-        {% assign right_footer = 'recent'|split:" " %}
-    {% else %}
-        {% assign left_footer = 'recent'|split:" " %}
-        {% assign right_footer = 'contact'|split:" " %}
-    {% endif %}
-
-    {% assign left_footer = page.left_footer|default:left_footer %}
-    {% assign right_footer = page.right_footer|default:right_footer %}
-
-    {% if page.twitter_feed.placement == 'footer' %}
-        {% assign right_footer = 'twitter'|split:" " %}
-    {% endif %}
-
-
-    <div class='col l6 m12 s12'>
-    {% for item in left_footer %}
-    {% if item == 'related' %}
-        {% include related.html limit=8  omit_excerpt=true %}
-    {% elsif item == 'recent' %}
-        {% include recent.html limit=8  omit_excerpt=true omit_tags=true %}
-    {% elsif item == 'twitter' %}
-        {% include twitter_widget.html %}
-    {% elsif item == 'contact' %}
-        {% include contact.html %}
-    {% elsif item == 'norris' %}
-        {% include chucknorris.html %}
-    {% endif %}
-    {% endfor %}
-    </div>
-
-    <div class='col l6 m12 s12'>
-    {% for item in right_footer %}
-    {% if item == 'related' %}
-        {% include related.html limit=8  omit_excerpt=true %}
-    {% elsif item == 'recent' %}
-        {% include recent.html limit=8  omit_excerpt=true omit_tags=true %}
-    {% elsif item == 'twitter' %}
-        {% include twitter_widget.html %}
-    {% elsif item == 'contact' %}
-        {% include contact.html %}
-    {% elsif item == 'norris' %}
-        {% include chucknorris.html %}
-    {% endif %}
-    {% endfor %}
-    </div>
-
-    </div>
-    <!-- another row could be inserted here. -->
-    </div>
-{% endif %}
-
-
     <div class="footer-copyright grey darken-3">
         <div class='container'>
-
+        <hr class='print-only'/>
         <div>
             <div class='print-only'>
             Retrieved from &lt;{{site.url}}{{page.url}}&gt;.
@@ -83,15 +24,3 @@
 
 
 </footer>
-
-
-<div class='modal' id='modalContactForm'>
-<div class='modal-content'>
-<h4>Contact Sam</h4>
-
-    <script type="text/javascript"> id = 203667; </script>
-    <script type="text/javascript" src="http://kontactr.com/wp.js"></script>
-
-</div>
-<div class='modal-footer'></div>
-</div>

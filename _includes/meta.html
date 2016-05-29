@@ -1,7 +1,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="copyright" content="Copyright {{site.github.owner_name|default: site.author.name}} {{page.date|default:site.time|date:"%Y"}}. All Rights Reserved."/>
 <link rel='canonical' href='{{site.url}}{{page.permalink}}'/>
 <link rel='me' href="https://twitter.com/{{site.twitter.username}}"/>
 <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico?'/>
-{% seo %}
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+
+{% unless page.hidden %}
+	{% seo %}
+{% else %}
+<meta name="robots" content="noindex">
+<title>{{page.title}} - {{site.name}}</title>
+<meta property="og:title" content="{{page.title}}" />
+<meta property="og:site_name" content="{{site.name}}" />
+{% endunless %}

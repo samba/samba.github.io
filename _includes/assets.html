@@ -1,34 +1,15 @@
 
 
-<!--Import Google Icon Font-->
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Font Awesome. -->
+<script src="https://use.fontawesome.com/679388f50b.js"></script>
 
 <!-- The Materialize kit requires jQuery. -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-
-<!--
-<script src='https://cdn.jsdelivr.net/jquery.anystretch/1.2.6/jquery.anystretch.min.js'></script>
--->
-
-<script type="text/javascript">
-
-	function isPrintMode(listener){
-		var query = window.matchMedia && window.matchMedia('print');
-		var result = query && query.matches;
-		if(query && listener){
-			listener.call(query, result);
-			return query.addListener(listener);
-		} else return result;
-	}
-
-</script>
-
+<!-- <link rel="stylesheet" href="/css/main.css"/> -->
+<link rel='stylesheet' href='/css/site.min.css'/>
+<script src='/js/site.js'></script>
+<script src='/js/pirate.js'></script>
 
 
 <!-- Google Tag Manager -->
@@ -58,54 +39,3 @@ window.dataLayer.push(firstEvent);
 </script>
 
 <!-- End Google Tag Manager -->
-
-<link rel='stylesheet' href='/stylesheet/site.css'/>
-<link rel='stylesheet' href='/stylesheet/code.css'/>
-
-{% include twitter_loader.html %}
-
-<script>
-(function($){
-
-	var RE_COLORS = /\b((text-)?(darken|lighten)-[0-9]|(gr[ae]y|blue|green|light|dark)(-text)?)\b/g;
-
-	function removeColorClasses(i, elem){
-		elem.setAttribute('class', elem.getAttribute('class').replace(RE_COLORS, ''));
-	}
-
-
-	$(document).ready(function(){
-
-		$('nav a.button-collapse').sideNav();
-		//$('nav a.dropdown-button').dropdown({ hover: false });
-		// $('header div.masthead').anystretch();
-
-		if(isPrintMode()){
-			$(document.body).find('[class]').each(removeColorClasses);
-		} else {
-			twttr.ready(function(){
-				twttr.widgets.load(document.body);
-
-				twttr.events.bind('rendered', function(e){
-					// Sanitize twitter button layout.
-					setTimeout(function(){
-						jQuery(e.target).filter('.twitter-share-button').css({
-							'display': 'inline-block',
-							'position': 'relative',
-							'top': '0.4em'
-						});
-						jQuery(e.target).filter('.twitter-timeline').css({
-							'width': null
-						});
-					}, 200);
-				});
-			});
-
-
-			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-			$('.modal-trigger').leanModal();
-		}
-
-	});
-}(window.jQuery));
-</script>

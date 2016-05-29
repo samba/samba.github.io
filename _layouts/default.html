@@ -3,6 +3,11 @@ exclude_author: true
 exclude_meta: false
 ---
 
+{% capture body_tags %}
+{% for elem in page.body_data %}
+	data-{{elem[0]}}="{{elem[1]}}"
+{% endfor %}
+{% endcapture %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -11,68 +16,94 @@ exclude_meta: false
 	<head>
 		{% include meta.html %}
 		{% include assets.html %}
+
+		<script>
+		window.page_meta = {
+			"author": {{page.author |default:site.author.name | jsonify}},
+			"published": {{page.date |default:site.time |date_to_xmlschema | jsonify}}
+
+		};
+
+		{{ page.header_content.script|default:"/* no page script */" }}
+		</script>
+
+		<style>
+		{{ page.header_content.style|default: "/* no page style */" }}
+		</style>
+
 	</head>
 
+	<body {{ body_tags }}>
 
-	<body>
 
+		<input type="checkbox" class="nav-checkbox" id="nav-checkbox">
 
-		<header class='site gray darken-4'>
-
-		<div class='navbar-fixed'>
-			{% include nav.html mode='page' %}
+		<div class='navigation sidebar'>
+		<nav>
+			{% include nav.html %}
+			{% comment %}{% include twitter_widget.html %}{% endcomment %}
+			{% include contact.html %}
+			<section>
+			<em id='copyright'>
+			&copy; {{page.date|default:site.time|date:"%Y"}}. All Rights Reserved.
+			</em>
+			</section>
+		</nav>
 		</div>
 
-		{% include header.html %}
+		<div id='bodywrapper'>
 
-		</header>
+			<header class='alone'>
+				<div class='container'>
+				<h3>{{page.display_title |default:page.title | default:site.name}}</h3>
+				<small>{{page.subtitle | default:site.subtitle }}</small>
+				</small>
+			</header>
+
+			{% unless page.hide_meta %}
+			<div class='row meta'>
+				<div class='container'>
+				Published {{page.date |default:site.time | date: "%d. %b %Y" }}
+				by {{page.author |default:site.author.name }}.
+
+				{% unless page.hide_tags %}
+				<aside class='inline tags'>
+				{% for tag in page.tags %}
+					<span class='tag'>{{ tag }}</span>
+				{% endfor %}
+				</aside>
+				{% endunless %}
 
 
-		<div class='container'>
-		<div class='row'>
-
-			{% if !(exclude_meta) %}
-				<div class='postmeta'>
-				{% if !(exclude_author) %}
-				By <span class='author'>{{page.author|default:site.author.name}}</span>,
-				{% endif %}
-				{% if !(exclude_author) %}published{% else %}Published{% endif %}
-				<span class="timestamp">{{page.date|default:site.time|date:"%d. %b %Y"}}</span>
-				</div>
-
-				<aside class='inline'>
+				{% unless page.dont_tweet %}
+				<aside class=''>
 				{% include twitter_tweetbutton.html top_offset='0.5em' %}
 				</aside>
-			{% endif %}
-		</div>
-		</div>
+				{% endunless %}
 
+				</div>
+			</div>
+			{% endunless %}
 
-
-		<div class='container'>
-		<div class='row'>
-
-				<!-- twitter: {{page.twitter_feed.placement|default:"none"}} -->
-				{% if page.twitter_feed.placement == 'topright' %}
-				<aside class='twitter feed col l4 m4 s12 right'>
-				{% include twitter_widget.html %}
-				</aside>
-				{% endif %}
-
-				<article class='page content'>
-					{{ content | markdownify }}
+			<div id="content" class='row'>
+			{% unless page.is_html %}
+				<articlec class='container'>
+				{{ content | strip | markdownify }}
 				</article>
+			{% else %}
+				{{ content | strip_newlines }}
+			{% endunless %}
+			</div>
 
 
-				{% if page.tweetbutton.placement contains 'bottom' %}
-				<aside class='inline'>
-					Discuss it: {% include twitter_tweetbutton.html top_offset='0.5em' %}
-				</aside>
-				{% endif %}
+			{% include footer.html %}
 		</div>
-		</div>
 
-		{% include footer.html %}
+		<!-- navigation sidebar control (activator) -->
+		<label for="nav-checkbox" class="nav-toggle">
+		<i class="fa fa-bars" aria-hidden="true"></i>
+		</label>
+
 	</body>
 
 </html>

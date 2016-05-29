@@ -1,7 +1,7 @@
 ---
-title: Sam Briesemeister
-display_title_override: Becoming Agile
-layout: base
+title: null
+# display_title: Think Big, Start Small
+layout: page
 
 test_title: Advancement of Strategic Objectives through a Culture of Rapid Iteration
 
@@ -16,6 +16,7 @@ right_footer:
   - contact
   - norris
 
+position: 100
 
 permalink: /
 
@@ -24,29 +25,45 @@ header_haiku:
   - Commit to always learning,
   - Pragmatism wins.
 
+is_html: true
+# no_menu: true
 
 ---
 
-
+<section class='row'>
 <div class='container'>
-<div class='row'>
-<h2>Think Big, Start Small</h2>
+
 
 A blog of transformation toward agility in Strategy, Business Intelligence, Product Development, Infrastructure and Engineering; through DevOps and the principles of Continuous Delivery, Entrepreneurial thinking and the will to innovate. Some technical discussion involved, in regard to specific technologies, workflows, databases, tools, and the market and organizational context in which they can be best applied.
 
 
 </div>
-</div>
+</section>
 
-<div class='container'>
-<div class='row'>
+
+<section class='row'>
+<div class='container flex'>
+<div class='blog col-2-3 material'>
 <h2>Recent Reflections</h2>
-{% include recent_cards.html %}
+	{% for post in site.posts limit:3 %}
+
+		<article class='post card'>
+			<div class='card-header'>
+				<h3><a href="{{post.url}}">{{ post.title }}</a></h3>
+			</div>
+			<div class='card-body post-excerpt'>
+				{{ post.excerpt | remove: "<p>" | remove: "</p>" | truncatewords: 100 }}
+			</div>
+			<div class='card-action'>
+				<a href="{{ post.permalink |default: post.url }}">Continue Reading</a>
+			</div>
+		</article>
+
+	{% endfor %}
 </div>
-<div class='row'>
-<aside>
-	<a href="/blog/">&raquo; All blog entries</a>
-</aside>
+<div class='twitter col-1-3'>
+{% include twitter_widget.html %}
 </div>
 </div>
+</section>
 

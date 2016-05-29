@@ -1,10 +1,15 @@
-<aside class='contact'>
-<h5>Contact Me</h5>
-  <ul id='contactinfo' class='standard'>
-    <li>Twitter: <a href='http://twitter.com/systemalias/'>@{{site.author.twitter}}</a></li>
-    <li>GitHub: <a href='http://github.com/samba/'>@samba</a></li>
-    <li><a href='http://www.linkedin.com/in/sambriesemeister'>LinkedIn</a></li>
-    <!-- <li><a href="http://about.me/sambriesemeister">about.me</a></li> -->
-  </ul>
-</aside>
+<section class='contact'>
+<em>Contact</em>
+<ul id='contactinfo'>
+<li class='naturalcase'>{% include icon-twitter.html username=site.author.twitter %}</li>
+<li class='naturalcase'>{% include icon-github.html username=site.author.github %}</li>
+<li class='naturalcase'>
+	<a href='http://www.linkedin.com/in/{{site.author.linkedin}}'  class='naturalcase'  target="_blank">
+		<i class="fa fa-linkedin fa-lg icon-dimmed"></i>LinkedIn</a></li>
+<!-- <li><a href="http://about.me/sambriesemeister">about.me</a></li> -->
+<li >
+	<a class='naturalcase' href='/contact/email'>
+		<i class="fa fa-envelope fa-lg icon-dimmed"></i>Email</a></li>
+</ul>
+</section>
 

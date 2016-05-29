@@ -1,88 +1,78 @@
 ---
 title: Blog
-subtitle: "Literally everying here posted as a dated publication."
-layout: default
+# subtitle: "Literally everying here posted as a dated publication."
+layout: page
 permalink: /blog/
+no_menu: true
+position: 2
+is_html: true
 
-tags: menu
-
-left_footer:
-  - twitter
-
-
-right_footer:
-  - contact
-  - norris
+detailed_post_limit: 2
 
 ---
+<div class='container'>
+
+<div class='post-listing material'>
 
 
-<div class='post-listing'>
 
-<ul class='standard' id='allposts'>
-{% for post in site.posts %}
-	<li data-tags="{{post.tags|join:","}}"><a href="{{post.url}}"><span class='date'>{{ post.date |date:"%d. %b %Y" }}</span> {{ post.title }}</a></li>
+{% for post in site.posts limit:page.detailed_post_limit %}
+	<article class='article'>
+		<div class='article-header'>
+			<a href="{{ post.permalink |default: post.url }}">
+			<h3>{{ post.title }}</h3>
+			</a>
+		</div>
+
+
+		<div class='article-meta meta'>
+			<span class='date'>{{ post.date |date:"%d. %b %Y" }}</span>
+			<aside class='inline'>
+			{% for tag in post.tags %}
+				<span class='tag'>{{ tag }}</span>
+			{% endfor %}
+			</aside>
+		</div>
+
+		<div class='article-body'>
+			{{ post.excerpt }}
+		</div>
+		<div class='article-action'>
+			<a href="{{ post.permalink |default: post.url }}">Continue Reading</a>
+		</div>
+	</article>
 {% endfor %}
-	<li class='noposts hidden'>Sorry! No posts match the selected tag.</li>
-</ul>
+
+{% for post in site.posts offset:page.detailed_post_limit limit:500 %}
+	<article class='article link'>
+		<div class='article-header'>
+		<a href="{{ post.permalink |default: post.url }}">
+			<h3>{{ post.title }}</h3>
+			<i class="fa fa-arrow-right fa-2x"></i>
+
+
+		</a>
+		</div>
+
+		<div class='article-meta meta hidden'>
+			<span class='date'>{{ post.date |date:"%d. %b %Y" }}</span>
+			<aside class='inline'>
+			{% for tag in post.tags %}
+				<span class='tag'>{{ tag }}</span>
+			{% endfor %}
+			</aside>
+		</div>
+
+	</article>
+{% endfor %}
+
+
+
 
 <script>
-(function($){
-
-	function filterTags(list, tag){
-		list.find('li[data-tags]').each(function(i, elem){
-			var posttags = elem.getAttribute('data-tags');
-			var tags_split = posttags.split(',');
-			if(!posttags.length || (-1 === tags_split.lastIndexOf(tag))){
-				$(elem).addClass('hidden');
-			} else {
-				$(elem).removeClass('hidden');
-			}
-		});
-	}
-
-	function flipNoPostsMessage(list){
-		if(list.find('li[data-tags]:not(.hidden)').length == 0){
-			list.find('li.noposts').removeClass('hidden');
-		} else {
-			list.find('li.noposts').addClass('hidden');
-		}
-	}
-
-	function titleCase(text){
-		var first = text.charAt(0).toUpperCase();
-		return first + text.substr(1).replace(/\s([a-z])/g, function($0, l){
-			return $0.substr(0, 1) + l.toUpperCase();
-		});
-	}
-
-	function applyHeader(tag){
-		var header = titleCase(tag.split('-').join(' '));
-		$('h1#pagetitle-header').text(header);
-		var title =document.title.split(' - ').slice(1);
-		document.title = header + ' - ' + title.join(' - ');
-	}
-
-
-	function applyTagFilter(){
-		if(window.location.hash){
-			$(document).ready(function(){
-				var tag = window.location.hash.substr(1);
-				filterTags($('#allposts'), tag);
-				applyHeader(tag);
-				flipNoPostsMessage($('#allposts'));
-			});
-		}
-
-	}
-
-	applyTagFilter();
-
-	$(window).on('hashchange', applyTagFilter);
-
-
-}(window.jQuery));
+window.thisIsABlog();
 </script>
 
 
+</div>
 </div>

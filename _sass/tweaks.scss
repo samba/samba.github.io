@@ -1,0 +1,118 @@
+
+$tag-shadow: 	   0.1em 0.1em 0.15em rgba(0, 0, 0, 0.25);
+
+header {
+	background: url("/assets/img/underwater_header.jpg") 20% center/20% no-repeat fixed;
+	background-size: cover;
+	// padding-top: 1em;
+	// padding-bottom: 1em;
+	color: $text-color-light;
+}
+
+div#content {
+	padding-bottom: 1em;
+}
+
+div#content, div.meta {
+	padding-top: 0.25em;
+
+	.container {
+		@include media-query($small){
+			padding: 0.5em;
+		}
+	}
+}
+
+
+div.meta {
+	margin: {
+		top: 0.5rem;
+		bottom: 0.5rem;
+	}
+	font-style: italic;
+	color: $grey-color;
+}
+
+span.tag {
+	display: inline-block;
+	color: $brand-color-light;
+	background-color: $brand-color-dark;
+	box-shadow: $tag-shadow;
+	font-size: $small-font-size;
+	font-family: $font-family-monospace;
+	font-style: normal;
+	border: {
+		radius: 0.25em;
+	}
+	padding: {
+		left:  0.25em;
+		right: 0.25em;
+		top: 0.1em;
+		bottom: 0.1em;
+	}
+	margin: 0 0.25em 0.25em 0;
+}
+
+p a {
+	// margin-left: 0.25em;
+}
+
+iframe[src*="kontactr"] {
+	// @include inset;
+	width: 30em !important;
+	height: 35em !important;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+iframe.flex {
+	height: 100%;
+	width: 100%;
+}
+
+iframe.twitter-timeline {
+	min-height: 30em;
+	// min-height: 100%;
+}
+
+nav a i.fa {
+	position: relative;
+	top: -0.2rem;
+	font-size: 0.9rem;
+
+	&.icon-dimmed {
+		opacity: 0.5;
+		margin-right: 0.3rem;
+	}
+}
+
+
+
+em#copyright {
+	font-size: 0.7rem;
+}
+
+code.highlighter-rouge {
+	color: #992222;
+	background-color: #FFEFEF;
+}
+
+pre.highlight, .highlighter-rouge .highlight {
+
+	@include inset();
+
+	&,
+	& code {
+		font-family: $font-family-monospace;
+		background-color: transparent;
+		background: transparent;
+	}
+
+	padding: 1rem;
+	width: ($content-width - 16px);
+
+	@include media-query($small){
+		width: 100%;
+	}
+
+}

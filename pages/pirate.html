@@ -1,84 +1,57 @@
 ---
-layout: null
+layout: page
 permalink: /pirate.html
 redirect_from:
   - /assets/pirate.html
 
-
+hidden: true
+no_menu: true
 title: Pirate Playground
----
 
-<html>
-  <head>
+header_content:
+  script: >
+    window.pirate.yellow();
 
-    {% include meta.html %}
-    <meta name="robots" content="noindex">
-    <script src='/js/pirate.js'></script>
-    <link rel='stylesheet' href='/stylesheet/grid.css'/>
-    {% include assets.html %}
-    <style>
-    body {
-      margin: 2em;
-    }
-
+  style: >
     #demo fieldset {
       border: 1px dashed red;
     }
 
     #demo fieldset input[type=text] {
       font-size: 1rem;
+      border-width: 0;
+      border-style: none;
+      border-bottom: 1px dotted red;
     }
 
-    </style>
+body_data:
+  environment: testkit
 
-    <script>
-    window.pirate.yellow();
-    </script>
+---
 
-  </head>
-  <body data-environment='testkit'>
+Augments standard Google Tag Manager but adding *data context* to each event,
+based on the event's placement in the document.
 
-    <div class='container' id='content'>
-    <h1>Pirate playground</h1>
+## Usage
 
-    <div id='demo'>
-    <fieldset>
-      <legend>Demo zone</legend>
-      <div class='column left col-1-2'>
-        <input type='text' value='Test area.'></input>
-      </div>
+This page shows example structure for defining `data-` attributes.
 
-      <div class='column col-1-2' data-subject-area='lists'>
-        <a class='link' data-interaction='navigation' href="javascript:void(0)">Link</a>
-      </div>
-    </fieldset>
-    </div>
+*Requirements:*
+
+1. The content of <a href='/js/pirate.js'>`pirate.js`</a> must be loaded <em>after</em> Google Tag Manager. Including it as a custom Javascript within GTM is sufficient.
+2. Data attributes (`data-` prefix) must be added to elements of interest in the page.
+3. Click triggers and (most importantly) built-in variables `Click Element` and `Form Element` must be activiated in Tag Manager.
+4. Variables within Tag Manager must be configured to access related properties within the datalayer.
+5. Triggers within Google Tag Manager must be configured with conditions related to those data attributes.
 
 
-    <div id='usage' class='row'>
-      <article>
-      <h2>Usage</h2>
-      <p>This page shows example structure for defining <code>data-</code> attributes.</p>
-
-      <p>
-        Requirements:
-        <ol>
-          <li>The content of <a href='/js/pirate.js'><code>pirate.js</code></a> must be loaded <em>after</em> Google Tag Manager. Including it as a custom Javascript within GTM is sufficient.</li>
-          <li>Data attributes (<code>data-</code> prefix) must be added to elements of interest in the page.</li>
-          <li>Click triggers and (most importantly) variables <code>Click Element</code> and <code>Form Element</code> must be activiated in Tag Manager.</li>
-          <li>Variables within Tag Manager must be configured to access related properties within the datalayer.</li>
-          <li>Triggers within Google Tag Manager must be configured with conditions related to those data attributes.</li>
-
-        </ol>
-      </p>
-
-      <h2>Example</h2>
-      <p>
-
-      Given the page structure:
+## Example
 
 
-{% highlight html %}
+Given the page structure:
+
+
+```html
 <div data-context='product'>
   <ul data-product-category='loot'>
     <li data-product-action='click'>
@@ -86,12 +59,12 @@ title: Pirate Playground
     </li>
   </ul>
 </div>
-{% endhighlight %}
+```
 
 
-      A click on the link will produce the following event in GTM's DataLayer:
+A click on the link will produce the following event in GTM's DataLayer:
 
-{% highlight javascript %}
+```javascript
 window.dataLayer.push({
   'event': 'gtm.click',
   'gtm.element': (linkElementClicked),
@@ -101,44 +74,39 @@ window.dataLayer.push({
     'context': 'product'
   }
 });
-{% endhighlight %}
+```
 
 
-      The kit intercepts all events to Google Tag Manager, and when <code>gtm.element</code> is provided, collects data attributes (inherited from parent elements) as properties on the event object, for use in Google Tag Manager variables.
-      </p>
-      <p>
-      Note that the inherited properties are provided in the <code>pirate</code> sub-object
-      within each <code>dataLayer.push</code>; this ensures that the properties of that element
-      do not persist into subsequent events.
-
-      To enable persistent properties, see the <code>pirate.moor</code> function below.
-      </p>
-      <p>
-      The kit also adds new event types for fine-grained interaction observers:
-
-      <ul>
-      <li><code>focus</code> and <code>blur</code> events on the main window, as well as form fields.</li>
-      <li><code>scroll</code> events on the main window.</li>
-      <li><code>touchstart</code> and <code>mousedown</code> for when <code>click</code> is too late.</li>
-      <li>... and several others.</li>
-      </ul>
+The kit intercepts all events to Google Tag Manager, and when `gtm.element` is provided, collects data attributes (inherited from parent elements) as properties on the event object, for use in Google Tag Manager variables.
 
 
-      If needed, additional event types can be added to the listening environment:
+Note that the inherited properties are provided in the `pirate` sub-object
+within each `dataLayer.push`; this ensures that the properties of that element
+do not persist into subsequent events.
 
-{% highlight javascript %}
+To enable persistent properties, see the `pirate.moor` function below.
+
+
+The kit also adds new event types for fine-grained interaction observers:
+
+
+* `focus` and `blur` events on the main window, as well as form fields.
+* `scroll` events on the main window.
+* `touchstart` and `mousedown` for when `click` is too late.
+* ... and several others.
+
+If needed, additional event types can be added to the listening environment:
+
+```javascript
 window.pirate.config.EVENTS.BODY.push('mouseup');
-{% endhighlight %}
+```
 
 
-      </p>
+## Utility methods
 
+This framework also provides a global interface `pirate`.
 
-      <h2>Utility Methods</h2>
-      <p>
-      This framework also provides a global interface <code>pirate</code>.
-
-{% highlight javascript %}
+```javascript
 /** Enable debug logging to console */
 window.pirate.yellow();
 
@@ -175,15 +143,18 @@ window.pirate.hornswaggle('li a.download'); // => [Object, Object...]
  */
 window.pirate.moor('body.post article[data-author] section');
 
-{% endhighlight %}
+```
 
-      </p>
+## Test Area
 
-      </article>
-    </div>
-
-
-
-  </body>
-</html>
-
+<div id='demo'>
+<fieldset>
+<legend>Demo zone</legend>
+<div class='column left col-1-2'>
+<input type='text' value='Test area.'/>
+</div>
+<div class='column col-1-2' data-subject-area='lists'>
+<a class='link' data-interaction='navigation' href="javascript:void(0)">Link</a>
+</div>
+</fieldset>
+</div>

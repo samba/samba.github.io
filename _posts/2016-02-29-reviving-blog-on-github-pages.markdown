@@ -11,6 +11,9 @@ project_url:
   site: http://github.com/samba/samba.github.io
   tackle: http://github.com/samba/tackle-wsgi
 
+excerpt: >
+    In which I remark on the long hiatus in blogging, and efforts to reinvigorate
+    my blog presence with a new platform.
 
 tool: 
   sublime: https://www.sublimetext.com/

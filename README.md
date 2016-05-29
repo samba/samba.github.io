@@ -16,3 +16,4 @@ I provide this repository as a functioning example of using GitHub Pages as a pu
 5. http://markdotto.com/2014/09/25/sass-and-jekyll/
 6. https://byparker.com/blog/2014/how-to-setup-your-own-github-pages/
 7. https://algorithms.rdio.com/post/make/
+4. http://blog.lanyonm.org/  (design inspiration)

@@ -11,43 +11,32 @@ menus:
     - url: /assets/sbriesemeister.rsa.pub
       name: SSH Public Key
       target: new
-  Contact:
-    - url: https://github.com/samba
-      name: GitHub
-    - url: https://twitter.com/systemalias
-      name: Twitter
-    - url: http://www.linkedin.com/in/sambriesemeister
-      name: LinkedIn
-    - url: "#modalContactForm"
-      name: Email me
-      modal: true
 
 
 
+  # Contact:
+  #   - url: https://github.com/samba
+  #     name: GitHub
+  #   - url: https://twitter.com/systemalias
+  #     name: Twitter
+  #   - url: http://www.linkedin.com/in/sambriesemeister
+  #     name: LinkedIn
+  #   - url: "#modalContactForm"
+  #     name: Email me
+  #     modal: true
 
-projects:
-- name: trombone
-  description: Converts Tomboy notes to Evernote format
-  url: https://github.com/samba/trombone
-- name: Workspace
-  description: A "dotfiles" working environment suited for my Mac workflow
-  url: https://github.com/samba/Workspace
-- name: dotfiles  (legacy)
-  description: Linux shell and working environment configuration (legacy)
-  url: https://github.com/samba/dotfiles
 
+tags:
+  title_text:
+    devops: "DevOps"
+    continuous-deployment: "Continuous Deployment"
+    business-intelligence: "Business Intelligence"
+    github: "GitHub"
+    gitlab: "GitLab"
 
-# Scan all pages by tag
-pages:
-  - tag: menu
-  - url: /blog/
-    name: Blog
-
-# Scan all posts by tag
 # This gets rendered as the Topics menu
 topics:
-  - Software Engineering
-  - Continuous Delivery
   - Business Intelligence
+  - Continuous Deployment
   - DevOps
 

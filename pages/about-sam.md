@@ -1,10 +1,10 @@
 ---
 title: About Sam Briesemeister
-layout: base
+layout: page
 tags: menu
 published: true
 permalink: /about/
-display_title_override: About Me
+menu_title: About Me
 
 redirect_from:
     - /resume.html
@@ -15,11 +15,13 @@ professionality:
     - quality process development
     - building adept businesses
 
+position: 1
+
+is_html: true
 
 ---
-<div class='zebra'>
-<article class='row stripe'>
-<section class='container'>
+<section class='row zebra'>
+<div class='container'>
 
 My clients hire me to develop agility in their business intelligence and analytics teams. This often involves building software systems and workflows to accelerate their product development endeavors, in which I emphasize the adoption of microservices, containerization, continuous delivery/deployment, and Lean/DevOps culture.
 
@@ -27,11 +29,11 @@ I love teaching, learning, sharing knowledge, and developing stronger teams. I e
 
 I've previously worked with <a href="http://sendachi.com">Sendachi</a> during their Seattle operations. I helped build <a href="http://analyticspros.com">Analytics Pros</a> with <a href="https://www.linkedin.com/in/calebwhitmore">Caleb Whitmore</a>. I've enjoyed working with major worldwide brands, supporting their analytics integration, and leveraging data to make their marketing and product work more profitable and exciting. I'm thrilled to see strategically valuable decisions made with insights from good data. 
 
+</div>
 </section>
-</article>
 
-<article class='row stripe'>
-<section class='container'>
+<section class='row zebra'>
+<div class='container'>
 ## Projects
 
 - Universal Analytics Measurement Protocol libraries in [Python][1], [C][2], and [PHP][3].
@@ -50,11 +52,11 @@ I've previously worked with <a href="http://sendachi.com">Sendachi</a> during th
 
 Regrettably much of my work is currently not open-source, owned by employers and clients. This includes several Javascript frameworks, various libraries related to integration and use of Analytics data, and various auxiliary projects to support components of products built.
 
+</div>
 </section>
-</article>
 
-<article class='row stripe'>
-<section class='container'>
+<section class='row zebra'>
+<div class='container'>
 ## Subjects of Interest
 
 - Analytics _of all kinds_, Big Data and Machine Learning
@@ -64,6 +66,5 @@ Regrettably much of my work is currently not open-source, owned by employers and
 - Philosophy 
 - Linguistics and Multilingualism
    - German; _lass uns reden_ :)
-</section>
-</article>
 </div>
+</section>

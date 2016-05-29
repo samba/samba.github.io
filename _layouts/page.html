@@ -1,0 +1,13 @@
+---
+layout: default
+hide_meta: true
+hide_tags: true
+---
+<!--  page -->
+{{ content }}
+{% if page.tweet_bottom %}
+<aside class='inline'>
+	Discuss it: {% include twitter_tweetbutton.html top_offset='0.5em' %}
+</aside>
+{% endif %}
+<!-- end page -->
