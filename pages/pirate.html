@@ -52,6 +52,7 @@ title: Pirate Playground
 
 
     <div id='usage' class='row'>
+      <article>
       <h2>Usage</h2>
       <p>This page shows example structure for defining <code>data-</code> attributes.</p>
 
@@ -99,7 +100,22 @@ window.dataLayer.push({
 
       The kit intercepts all events to Google Tag Manager, and when <code>gtm.element</code> is provided, collects data attributes (inherited from parent elements) as properties on the event object, for use in Google Tag Manager variables.
 
+      </p>
+      <p>
+      The kit also adds new event types for fine-grained interaction observers:
 
+      <ul>
+      <li><code>focus</code> and <code>blur</code> events on the main window, as well as form fields.</li>
+      <li><code>scroll</code> events on the main window.</li>
+      <li><code>touchstart</code> and <code>mousedown</code> for when <code>click</code> is too late.</li>
+      <li>... and several others.</li>
+      </ul>
+
+      If needed, additional event types can be added to the listening environment:
+
+{% highlight javascript %}
+window.pirate.config.EVENTS.BODY.push('mouseup');
+{% endhighlight %}
 
 
       </p>
@@ -141,10 +157,9 @@ window.pirate.hornswaggle('li a.download'); // => [Object, Object...]
 
       </p>
 
-
+      </article>
     </div>
 
-    </div>
 
 
   </body>

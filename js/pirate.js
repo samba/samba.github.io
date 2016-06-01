@@ -1,7 +1,24 @@
 /*  A framework for automating detection of data attributes on event handlers. */
 (function(window, document, undefined){
 
-  var config = { DEBUG: true, LISTEN_ALL: true };
+  var config = {
+    LISTEN_AUTO: true, // automatically attach all event handlers
+    DATALAYER_NAME: 'dataLayer', // configure alternate name if needed...
+
+    LOGLEVEL: 20, // the default (current) level
+    LOGGING: { // levels to evaluate against...
+      CRITICAL: 10, // when something went disasterously wrong...
+      WARNING: 20, // when something doesn't look right...
+      LOG: 30, // basic status notifications (currently unused)
+      INFO: 40, // fairly verbose for each event.
+      DEBUG: 50 // super verbose for analysis.
+    },
+
+    EVENTS: { // Which events to detect at the appropriate scope
+      BODY: ['click', 'dblclick', 'tap', 'drag', 'drop', 'scroll', 'mousedown', 'touchstart'],
+      WINDOW: ['focus', 'blur', 'focusin', 'focusout', 'copy', 'cut', 'paste', 'select', 'popstate', 'hashchange']
+    }
+  };
 
   var exports = (window.pirate = window.pirate || {});
   var hasOwnProperty = Object.hasOwnProperty;
@@ -15,7 +32,11 @@
   var RE_PATTERN_ALL = /.*/;
 
   // Instantiate the dataLayer if needed.
-  window.dataLayer = window.dataLayer || [];
+  window[config.DATALAYER_NAME] = window[config.DATALAYER_NAME] || [];
+
+  function loglevel(level){
+    return config.LOGLEVEL >= level;
+  }
 
   function extend(target, source){
     var k;
@@ -28,19 +49,31 @@
   }
 
   function fixAttributeName(name){
-    return name.replace(RE_DATA_PREFIX, '').replace(RE_HYPHEN_NAME, function($0){
+    return name.substr(5).replace(RE_HYPHEN_NAME, function($0){
       return $0.charAt(0) + ($0.charAt(2).toUpperCase());
     });
   }
 
-  function listen(events, elem, handler, capture){
-    var attach = (elem.addEventListener || elem.attachEvent);
+  function listen(events, elem, handler, capture, _remove){
+    var attach; // the attachment (or detachment) method
+
+    if(!! _remove){
+      attach = (elem.removeEventListener || elem.detachEvent);
+    } else {
+      attach = (elem.addEventListener || elem.attachEvent);
+    }
+
     var count = 0;
     events.replace(/(on)?([a-z]+)/g, function($0, $on, $name){
       attach.call(elem, $name, handler, capture);
       count++;
     });
   }
+
+  function removeListener(events, elem, handler, capture){
+    return listen(events, elem, handler, capture, true);
+  }
+
 
   function mapElements(elem, callback){
     var i, r = [];
@@ -63,7 +96,10 @@
     var node = elem, data = {};
     function load(name, value){
       if(RE_DATA_PREFIX.test(name)){
-        data[fixAttributeName(name)] = value;
+        name = fixAttributeName(name);
+        if(!hasOwnProperty.call(data, name)){
+          data[name] = value;
+        }
       }
     }
     while(node){
@@ -124,14 +160,61 @@
   exports.config = config;
 
 
+  /** @constructor */
+  function EventSpanner(context, handler, capture){
+    this.context = context;
+    this.handler = handler;
+    this.capture = capture;
+  }
+
+  (function(spanner){
+
+    spanner._assimilate = function(eventArray, doAttach){
+      var _push = eventArray.push;
+      var _this = this;
+      eventArray.push = function(){
+        _this.attach.apply(_this, arguments);
+        return _push.apply(eventArray, arguments);
+      };
+      if(doAttach){
+        _this.attach.apply(_this, eventArray);
+      }
+      return eventArray;
+    };
+
+    spanner.attach = function(){
+      var i = arguments.length;
+      while(i--){
+        if(loglevel(config.LOGGING.INFO)) console.info('Attaching event listeners', arguments[i], this.context);
+        listen(arguments[i], this.context, this.handler, this.capture, false);
+      }
+    };
+
+    spanner.detach = function(){
+      var i = arguments.length;
+      while(i--){
+        removeListener(arguments[i], this.context, this.handler, this.capture);
+      }
+    };
+
+  }(EventSpanner.prototype));
+
+
   function activatePirateListeners(){
-    listen('click dblclick tap drag drop scroll', document.body, coreDispatch);
-    listen('focus blur focusin focusout copy cut paste select popstate hashchange', window, coreDispatch);
+    var spanner;
+
+    // Attach to body events
+    spanner = new EventSpanner(document.body, coreDispatch, false);
+    spanner._assimilate(config.EVENTS.BODY, true);
+
+    // Attach to window events.
+    spanner = new EventSpanner(window, coreDispatch, false);
+    spanner._assimilate(config.EVENTS.WINDOW, true);
   }
 
   function onready(e){
     // Attach core listeners
-    if(config.LISTEN_ALL) activatePirateListeners()
+    if(config.LISTEN_AUTO) activatePirateListeners();
   }
 
   // Inject a precursor to all calls on this method...
@@ -147,13 +230,13 @@
   // Assuming that this kit will be loaded *by* GTM, GTM's injection on the
   // DataLayer can be intercepted, as it will have already applied. This
   // alleviates timing concerns.
-  insert(window.dataLayer, 'push', function(){
+  insert(window[config.DATALAYER_NAME], 'push', function(){
     var i;
-    if(config.DEBUG){
-      for(i = 0; i < arguments.legnth; i++)
+    if(loglevel(config.LOGGING.DEBUG)){
+      for(i = 0; i < arguments.length; i++)
         console.info('DataLayer::push()', arguments[i]);
     }
-    var i = interceptors.length;
+    i = interceptors.length;
     while(i--){
       interceptors[i].apply(this, arguments);
     }
@@ -179,7 +262,7 @@
 
   attachDelegate(null, function(event){
     var elem = this;
-    window.dataLayer.push({
+    window[config.DATALAYER_NAME].push({
       'event': ('pirate.' + event.type),
       'gtm.element': elem,
       'sourceEvent': event
