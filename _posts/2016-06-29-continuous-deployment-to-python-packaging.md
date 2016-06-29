@@ -3,6 +3,8 @@ title: Continuous Deployment with Python Packages
 date: 2016-06-12 12:24:00
 categories: devops python gitlab continuous-deployment
 tags: devops continuous-deployment python gitlab
+redirect_from:
+  - /continuous-python-packaging
 layout: post
 ---
 
@@ -48,7 +50,7 @@ Configure the following Variables:
 - Key `PYPI_USER`: the username you registered (separately) on PyPI, strictly for automatic package upload.
 - Key `PYPI_PASSWORD`: the password for that user. Hopefully this is quite unique.
 
-**Security note**: These values are exposed as _environment variables_ to the runners. They will not be visible unless
+*Security note*: These values are exposed as _environment variables_ to the runners. They will not be visible unless
 some part of your build/test/deploy application *prints* them to console output (`stdout`, `stderr` etc). Their configuration
 can only be managed by users, in GitLab, who are granted `Master` or `Owner` permissions in the repository. The credentials
 used to upload applications should be treated as _sensitive_ data. Please be mindful of whom you're granting access to, and
