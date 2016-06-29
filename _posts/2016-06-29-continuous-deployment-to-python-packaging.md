@@ -53,7 +53,7 @@ Configure the following Variables:
 *Security note*: These values are exposed as _environment variables_ to the runners. They will not be visible unless
 some part of your build/test/deploy application *prints* them to console output (`stdout`, `stderr` etc). Their configuration
 can only be managed by users, in GitLab, who are granted `Master` or `Owner` permissions in the repository. The credentials
-used to upload applications should be treated as _sensitive_ data. Please be mindful of whom you're granting access to, and
+used to upload packages should be treated as _sensitive_ data. Please be mindful of whom you're granting access to, and
 how your automation handles these values.
 
 ## Configuring the GitLab Runner
@@ -112,7 +112,7 @@ essential for building applications. As such its test setup is somewhat convolut
 the process works well enough.
 
 The configuration above, and my own project, relies on Git tags explicitly declaring versions to deploy. This requires
-version-tags to comply with [PEP-440][5], an in my configuration, with a prefixed "v" on the tags. My `Makefile` also
+version-tags to comply with [PEP-440][5], and in my configuration, with a prefixed "v" on the tags. My `Makefile` also
 prepares these tags based on the version identified in the package code.
 
 Feel free to throw questions at me on Twitter. :)
