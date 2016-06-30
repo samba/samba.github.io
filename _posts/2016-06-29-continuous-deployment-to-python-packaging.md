@@ -58,7 +58,7 @@ how your automation handles these values.
 
 ## Configuring the GitLab Runner
 
-This is best done by code example, I'm afraid, annotated for clarity.
+This is best done by code example, I'm afraid, annotated for clarity. This configuration belongs in the file `.gitlab-ci.yml` in your code repository. (Mine, for example, [here][6].)
 
 ```yaml
 # Advise GitLab that these environment vars should be loaded from the Variables config.
@@ -123,3 +123,4 @@ Feel free to throw questions at me on Twitter. :)
 [3]: http://peterdowns.com/posts/first-time-with-pypi.html
 [4]: http://zaiste.net/2015/06/how_to_submit_a_python_package_to_pypi/
 [5]: https://www.python.org/dev/peps/pep-0440/
+[6]: https://gitlab.com/samba/webapptitude/blob/master/.gitlab-ci.yml
