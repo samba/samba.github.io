@@ -1,9 +1,20 @@
+---
+# This crazy header is processed by Jekyll.
+test: false
+dataLayer:
+  name: 'dataLayer'
+
+pirate:
+  jargon: "http://pirateglossary.com/types/phrases/page/5/"
+
+---
+
 /*  A framework for automating detection of data attributes on event handlers. */
 (function(window, document, undefined){
 
   var config = {
     LISTEN_AUTO: true, // automatically attach all event handlers
-    DATALAYER_NAME: 'dataLayer', // configure alternate name if needed...
+    DATALAYER_NAME: '{{page.dataLayer.name}}', // configure alternate name if needed...
 
     LOGLEVEL: 20, // the default (current) level
     LOGGING: { // levels to evaluate against...
