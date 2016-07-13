@@ -109,6 +109,7 @@ pirate:
 
   function collectAttributes(elem){
     var node = elem, data = {};
+
     function load(name, value){
       if(RE_DATA_PREFIX.test(name)){
         name = fixAttributeName(name);
@@ -214,6 +215,13 @@ pirate:
 
   }(EventSpanner.prototype));
 
+  function getGTMDefaultProperties(element){
+    return {
+      'gtm.elementId': (element && element.id),
+      'gtm.elementClasses': (element.className)
+    }
+  }
+
 
   function activatePirateListeners(){
     var spanner;
@@ -260,12 +268,29 @@ pirate:
   // Insert the data-extension logic for all events including elements.
   interceptors.push(function(){
     var i = arguments.length;
+    var data = null, pirate = null, elem = null;
     while(i--){
       if(hasOwnProperty.call(arguments[i], 'gtm.element')){
-        extend(arguments[i], collectAttributes(arguments[i]['gtm.element']));
+        elem = arguments[i]['gtm.element'];
+        data = collectAttributes(elem);
+        pirate = (arguments[i]['pirate'] = arguments[i]['pirate'] || {});
+        extend(pirate, data);
+        extend(arguments[i], getGTMDefaultProperties(elem))
       }
     }
   });
+
+
+  function persistDataScope(selector){
+    var results = select(selector);
+    var i = results.length;
+    while(i--){
+      window[config.DATALAYER_NAME].push(results[i]);
+    }
+  }
+
+  exports.moor = persistDataScope;
+
 
   listen('load', document, onready);
   listen('DOMContentLoaded', document, onready);
@@ -280,7 +305,9 @@ pirate:
     window[config.DATALAYER_NAME].push({
       'event': ('pirate.' + event.type),
       'gtm.element': elem,
-      'sourceEvent': event
+      'pirate': {
+        'sourceEvent': event
+      }
     });
   });
 

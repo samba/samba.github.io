@@ -91,15 +91,23 @@ title: Pirate Playground
 window.dataLayer.push({
   'event': 'gtm.click',
   'gtm.element': (linkElementClicked),
-  'productAction': 'click',
-  'productCategory': 'loot',
-  'context': 'product'
+  'pirate': { // all inherited attributes reside here
+    'productAction': 'click',
+    'productCategory': 'loot',
+    'context': 'product'
+  }
 });
 {% endhighlight %}
 
 
       The kit intercepts all events to Google Tag Manager, and when <code>gtm.element</code> is provided, collects data attributes (inherited from parent elements) as properties on the event object, for use in Google Tag Manager variables.
+      </p>
+      <p>
+      Note that the inherited properties are provided in the <code>pirate</code> sub-object
+      within each <code>dataLayer.push</code>; this ensures that the properties of that element
+      do not persist into subsequent events.
 
+      To enable persistent properties, see the <code>pirate.moor</code> function below.
       </p>
       <p>
       The kit also adds new event types for fine-grained interaction observers:
@@ -110,6 +118,7 @@ window.dataLayer.push({
       <li><code>touchstart</code> and <code>mousedown</code> for when <code>click</code> is too late.</li>
       <li>... and several others.</li>
       </ul>
+
 
       If needed, additional event types can be added to the listening environment:
 
@@ -156,6 +165,11 @@ window.pirate.pillage(element); // => Object
  */
 window.pirate.hornswaggle('li a.download'); // => [Object, Object...]
 
+
+/** Persist the properties of a particular element to the DataLayer
+ * param {String} cssSelectorExpression
+ */
+window.pirate.moor('body.post article[data-author] section');
 
 {% endhighlight %}
 
