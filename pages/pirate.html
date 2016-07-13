@@ -126,6 +126,10 @@ window.pirate.config.EVENTS.BODY.push('mouseup');
       This framework also provides a global interface <code>pirate</code>.
 
 {% highlight javascript %}
+/** Enable debug logging to console */
+window.pirate.yellow();
+
+
 /** Register a handler method for DOM event listening, filtered by Regular Expression
  * param {RegExp} filterExpressionOptional default null
  * param {function(this: DOMElement, DOMEvent)} eventHandlerMethod

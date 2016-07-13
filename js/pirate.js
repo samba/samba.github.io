@@ -45,6 +45,10 @@ pirate:
   // Instantiate the dataLayer if needed.
   window[config.DATALAYER_NAME] = window[config.DATALAYER_NAME] || [];
 
+  exports.yellow = function(){
+    config.LOGLEVEL = config.LOGGING.DEBUG;
+  };
+
   function loglevel(level){
     return config.LOGLEVEL >= level;
   }
