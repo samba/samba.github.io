@@ -28,9 +28,13 @@ deploy:
 	git commit -a && git push github
 
 
-.docker-build: Dockerfile
+.docker-build: Dockerfile Gemfile scripts/serve.sh
 	docker build ${CACHE} -t samba.github.io .
 	touch $@
+
+clean-site:
+	docker run -it -v `pwd`:/root samba.github.io \
+		find /root/_site -type f -print -delete
 
 
 clean cleanslate:
@@ -47,7 +51,7 @@ serve docker-run: .docker-build stylesheet/code.css _config.yml
 
 
 docker-shell:
-	docker run -it -v `pwd`:/root -p 4000:4000 samba.github.io bash
+	docker run -it -v `pwd`:/root samba.github.io bash
 
 newpost:
 	sh scripts/newpost.sh

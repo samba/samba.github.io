@@ -2,13 +2,14 @@ FROM ruby:2.3
 
 WORKDIR /root
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get -q update && apt-get -q upgrade -y
+RUN apt-get -q install -y vim-nox
 
 
 # This provides Jekyll, Kramdown, etc as dependencies.
-RUN ruby -S gem install github-pages
-RUN ruby -S gem install therubyracer
-RUN ruby -S gem install jekyll-assets
+RUN ruby -S gem install github-pages therubyracer
+# RUN ruby -S gem install therubyracer
+# RUN ruby -S gem install jekyll-assets
 RUN mkdir /opt/bin
 
 COPY scripts/*.sh /opt/bin/

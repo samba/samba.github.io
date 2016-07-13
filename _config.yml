@@ -60,23 +60,23 @@ rouge:
   scope: ".codehilite"
 
 
-assets:
-  prefix: "/assets"
-  sources:
-    - assets/css
-    - assets/images
-    - assets/javascripts
-    - assets/stylesheets
-    - assets/fonts
-    - assets/img
-    - assets/shim
-  digest: true
-  assets:
-    - '*.png'
-    - '*.jpg'
-    - 'bundle.css'
-  features:
-    liquid: true
+# assets:
+#   prefix: "/assets"
+#   sources:
+#     - assets/css
+#     - assets/images
+#     - assets/javascripts
+#     - assets/stylesheets
+#     - assets/fonts
+#     - assets/img
+#     - assets/shim
+#   digest: true
+#   assets:
+#     - '*.png'
+#     - '*.jpg'
+#     - 'bundle.css'
+#   features:
+#     liquid: true
 
 
 
