@@ -1,11 +1,15 @@
 ---
 # This crazy header is processed by Jekyll.
+layout: null
 test: false
 dataLayer:
   name: 'dataLayer'
 
 pirate:
   jargon: "http://pirateglossary.com/types/phrases/page/5/"
+
+reference:
+  gtm_events: "https://support.google.com/tagmanager/answer/6106965?hl=en"
 
 ---
 
@@ -26,9 +30,18 @@ pirate:
     },
 
     EVENTS: { // Which events to detect at the appropriate scope
-      BODY: ['click', 'dblclick', 'tap', 'drag', 'drop', 'scroll', 'mousedown', 'touchstart'],
-      WINDOW: ['focus', 'blur', 'focusin', 'focusout', 'copy', 'cut', 'paste', 'select', 'popstate', 'hashchange']
+      BODY: ['click', 'dblclick', 'tap', 'drag', 'drop', 'scroll',
+             'mousedown', 'touchstart'],
+      WINDOW: ['focus', 'blur', 'focusin', 'focusout', 'copy', 'cut',
+               'paste', 'select', 'popstate', 'hashchange',
+               'change', 'input', 'keypress']
     }
+  };
+
+
+  var state  = {
+    IN_FIELD: false,
+    events: { muted: {} }
   };
 
   var exports = (window.pirate = window.pirate || {});
@@ -125,6 +138,13 @@ pirate:
     return data;
   }
 
+  function mute(){
+    var i = arguments.length;
+    while(i--){
+      state.events.muted[arguments[i]] = true;
+    }
+  }
+
 
   function debounce(event){
     var cache = (debounce.cache = debounce.cache || {});
@@ -174,6 +194,22 @@ pirate:
   exports.hornswaggle = select;
   exports.ascertain = intercept;
   exports.config = config;
+
+
+  // Activate keypress and input events on form fields
+  attachDelegate(/^(focus(in|out)?|blur)$/, function(event){
+    var elem = this;
+    state.IN_FIELD = (/^(focus(in)?)$/.test(event.type));
+
+    state.events.muted['keypress'] = !(state.IN_FIELD);
+    state.events.muted['input'] = !(state.IN_FIELD);
+
+  });
+
+
+  // Initialize state:
+  mute('keypress', 'input')
+
 
 
   /** @constructor */
@@ -229,11 +265,17 @@ pirate:
     // Attach to body events
     spanner = new EventSpanner(document.body, coreDispatch, false);
     spanner._assimilate(config.EVENTS.BODY, true);
+    state.events.body = spanner;
+
 
     // Attach to window events.
     spanner = new EventSpanner(window, coreDispatch, false);
     spanner._assimilate(config.EVENTS.WINDOW, true);
+    state.events.window = spanner;
   }
+
+
+
 
   function onready(e){
     // Attach core listeners
@@ -290,7 +332,7 @@ pirate:
   }
 
   exports.moor = persistDataScope;
-
+  exports.mute = mute;
 
   listen('load', document, onready);
   listen('DOMContentLoaded', document, onready);
@@ -302,13 +344,16 @@ pirate:
 
   attachDelegate(null, function(event){
     var elem = this;
-    window[config.DATALAYER_NAME].push({
-      'event': ('pirate.' + event.type),
-      'gtm.element': elem,
-      'pirate': {
-        'sourceEvent': event
-      }
-    });
+    if (!(state.events.muted[event.type])){
+      window[config.DATALAYER_NAME].push({
+        'event': ('pirate.' + event.type),
+        'gtm.element': elem,
+        'pirate': {
+          'sourceEvent': event
+        }
+      });
+    }
+
   });
 
 
