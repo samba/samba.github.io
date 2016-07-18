@@ -1,0 +1,60 @@
+---
+layout: null
+permalink: /site.json
+---
+{
+	"description": {{site.description | jsonify}},
+	"root": "{{ site.url }}{{ site.baseurl }}/",
+
+	{% capture site_tags %}
+	[
+		{% for tag in site.tags %}
+			{{ tag[0] |jsonify }}{% unless forloop.last %},{% endunless %}
+		{% endfor %}
+	]
+	{% endcapture %}
+
+
+	"pages": [
+		{% for page in site.pages %}
+		{% if (page.title != "") and (page.title) and (page.layout) %}
+			{
+				"title": {{ page.title | jsonify}},
+				"tags": {{page.tags | jsonify}},
+				"url": {{page.url | prepend: site.baseurl | prepend: site.url  | jsonify}},
+				"published": {{page.published |default:nil | jsonify}},
+				"description": {{page.description |default:nil | jsonify}},
+				"content-length": {{page.content | size}}
+			},
+		{% endif %}
+		{% endfor %}
+		null
+	],
+
+
+	"blog": {
+
+		"meta": {
+			"tags": {{ site_tags }}
+		},
+
+		"posts": [
+			{% for post in site.posts limit:10000 %}
+				{
+					"title": {{ post.title | jsonify }},
+					"description": {{ post.description |default:nil | jsonify }},
+					"summary": {{ post.summary |default:nil | jsonify }},
+					"subtitle": {{ post.subtitle |default:nil | jsonify }},
+					"excerpt": {{ post.excerpt |default:nil | jsonify }},
+					"pubdate": {{ post.date | date_to_xmlschema | jsonify }},
+					"link": {{ post.url | prepend: site.baseurl | prepend: site.url | jsonify}},
+					"tags": {{post.tags | jsonify}},
+					"categories": {{post.categories | jsonify}},
+					"content-length": {{post.content | size}}
+				}{% unless forloop.last %},{% endunless %}
+			{% endfor %}
+		]
+
+
+	}
+}
