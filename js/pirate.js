@@ -40,6 +40,8 @@ reference:
 
 
   var state  = {
+    LISTENING: true,
+    RESET_DUE: false,
     IN_FIELD: false,
     events: { muted: {} }
   };
@@ -286,9 +288,23 @@ reference:
   function insert(context, methodName, handler){
     var orig = context[methodName];
     return (context[methodName] = function(){
-        handler.apply(context, arguments);
+        if(state.LISTENING){
+          handler.apply(context, arguments);
+          // state.RESET_DUE = true;
+        }
         return orig.apply(context, arguments);
     });
+  }
+
+  function deferClearPirateState(dataLayer){
+    setTimeout(function(){
+      if(state.RESET_DUE){
+        state.LISTENING = false;
+        dataLayer.push({ 'pirate': undefined });
+        state.LISTENING = true;
+        state.RESET_DUE = false;
+      }
+    }, 10);
   }
 
   // Insert the interceptor delegate.
@@ -304,6 +320,7 @@ reference:
     i = interceptors.length;
     while(i--){
       interceptors[i].apply(this, arguments);
+      deferClearPirateState(this);
     }
   });
 
@@ -313,6 +330,7 @@ reference:
     var data = null, pirate = null, elem = null;
     while(i--){
       if(hasOwnProperty.call(arguments[i], 'gtm.element')){
+        state.RESET_DUE = true;
         elem = arguments[i]['gtm.element'];
         data = collectAttributes(elem);
         pirate = (arguments[i]['pirate'] = arguments[i]['pirate'] || {});
@@ -345,6 +363,7 @@ reference:
   attachDelegate(null, function(event){
     var elem = this;
     if (!(state.events.muted[event.type])){
+      state.RESET_DUE = true;
       window[config.DATALAYER_NAME].push({
         'event': ('pirate.' + event.type),
         'gtm.element': elem,
