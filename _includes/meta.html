@@ -8,7 +8,10 @@
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
 
 {% unless page.hidden %}
-	{% seo %}
+	{% if page.seo_title %}
+	{% seo title=false %}
+	<title>{{ page.seo_title }}</title>
+	{% else %}{% seo %}{% endif %}
 {% else %}
 <meta name="robots" content="noindex">
 <title>{{page.title}} - {{site.name}}</title>
