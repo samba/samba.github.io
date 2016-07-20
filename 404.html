@@ -1,70 +1,17 @@
 ---
 title: Sorry!
-layout: null
+layout: page
 permalink: /404.html
 analytics:
   - setPageCategory: 404
+hidden: true
 ---
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+I'm terribly sorry. The page you've requested couldn't be found.
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-		{% include meta.html %}
-		{% include assets.html %}
-	</head>
+Could I interest you in something else?
 
-
-	<body>
-
-
-		<header class='site gray darken-4'>
-
-		<div class='navbar-fixed'>
-			{% include nav.html mode='page' %}
-		</div>
-
-		{% include header.html %}
-
-		</header>
-
-
-
-		<div class='container'>
-
-
-			<div class='row'>
-
-				<header>
-				<h4>The page you requested could not be found.</h4>
-				<span class='subtitle'>But maybe I can help you find what you're looking for anyway...</span>
-				</header>
-
-				<aside class='recent 404 col l6 m12 s12'>
-				{% include recent.html limit=10  omit_excerpt=false %}
-				</aside>
-
-				<aside class='pages 404 col l6 m12 s12'>
-				<h5>Featured Pages</h5>
-				<ul class='site pages'>
-				{% for p in site.pages %}
-					{% if (p.published==false) or (p.tags contains "draft") %}{% continue %}{% endif %}
-					{% if p.title and (p.tags contains "menu") %}
-					<li class="{% if p.url == page.url %}active{% endif %}">
-						<a class="page"
-							href='{{ p.permalink|default:p.url }}'>{{p.title}}</a>
-					</li>
-					{% endif %}
-				{% endfor %}
-				</ul>
-				</aside>
-			</div>
-
-		</div>
-
-	</body>
-
-
-
-</html>
+* [Site Home](/)
+* [The blog](/blog/)
+* [About Sam](/about/)
