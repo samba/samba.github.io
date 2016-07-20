@@ -18,6 +18,7 @@ professionality:
 position: 1
 
 is_html: true
+hide_meta: true
 
 ---
 <section class='row zebra'>
