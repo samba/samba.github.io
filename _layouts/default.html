@@ -56,8 +56,10 @@ exclude_meta: false
 			<header class='alone'>
 				<div class='container'>
 				<h3>{{page.display_title |default:page.title | default:site.name}}</h3>
-				<small>{{page.subtitle | default:site.subtitle }}</small>
+				<small>
+					{{page.subtitle | default:site.subtitle }}
 				</small>
+				</div>
 			</header>
 
 			{% unless page.hide_meta %}
