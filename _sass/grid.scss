@@ -27,7 +27,7 @@ body {
 	padding: 0em;
 	height: 100%;
 
-	.pad {
+	&.pad {
 		padding: 1em;
 	}
 
@@ -130,8 +130,18 @@ footer .container {
 	clear: both;
 }
 
+.pad {
+	/* To be applied generically on things that need a little room. */
+	padding: {
+		top: 0.25em;
+		left: 1em;
+		right: 1em;
+		bottom: 0.25em;
+	}
+}
+
 section.row, div.row {
-	.container {
+	&:not(.thin) .container {
 		padding: 1em 0 1.5em 0;
 	}
 
@@ -141,6 +151,13 @@ section.row, div.row {
 
 		a {
 			color: $brand-color;
+		}
+
+		@media print {
+			background-color: transparent;
+			color: $text-color;
+			border-top: 1px dashed $grey-color;
+			border-bottom: 1px dashed $grey-color;
 		}
 	}
 

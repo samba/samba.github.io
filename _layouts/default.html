@@ -36,7 +36,7 @@ exclude_meta: false
 
 		<input type="checkbox" class="nav-checkbox" id="nav-checkbox">
 
-		<div class='navigation sidebar'>
+		<div class='navigation sidebar no-print'>
 		<nav>
 			{% include nav.html %}
 			{% comment %}{% include twitter_widget.html %}{% endcomment %}
@@ -61,7 +61,7 @@ exclude_meta: false
 			</header>
 
 			{% unless (page.hide_meta) %}
-			<div class='row meta'>
+			<div class='row meta thin'>
 				<div class='container'>
 				Published {{page.date |default:site.time | date: "%d. %b %Y" }}
 				by {{page.author |default:site.author.name }}.
@@ -76,7 +76,7 @@ exclude_meta: false
 
 
 				{% unless (page.dont_tweet and (page.dont_tweet != blank)) %}
-				<aside class=''>
+				<aside class='no-print inline pad'>
 				{% include twitter_tweetbutton.html top_offset='0.5em' %}
 				</aside>
 				{% endunless %}
@@ -100,8 +100,8 @@ exclude_meta: false
 		</div>
 
 		<!-- navigation sidebar control (activator) -->
-		<label for="nav-checkbox" class="nav-toggle">
-		<i class="fa fa-bars" aria-hidden="true"></i>
+		<label for="nav-checkbox" class="nav-toggle no-print">
+		<i class="fa fa-bars no-print" aria-hidden="true"></i>
 		</label>
 
 	</body>

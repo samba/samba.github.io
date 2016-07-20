@@ -29,7 +29,7 @@ permalink: /js/site.js
 
 
 	function twitter_sharebuttonstyle(elements){
-		return elements.filter('.twitter-share-button').css({
+		return elements.filter('.twitter-share-button').addClass('no-print').css({
 			'display': 'inline-block',
 			'position': 'relative',
 			'top': '0.4em'
@@ -37,7 +37,10 @@ permalink: /js/site.js
 	}
 
 	function twitter_widgetstyle(elements){
-		return elements.filter('.twitter-timeline').attr('style', '').addClass('flex');
+		return elements.filter('.twitter-timeline')
+			.attr('style', '')
+			.addClass('flex')
+			.addClass('no-print');
 		/* return elements.filter('.twitter-timeline').css({
 			'width': null,
 			'height': '100%',

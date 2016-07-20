@@ -6,3 +6,13 @@
 	}
 
 }
+
+@media print {
+	body {
+		font-size: 0.8rem;
+	}
+
+	.no-print, iframe, a.twitter-timeline, a.twitter-share-button {
+		display: none !important;
+	}
+}

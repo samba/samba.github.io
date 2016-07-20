@@ -23,7 +23,7 @@ description: >
   tech. On Software, Continuous Delivery, Business Intelligence, Analytics,
   Technology, Ethics, Information Security, Politics, and life in general.
 
-# url: "http://samb.io"  # no trailing slash
+url: "http://samb.io"  # no trailing slash
 baseurl: ""  # empty, else we duplicate slashes.
 permalink: /blog/:year/:categories/:slug
 

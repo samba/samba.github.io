@@ -42,6 +42,8 @@ $activator-background: #fff;
  * The sidebar is the drawer, the item we are toggling with our handy hamburger
  * button in the corner of the page.
  *
+ * (Derived from similar at https://github.com/lanyonm/lanyonm.github.io)
+ *
  * This particular sidebar implementation was inspired by Chris Coyier's
  * "Offcanvas Menu with CSS Target" article, and the checkbox variation from the
  * comments by a reader. It modifies both implementations to continue using the
@@ -68,14 +70,18 @@ $activator-background: #fff;
   background-color: $sidebar-background;
   -webkit-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;
-}
-@media (min-width: 30em) {
-  #{$sidebar-wrapper} {
+
+
+
+  @media (min-width: 30em) {
     font-size: .75rem; /* 14px */
   }
+
+  @media print {
+    display: none !important;
+  }
+
 }
-
-
 
 
 
@@ -84,6 +90,7 @@ $activator-background: #fff;
   font-weight: normal;
   color: $sidebar-link-color;
 }
+
 #{$sidebar-wrapper} section {
 	letter-spacing: calc(0.08em);
 
@@ -157,6 +164,10 @@ $activator-background: #fff;
 /* Hide the sidebar checkbox that we toggle with `#{$sidebar-control}` */
 #{$sidebar-activator} {
   display: none;
+
+  @media print {
+    display: none !important;
+  }
 }
 
 /* Style the `label` that we use to target the `#{$sidebar-activator}` */
@@ -173,6 +184,9 @@ $activator-background: #fff;
   border-radius: 4px;
   cursor: pointer;
 
+  @media print {
+    display: none !important;
+  }
 
   @include media-query($small){
     // top: 0;
