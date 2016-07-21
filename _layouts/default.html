@@ -76,7 +76,7 @@ exclude_meta: false
 
 
 				{% unless (page.dont_tweet and (page.dont_tweet != blank)) %}
-				<aside class='no-print inline pad'>
+				<aside class='no-print no-mobile inline pad'>
 				{% include twitter_tweetbutton.html top_offset='0.5em' %}
 				</aside>
 				{% endunless %}

@@ -14,19 +14,28 @@ header {
 
 }
 
-div#content {
-	padding-bottom: 1em;
-}
 
 div#content, div.meta {
 	padding-top: 0.1em;
 
 	.container {
 		@include media-query($small){
-			padding: 0.1em;
+			padding: 0.5em;
 		}
 	}
 }
+
+div#content {
+	padding-bottom: 1em;
+
+	@include media-query($on-laptop){
+		div.container, article.container {
+			padding-left: 0.5em;
+			padding-right: 0.5em;
+		}
+	}
+}
+
 
 
 div.meta {
@@ -80,10 +89,22 @@ iframe.flex {
 	width: 100%;
 }
 
+div.twitter-widget {
+	@extend %clearfix;
+}
+
 iframe.twitter-timeline {
 	min-height: 30em;
 	// min-height: 100%;
+
 }
+
+.no-mobile {
+	@include media-query($on-laptop){
+		display: none !important;
+	}
+}
+
 
 nav a i.fa {
 	position: relative;

@@ -49,6 +49,7 @@ body {
 		[class*="col-"] {
 			flex-flow: column wrap;
 			flex: 1 1 auto;
+			@extend %clearfix;
 		}
 	}
 
