@@ -37,7 +37,7 @@ body {
 	  	height: 100%;
 	}
 
-
+/*
 	&.flex {
 		display: flex;
 		flex-flow: row;
@@ -52,7 +52,7 @@ body {
 			@extend %clearfix;
 		}
 	}
-
+*/
 
 
 	[class*='col-']:last-of-type {
@@ -99,17 +99,19 @@ header .container {
     // padding: 0;
     margin-top: auto;
     margin-bottom: auto;
-    height: ($header-band-height  - 1em);
+    // height: ($header-band-height  - 1em);
     padding: {
     	top: 0.1em; // ($header-band-height * 0.25);
     	bottom: 0.1em; // ($header-band-height * 0.25);
     }
 
+    /*
     display: flex;
     justify-content: center;
     flex-direction: column;
     resize: vertical;
     overflow: auto;
+    */
 
     h1, h2, h3, h4, h5 {
 
@@ -208,6 +210,14 @@ section.row, div.row {
 
 .scrollable {
 	overflow-y: auto;
+}
+
+.center {
+	text-align: center;
+}
+
+.vcenter {
+	vertical-align: middle;
 }
 
 .float.right {

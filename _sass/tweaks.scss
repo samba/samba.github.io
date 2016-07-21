@@ -14,6 +14,10 @@ header {
 
 }
 
+div#content, div#bodywrapper, *.row, .container{
+	@extend %clearfix;
+}
+
 
 div#content, div.meta {
 	padding-top: 0.1em;
@@ -140,7 +144,7 @@ pre.highlight, .highlighter-rouge .highlight {
 	}
 
 	padding: 1rem;
-	width: ($content-width - 16px);
+	// max-width: ($content-width - 16px);
 
 	@include media-query($small){
 		width: 100%;

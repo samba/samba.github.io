@@ -10,8 +10,9 @@ header {
         bottom: 0.5em;
     }
 
-    font-size: 1.2rem;
-    height: 4rem;
+    // font-size: 1.2rem;
+    // flex-basis: 4rem;
+    // height: 4rem;
     border-style: solid;
     border-color: $grey-color;
     border-width: 0 0 1px 0;
@@ -24,7 +25,7 @@ header {
         line-height: 56px;
         letter-spacing: -1px;
         margin-bottom: 0;
-        float: left;
+        // float: left;
 
         &,
         &:visited {
@@ -32,18 +33,39 @@ header {
         }
     }
 
+    .container {
+        vertical-align: middle;
+        @include media-query($small){
+            clear: both;
+            display: table;
+            padding: 0;
+            font-size: 1.2rem;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: 0;
+            height: 2.5em;
+        }
+    }
+
     h1, h2, h3, h4, h5 {
+        font-size: 2rem;
+        // font-size: 1.2rem;
         display: inline-block;
         clear: none;
         margin: 0;
 
         @include media-query($small){
             clear: both;
-            display: block;
+            display: table-cell;
             padding: 0;
+            font-size: 1.2rem;
+            margin-top: auto;
+            margin-bottom: auto;
+            vertical-align: middle;
         }
     }
 
+    /*
     small {
         margin-left: 2em;
         opacity: 0.7;
@@ -55,18 +77,24 @@ header {
             font-size: 0.8rem;
         }
     }
+    */
 
 
     @include media-query($small + (6*8px)){
         padding-left: 4em;
         padding-right: 1em;
-        font-size: 1rem;
+        // font-size: 1rem;
+
+        h1, h2, h3, h4, h5, h6 {
+            // font-size: 2vw;
+        }
         // margin-bottom: 2em;
     }
 
 
 }
 
+/*
 .site-nav {
     float: right;
     line-height: 56px;
@@ -134,6 +162,7 @@ header {
         }
     }
 }
+*/
 
 
 
@@ -149,6 +178,7 @@ footer {
     // margin: 1rem 0 0 0;
 }
 
+/*
 .site-footer {
     border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
@@ -213,6 +243,7 @@ footer {
         width:         calc(100% - (#{$spacing-unit} / 2));
     }
 }
+*/
 
 
 
@@ -227,6 +258,7 @@ footer {
 }
 
 
+/*
 .page-content {
     padding: $spacing-unit 0;
 }
@@ -253,12 +285,13 @@ footer {
     display: block;
     font-size: 24px;
 }
-
+*/
 
 
 /**
  * Posts
  */
+ /*
 .post-header {
     margin-bottom: $spacing-unit;
 }
@@ -300,3 +333,4 @@ footer {
         }
     }
 }
+*/

@@ -49,14 +49,14 @@ exclude_meta: false
 		</nav>
 		</div>
 
-		<div id='bodywrapper'>
+		<div id='bodywrapper' class='wholepage'>
 
-			<header class='alone'>
-				<div class='container'>
+			<header class=''>
+				<div class='container vcenter'>
 				<h3>{{page.display_title |default:page.title | default:site.name}}</h3>
-				<small>
+				<!-- <small>
 					{{page.subtitle | default:site.subtitle }}
-				</small>
+				</small> -->
 				</div>
 			</header>
 
@@ -87,7 +87,7 @@ exclude_meta: false
 
 			<div id="content" class='row'>
 			{% unless (page.is_html and (page.is_html != blank)) %}
-				<articlec class='container'>
+				<article class='container'>
 				{{ content | strip | markdownify }}
 				</article>
 			{% else %}

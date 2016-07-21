@@ -184,6 +184,12 @@ pre {
         display: table;
         clear: both;
     }
+
+    &:after,
+    &:before {
+        flex-basis: 0;
+        order: 1;
+    }
 }
 
 

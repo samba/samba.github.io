@@ -1,6 +1,7 @@
 ---
 # Jekyll requires this header. Sorry.
 permalink: /js/site.js
+twitter_enabled: true
 ---
 
 
@@ -79,26 +80,28 @@ permalink: /js/site.js
 
 	});
 
-	window.twttr = (function(d, s, id) {
+	if({{page.twitter_enabled}}){
+		window.twttr = (function(d, s, id) {
 
-	  var js, fjs = d.getElementsByTagName(s)[0],
-	    t = window.twttr || {},
-	    p=/^http:/.test(d.location)?'http':'https';
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s);
-	  js.id = id;
-	  js.src = p+"://platform.twitter.com/widgets.js";
+		  var js, fjs = d.getElementsByTagName(s)[0],
+		    t = window.twttr || {},
+		    p=/^http:/.test(d.location)?'http':'https';
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s);
+		  js.id = id;
+		  js.src = p+"://platform.twitter.com/widgets.js";
 
 
-	  if(!isPrintMode()) fjs.parentNode.insertBefore(js, fjs);
+		  if(!isPrintMode()) fjs.parentNode.insertBefore(js, fjs);
 
-	  t._e = [];
-	  t.ready = function(f) {
-	    t._e.push(f);
-	  };
+		  t._e = [];
+		  t.ready = function(f) {
+		    t._e.push(f);
+		  };
 
-	  return t;
-	}(document, "script", "twitter-wjs"));
+		  return t;
+		}(document, "script", "twitter-wjs"));
+	}
 
 
 
