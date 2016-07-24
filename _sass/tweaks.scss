@@ -121,7 +121,19 @@ nav a i.fa {
 	}
 }
 
+table.border {
+	border-collapse: collapse;
 
+	margin: 0.5rem;
+
+	&, tr, td {
+		border: 1px $grey-color solid;
+	}
+
+	td {
+		padding: 0.5rem;
+	}
+}
 
 em#copyright {
 	font-size: 0.7rem;
