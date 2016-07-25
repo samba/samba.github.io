@@ -10,6 +10,8 @@ excerpt: >
 
 ---
 
+**NOTE** this post is going to be restructured into a series soon.
+
 This is a political reflection; I am not pushing the agenda of any party or 
 candidate in this piece, only considering the state of our society and process.
 I would hope for you to do the same, and open discussion with me on how to
@@ -80,7 +82,7 @@ particular candidate, in pursuit of seeming "relevant".
 
 The saying "jack of all trades, master of none" applies here; when a campaign
 is frenetically targeting all the issues and trying to reach maximum diversity, 
-they quickly dillute their actual message ("brand" in some sense), and begin to
+they quickly dilute their actual message ("brand" in some sense), and begin to
 lose relevance to the population as each issue's position gets publicized. 
 Often this targeting of each issue results in conflicting statements with 
 positions previously held by the candidate. 
@@ -150,7 +152,7 @@ the state of our political process, significance of any particular candidate,
 their respective policies and positions influences the perception of each among
 the various subcultures in our nation. News networks are well-known to focus
 coverage on the issues they know their viewership is most concerned with. 
-[Parties evidently][13] [infludence the media][14] as well, sometimes through
+[Parties evidently][13] [influence the media][14] as well, sometimes through
 means that are socially unacceptable if not illegal. 
 
 Voter behavior is thus influenced by perception of any two options that are in
