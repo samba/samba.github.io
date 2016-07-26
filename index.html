@@ -43,6 +43,11 @@ A blog of transformation toward agility in Strategy, Business Intelligence, Prod
 			</div>
 			<div class='card-body post-excerpt'>
 				{{ post.excerpt | remove: "<p>" | remove: "</p>" | truncatewords: 100 }}
+				<div class='meta'>
+					{% for tag in post.tags limit:5 %}
+					<span class='tag'>{{tag}}</span>
+					{% endfor %}
+				</div>
 			</div>
 			<div class='card-action'>
 				<a href="{{ post.permalink |default: post.url }}">Continue Reading</a>
