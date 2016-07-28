@@ -4,6 +4,8 @@ date: 2016-07-24 00:00:00
 categories:  political-theater psychology
 tags: politics marketing game-theory
 layout: post
+hidden: false
+sensitive: true
 excerpt: >
   As long as we're voting for the lesser of two evils, the next election will
   bring a greater evil.
