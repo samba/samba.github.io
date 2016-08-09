@@ -11,6 +11,13 @@ title: Pirate Playground
 header_content:
   script: >
     window.pirate.yellow();
+    window.pirate.ondeck(function(){
+      window.pirate.attach('submit', 'form.donothing', function(e){
+        // e.stopPropagation();
+        e.preventDefault();
+        return false;
+      });
+    });
 
   style: >
     #demo fieldset {
@@ -22,6 +29,25 @@ header_content:
       border-width: 0;
       border-style: none;
       border-bottom: 1px dotted red;
+    }
+
+    #demo fieldset label.left {
+      float: left;
+      clear: both;
+    }
+
+    #demo fieldset select.test[multiple] {
+      font-size: 1rem;
+      border: 1px dotted red;
+      display: inline-block;
+      float: left;
+      clear: left;
+    }
+
+    #demo input[type=submit], #demo button {
+      border: 1px black dashed;
+      border-width: 0 0 1px 0;
+      background-color: rgba(0, 0, 0, 0.2)
     }
 
 body_data:
@@ -148,13 +174,42 @@ window.pirate.moor('body.post article[data-author] section');
 ## Test Area
 
 <div id='demo'>
+<form action='/test' class='donothing' name='toast' target='_blank'>
 <fieldset>
 <legend>Demo zone</legend>
 <div class='column left col-1-2'>
-<input type='text' value='Test area.'/>
+  <input type='text' name='atextfield' value='Test area.'/>
 </div>
 <div class='column col-1-2' data-subject-area='lists'>
-<a class='link' data-interaction='navigation' href="javascript:void(0)">Link</a>
+  <a class='link' data-interaction='navigation' href="javascript:void(0)">Link</a>
 </div>
+
+<div class='column left col-1-2'>
+  <label for='blarg' class='left'>Test select field.</label>
+  <select class='test' name='blarg' multiple>
+    <option value='one'>One</option>
+    <option value='two'>Two</option>
+    <option value='three'>Three</option>
+  </select>
+</div>
+
+<div class='column left col-1-2'>
+
+  <input type='checkbox' id='color-white' value='white' name='color'/>
+  <label for="color-white">White.</label>
+
+  <input type='checkbox' id='color-red' value='red' name='color'/>
+  <label for="color-red" >Red.</label>
+
+  <input type='checkbox' id='color-green' value='green' name='color'/>
+  <label for="color-green" >Green.</label>
+
+</div>
+
+
+<!-- <button type='submit' form='toast'>Submit, too</button> -->
+<input type='submit' value='Submit!'/>
 </fieldset>
+</form>
 </div>
+

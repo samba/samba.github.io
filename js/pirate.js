@@ -29,6 +29,8 @@ reference:
       DEBUG: 50 // super verbose for analysis.
     },
 
+    FORM_LABELS: true,
+
     EVENTS: { // Which events to detect at the appropriate scope
       BODY: ['click', 'dblclick', 'tap', 'drag', 'drop', 'scroll',
              'mousedown', 'touchstart'],
@@ -84,6 +86,8 @@ reference:
     });
   }
 
+
+
   function listen(events, elem, handler, capture, _remove){
     var attach; // the attachment (or detachment) method
 
@@ -104,6 +108,10 @@ reference:
     return listen(events, elem, handler, capture, true);
   }
 
+  function mapElementsSelector(selector, callback){
+    return mapElements(document.querySelectorAll(selector), callback);
+  }
+
 
   function mapElements(elem, callback){
     var i, r = [];
@@ -113,6 +121,8 @@ reference:
     return r;
   }
 
+
+
   function mapAttributes(elem, callback){
     var attribs = elem.attributes || [];
     var i = attribs.length;
@@ -121,6 +131,10 @@ reference:
     }
   }
 
+
+  function getAttribute(elem, name){
+    return (elem && elem.getAttribute(name));
+  }
 
   function collectAttributes(elem){
     var node = elem, data = {};
@@ -260,6 +274,84 @@ reference:
     }
   }
 
+  function findParent(elem, selectormatch){
+    var node = elem;
+    while(node = node.parentNode){
+      if(node.nodeType === 1){
+        if(node.matches(selectormatch)) return node;
+      } else break;
+    }
+    return null;
+  }
+
+
+  function labelFor(fieldelem){
+    var label;
+    if(fieldelem.id || fieldelem.name){
+      label = findParent(fieldelem, 'label');
+      label = label || document.querySelector('label[for="' + (fieldelem.id || fieldelem.name) + '"]');
+      return label && (label.textContent || label.innerText || label.innerHTML);
+    }
+    return null;
+  }
+
+  /* Retrieve form fields' data; */
+  function generateFormData(element, friendly){
+    var i = element.length; // enumerate fields within the form.
+    var field, name, _values = [], t;
+    var data = {};
+
+    function use(name, value){
+      if(name in data){
+        if(data[name].substr){
+          data[name] = [ data[name], value ];
+        } else {
+          data[name].push(value);
+        }
+      } else {
+        data[name] = value;
+      }
+    }
+
+    while(i--){
+
+      field = element[i];
+      name = getAttribute(field, 'name');
+      if(!name) continue;
+
+      switch(field.tagName.toLowerCase()){
+        case 'input':
+          switch(getAttribute(field, 'type')){
+            case 'checkbox':
+            case 'radio':
+              if(field.checked)
+                use(name, friendly ? (labelFor(field) || field.value) : field.value);
+              break;
+            default:
+              use(name, field.value);
+              break;
+          }
+          break;
+        case 'select':
+          t = field.length;
+          while(t--){
+            if(field[t].selected)
+              use(name, friendly ? field[t].label : field[t].value)
+          }
+          break;
+        case 'textarea':
+        default:
+          use(name, field.value);
+      }
+
+      if(friendly && (name in data) && (data[name].push)){
+        data[name] = data[name].join('; ');
+      }
+
+    }
+    return data;
+  }
+
 
   function activatePirateListeners(){
     var spanner;
@@ -279,9 +371,24 @@ reference:
 
 
 
-  function onready(e){
+  function onready_listen(e){
     // Attach core listeners
     if(config.LISTEN_AUTO) activatePirateListeners();
+  }
+
+  function onready(handler){
+    var queue = (onready.queue = onready.queue || []);
+    if(handler && handler.call){
+      if(document.body){
+        handler.call(document);
+      } else {
+        onready.queue.push(handler);
+      }
+    } else {
+      while(queue.length){
+        queue.pop().call(document);
+      }
+    }
   }
 
   // Inject a precursor to all calls on this method...
@@ -335,7 +442,10 @@ reference:
         data = collectAttributes(elem);
         pirate = (arguments[i]['pirate'] = arguments[i]['pirate'] || {});
         extend(pirate, data);
-        extend(arguments[i], getGTMDefaultProperties(elem))
+        if(/^form$/i.test(elem.tagName)){
+          extend(pirate, generateFormData(elem, config.FORM_LABELS));
+        }
+        extend(arguments[i], getGTMDefaultProperties(elem));
       }
     }
   });
@@ -349,6 +459,23 @@ reference:
     }
   }
 
+  exports.swipe = function(formelem, friendly){
+    if(formelem.nodeType){
+      return generateFormData(formelem, friendly);
+    } else {
+      return mapElementsSelector(formelem, function(e){ return generateFormData(e, friendly) });
+    }
+  };
+
+  exports.attach = function(events, selector, callback, capture){
+    var elems = document.querySelectorAll(selector);
+    var i = elems.length;
+    while(i--){
+      listen(events, elems[i], callback, capture);
+    }
+  };
+
+  exports.ondeck = onready;
   exports.moor = persistDataScope;
   exports.mute = mute;
 
@@ -358,7 +485,7 @@ reference:
     if(document.readyState == 'interactive') onready();
   });
 
-  if(document && document.body) onready();
+  if(document && document.body) onready(null);
 
   attachDelegate(null, function(event){
     var elem = this;
@@ -375,5 +502,7 @@ reference:
 
   });
 
+
+  onready(onready_listen);
 
 }(window, document, (void 0) ));
