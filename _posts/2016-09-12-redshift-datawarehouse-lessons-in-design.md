@@ -2,10 +2,14 @@
 title: Evolving a Data Warehouse on Amazon Redshift
 date: 2016-09-12 12:23:21
 author: Sam Briesemeister
-category: devops business-intelligence
+category: devops/business-intelligence
 tags: devops business-intelligence amazon redshift
 layout: post
 description: Some of the more painful lessons of data warehousing in Amazon Redshift.
+
+redirect_from:
+- /redshift-data-warehouse
+
 ---
 
 On the complexities of modern data, in a rapidly evolving organization.
