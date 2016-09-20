@@ -2,8 +2,9 @@
 $tag-shadow: 0.1em 0.1em 0.15em rgba(0, 0, 0, 0.25);
 
 header {
-	background: url("/assets/img/underwater_header.jpg") 20% center/20% no-repeat fixed;
+	// background: url("/assets/img/underwater_header.jpg") 20% center/20% no-repeat fixed;
 	background-size: cover;
+	background-color: black;
 	// padding-top: 1em;
 	// padding-bottom: 1em;
 	color: $text-color-light;

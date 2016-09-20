@@ -27,10 +27,11 @@ $text-color:       #111;
 $text-color-light: white;
 
 
-$brand-color:      rgb(80, 170, 215);
-$brand-color-shade:lighten($brand-color, 30%);
-$brand-color-light:lighten($brand-color, 40%);
-$brand-color-dark: darken($brand-color, 10%);
+$brand-color:      darken(rgb(80, 170, 215), 20%);
+// $brand-color:      rgb(80, 170, 215);
+$brand-color-shade: lighten($brand-color, 50%);
+$brand-color-light: lighten($brand-color, 80%);
+$brand-color-dark: darken($brand-color, 00%);
 
 $background-dark:  darken($brand-color, 20%);
 $background-color: #fdfdfd;

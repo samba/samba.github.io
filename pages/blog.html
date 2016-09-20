@@ -17,15 +17,15 @@ detailed_post_limit: 2
 
 
 {% for post in site.posts limit:page.detailed_post_limit %}
-	<article class='article'>
-		<div class='article-header'>
+	<article class='post card'>
+		<div class='card-header'>
 			<a href="{{ post.permalink |default: post.url }}">
 			<h3>{{ post.title }}</h3>
 			</a>
 		</div>
 
 
-		<div class='article-meta meta'>
+		<div class='card-meta meta'>
 			<span class='date'>{{ post.date |date:"%d. %b %Y" }}</span>
 			<aside class='inline'>
 			{% for tag in post.tags %}
@@ -34,27 +34,25 @@ detailed_post_limit: 2
 			</aside>
 		</div>
 
-		<div class='article-body'>
+		<div class='card-body'>
 			{{ post.excerpt }}
 		</div>
-		<div class='article-action'>
+		<div class='card-action'>
 			<a href="{{ post.permalink |default: post.url }}">Continue Reading</a>
 		</div>
 	</article>
 {% endfor %}
 
 {% for post in site.posts offset:page.detailed_post_limit limit:500 %}
-	<article class='article link'>
-		<div class='article-header'>
+	<article class='post card'>
+		<div class='card-header link'>
 		<a href="{{ post.permalink |default: post.url }}">
 			<h3>{{ post.title }}</h3>
 			<i class="fa fa-arrow-right fa-2x"></i>
-
-
 		</a>
 		</div>
 
-		<div class='article-meta meta hidden'>
+		<div class='card-meta meta hidden'>
 			<span class='date'>{{ post.date |date:"%d. %b %Y" }}</span>
 			<aside class='inline'>
 			{% for tag in post.tags %}

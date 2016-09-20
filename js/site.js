@@ -7,7 +7,7 @@ twitter_enabled: true
 
 (function(window, document, jQuery, undefined){
 	var $ = jQuery;
-	var article_selector = 'article.article';
+	var article_selector = 'article.card';
 	var tag_selector = 'span.tag';
 
 
@@ -159,7 +159,7 @@ twitter_enabled: true
 				if(!tag || (tag == 'all')){
 					showAllArticles();
 					applyHeader('Blog')
-				} else {
+				} else if(tag) {
 					hideAllArticles();
 					activateMatchingArticles(tag.split(','));
 					applyHeader(tag);

@@ -20,6 +20,22 @@ $material-card-depth: 1em;
 	margin: ($padding);
 }
 
+@mixin inlineheader {
+	h1, h2, h3, h4, h5, h6 {
+		display: inline-block;
+		margin: 0;
+		float: left;
+		clear: left;
+
+		& + i.fa {
+			display: inline-block;
+			font-size: 1.5rem;
+			float: right;
+		}
+
+	}
+}
+
 
 .material {
 
@@ -33,30 +49,49 @@ $material-card-depth: 1em;
 			right: 0.5em;
 		}
 
-		.card-header, .card-body, .card-action {
+		.card-header, .card-body, .card-meta, .card-action {
 			margin: 0;
 			padding: 0.5em;
 		}
 
+
+
 		.card-header {
 			background-color: $material-standout-color;
 			// color: $text-color-light;
-			border-bottom: 1px $material-border-color solid;
+			border-bottom: 0px $material-border-color solid;
 			border: {
 				top-left-radius: ($material-card-radius * 0.8);
 				top-right-radius: ($material-card-radius * 0.8);
 			}
 
-			h1, h2, h3, h4, h5, h6 {
-				margin: 0;
-			}
+			@extend %clearfix;
+			@include inlineheader;
+
+
 			a {
 				color: $brand-color-light;
 			}
 		}
 
-		.card-body {
 
+		 &.link {
+		 	padding: 0.25em;
+		 	.card-header {
+		 		border-width: 0;
+		 		h1, h2, h3, h4, h5, h6 {
+		 			margin: 0;
+		 		}
+		 	}
+		 	.card-header, .card-body, .card-action, .card-meta {
+		 		padding-top: 0;
+		 		padding-bottom: 0;
+		 	}
+		 }
+
+		.card-body, .card-meta {
+			border-bottom: 0;
+			border-top: 0;
 		}
 
 		.card-action {
@@ -79,20 +114,8 @@ $material-card-depth: 1em;
 			border-bottom: 1px $material-border-color solid;
 			vertical-align: middle;
 			@extend %clearfix;
+			@include inlineheader;
 
-			h1, h2, h3, h4, h5, h6 {
-				display: inline-block;
-				margin: 0;
-				float: left;
-				clear: left;
-
-				& + i.fa {
-					display: inline-block;
-					font-size: 1.5rem;
-					float: right;
-				}
-
-			}
 
 		}
 
