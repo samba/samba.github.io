@@ -1,5 +1,5 @@
 ---
-title: Evolving a Data Warehouse on Amazon Redshift
+title: The Agile Data Warehouse on Amazon Redshift
 date: 2016-09-12 12:23:21
 author: Sam Briesemeister
 category: devops/business-intelligence
@@ -16,6 +16,24 @@ On the complexities of modern data, in a rapidly evolving organization.
 
 * TOC
 {:toc}
+
+## Aiming for Progress 
+
+As with any good improvement model, some goals, guidelines, and a basic framework for success must be established. In the case of business intelligence projects like this, the purpose is ultimately to support accellerating organizational change with better insights. Delivering valueable analysis quickly becomes the goal, in an environment with an ever growing set of data sources to integrate.
+
+The guidelines for this work align to the goals of DevOps:
+
+- Automate everything, driven by version-managed configuration, especially routine maintenance
+- Minimize complexity of work to make small evolutionary changes to configuration, schemata and data models
+- Reduce lead-time for data model changes and new data source integration
+- Provide sensible utilities to accelerate (preferably automate) data discovery
+- Provide robust logging of all deployments, data modeling workloads (e.g. ETL), 
+- Provide snapshots of both source and modeled data as *build artifacts*
+- Provide assurances à la integration testing for all schema definition (DDL) and data modeling processes
+
+
+
+
 
 ## What Redshift Isn't
 
@@ -34,7 +52,7 @@ Much of the _missing_ functionality which my clients find essential focuses arou
 
 This is where the DevOps paradigms become essential: infrastructure as code, microservices, continuous integration and continuous deployment are the foundation of successful automation, in this category. In general the implementations follow this model:
 
-- **Everything** is stored in Git
+- **Everything** is managed in Git including schema definition, all configuration, and process logic (as code)
 - A CI environment, such as [GitLab CI][1] is extended to fully automate deployment of all resources, including infrastructure, data schema, and static assets
 - Regularly scheduled workloads integrate with CI to configure applications based on currently deployed schema state, etc.
 - When a configuration, service or data schema changes in Git, within minutes it's tested against sample data, and deployed to production.
@@ -81,25 +99,27 @@ Basically the same approach applies to materializing snapshots of views, without
 
 ## The Brittleness of JSON
 
-Redshift has [some JSON support][5]. Yep. It's usefulness is disappointing though, based on two major limitations, detailed below.
+Redshift has [some JSON support][5]. Yep. 
 
-In short, in my observation, it's almost always preferable to **avoid putting JSON in Redshift**. While it's possible to mitigate some of these issues (below), doing so justifies some sort of up-front validation process on a JSON stream before it reaches Redshift. 
+In some cases, where organizations treat Redshift as a *data lake*, they may want to store raw stream data as JSON directly in Redshift, with the intent of making it easily queriable in the future. Two major limitations of Redshift pose significant challenges to this approach.
+
+In my observation, it's almost always preferable to **avoid putting JSON in Redshift**. While it's possible to mitigate some of the below issues, doing so justifies some sort of up-front validation process on a JSON stream before it reaches Redshift. 
 
 Simply replacing that validation approach with a preliminary extraction process, before load, offers greater advantage.
 
 
 ### JSON Correctness 
 
-Redshift requires that all of the records containing JSON **must** be 100% valid UTF-8 encoded JSON. If any record deviates, it will block the _entire_ query from returning any results.
+Redshift requires that all of the records containing JSON **must** be 100% valid UTF-8 encoded JSON. If any record deviates, it will block the _entire_ query from returning any results. When one record in millions has an error, it can prevent access to *all* of them.
 
-In large-scale, evolving software environments, errors will occasionally occur, where one of the many systems sending JSON data somehow sends an incomplete or malformed record. 
+In large-scale, evolving software environments, errors will occasionally occur, where one of the many systems sending JSON data somehow sends an incomplete or malformed record.
 
 Two approaches seem sensible to mitigate for this problem _within_ Redshift, however neither offer a long-term holistic advantage:
 
-1. Perform some kind of validation in Redshift, either in SQL (i.e. a validation view, even materialized), or as a [Python user-defined function][6]. In either case, the performance cost at scale has been simply untenable.
-2. Build assurance into your data pipeline, such that invalid JSON _never_ reaches Redshift.
+1. Perform some kind of validation in Redshift, either in SQL (i.e. a validation view, even materialized), or as a [Python user-defined function][6]. 
+2. Build other assurance into your data pipeline, such that invalid JSON _never_ reaches Redshift.
 
-There are certainly other approaches, In the end, even if you can assure 100% valid JSON, performance cost (below) remains impractical.
+There are certainly other approaches. In either case above, the performance cost at scale has been simply untenable, even if you can assure 100% valid JSON.
 
 
 ### JSON Performance
@@ -157,7 +177,7 @@ This might be fine for some workflows, but when integrating data from multiple t
 
 ### Getting Material
 
-There's an alternate approach that resolves this limitation, though it may seem (at first) to be counter-intuitive. The automation cited above (in [The DIY Data Warehouse](#the-diy-data-warehouse)) facilitates a better approach.
+There's an alternate approach that resolves this limitation, though it may seem at first to be unintuitive. The automation cited above (in [The DIY Data Warehouse](#the-diy-data-warehouse)) facilitates a better approach.
 
 When dealing with schemata that are likely to change, in this manner, views should be treated as ephemeral, not persisting against the underlying tables. The automation layer, performing scheduled jobs, should basically:
 
@@ -167,6 +187,15 @@ When dealing with schemata that are likely to change, in this manner, views shou
 4. Manipulate the materialized tables accordingly (`APPEND` for time-series, etc.)
 
 A few more steps and considerations may be appropriate, as views are often a suitable abstraction layer to maintain for exposing data to business users. To provide that, the central point must be to isolate their dependencies on tables (materialized) whose schemata are managed by the BI development team(s).
+
+## Realized Benefits
+
+The general principals in [Aiming for Progress](#aiming-for-progress), and the techniques outlined to address specific challenges have proven their worth many times.
+
+1. When new data streams begin loading, we have workloads and models (i.e. views) built against them, tuned for initial roll-out to business users, within 30 minutes.
+2. Maintenance is mostly automatic, operating scheduled jobs with logging and notifications directly in the Continuous Integration environment.
+3. The high degree of automation accelerates work**flow**, allowing us to deliver real business value much faster. From the time when work (e.g. schema adjustment) is done, committed into the source-code repository, it usually reaches the production environment in less than 10 minutes.
+4. The "plumbing" enables us to innovate, instead of consuming focus and costing us time.
 
 
 ## Conclusions
