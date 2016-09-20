@@ -6,7 +6,7 @@ https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,700italic,
 - Merriweather Sans
 */
 
-@import url("https://fonts.googleapis.com/css?family=PT+Mono|Ubuntu+Mono");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono|Ubuntu+Mono");
 @import url("http://fonts.googleapis.com/css?family=Merriweather:400,700italic,700,400italic|Merriweather+Sans:400,700italic,700,400italic");
 
 
@@ -18,7 +18,7 @@ $base-font-weight: 400;
 
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
-$font-family-monospace: "PT Mono", "Consolas", "Andale Mono", "monaco", monospace;
+$font-family-monospace: "Roboto Mono", "Ubuntu Mono", "Consolas", "Andale Mono", "monaco", monospace;
 
 
 $spacing-unit:     30px;
