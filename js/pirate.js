@@ -87,7 +87,13 @@ reference:
   }
 
 
-
+  /** Attach event listener function based on a list of events.
+   * @param {string} events
+   * @param {Element|Document} elem
+   * @param {Function} handler
+   * @param {boolean=} capture
+   * @param {boolean=} _remove
+   */
   function listen(events, elem, handler, capture, _remove){
     var attach; // the attachment (or detachment) method
 
@@ -108,11 +114,27 @@ reference:
     return listen(events, elem, handler, capture, true);
   }
 
+  /** Map all elements matching a CSS selector.
+   * @param {Element|string} selector
+   * @param {Function} callback
+   * @return {Array}
+   */
   function mapElementsSelector(selector, callback){
-    return mapElements(document.querySelectorAll(selector), callback);
+    var selection;
+    if(selector && selector.nodeType){
+      selection = [/** @type {Element} */ (selector)];
+    } else {
+      selection = document.querySelectorAll(/** @type {string} */ (selector));
+    }
+    return mapElements(selection, callback);
   }
 
 
+  /** Iterate over a group of elements.
+   * @param {!NodeList<!Element>|!Array<!Element>} elem
+   * @param {Function} callback
+   * @return {Array}
+   */
   function mapElements(elem, callback){
     var i, r = [];
     for(i = 0; (!! elem[i]); i++){
@@ -122,7 +144,10 @@ reference:
   }
 
 
-
+  /** Iterate over the attributes of an element.
+   * @param {Element|Node} elem
+   * @param {Function} callback
+   */
   function mapAttributes(elem, callback){
     var attribs = elem.attributes || [];
     var i = attribs.length;
@@ -136,6 +161,11 @@ reference:
     return (elem && elem.getAttribute(name));
   }
 
+
+  /** Assemble the data context from a given element.
+   * @param {Element} elem
+   * @return {Object}
+   */
   function collectAttributes(elem){
     var node = elem, data = {};
 
@@ -154,7 +184,10 @@ reference:
     return data;
   }
 
-  function mute(){
+  /**
+   * @param {...string} eventnames
+   */
+  function mute(eventnames){
     var i = arguments.length;
     while(i--){
       state.events.muted[arguments[i]] = true;
@@ -162,6 +195,10 @@ reference:
   }
 
 
+  /** Ensure that a given event(type) is triggered only in the acceptable rate
+   * @param {Event} event
+   * @return {boolean}
+   */
   function debounce(event){
     var cache = (debounce.cache = debounce.cache || {});
     var type = (event.type).replace('focusin', 'focus').replace('focusout', 'blur');
@@ -174,7 +211,9 @@ reference:
     }
   }
 
-
+  /** Dispatch a DOM event through all registered listeners.
+   * @param {Event} event
+   */
   function coreDispatch(event){
     var i = listeners.length;
     var target = event.target || event.sourceElement;
@@ -185,12 +224,22 @@ reference:
     }
   }
 
+  /** Select elements by CSS selector string
+   * @param {string} expr
+   * @param {Function=} callback
+   * @return {Array<Element>}
+   */
   function select(expr, callback){
-    return mapElements(document.querySelectorAll(expr), callback || collectAttributes);
+    var nodes = document.querySelectorAll(expr);
+    return mapElements(nodes, callback || collectAttributes);
   }
 
+  /** Add a function to the interceptor stack.
+   * @param {Function} callback
+   */
   function intercept(callback){
-    if(callback && callback.call) interceptors.push(callback);
+    if(callback && callback.call)
+      interceptors.push(callback);
   }
 
 
@@ -203,6 +252,7 @@ reference:
     listeners.push([ pattern || RE_PATTERN_ALL, handler ]);
   }
 
+  // Make some of these methods available...
   exports.gangway = attachDelegate;
   exports.crew = listeners;
   exports.ahoy = listen;
@@ -224,7 +274,7 @@ reference:
 
 
   // Initialize state:
-  mute('keypress', 'input')
+  mute('keypress', 'input');
 
 
 
@@ -237,6 +287,11 @@ reference:
 
   (function(spanner){
 
+    /**
+     * @param {Array.<string>} eventArray
+     * @param {boolean=} doAttach
+     * @return {Array.<string>}
+     */
     spanner._assimilate = function(eventArray, doAttach){
       var _push = eventArray.push;
       var _this = this;
@@ -267,6 +322,11 @@ reference:
 
   }(EventSpanner.prototype));
 
+
+  /** A few extra components for GTM compliance
+   * @param {Element} element
+   * @return {Object}
+   */
   function getGTMDefaultProperties(element){
     return {
       'gtm.elementId': (element && element.id),
@@ -274,6 +334,11 @@ reference:
     }
   }
 
+  /** A few extra components for GTM compliance
+   * @param {Element} elem
+   * @param {string} selectormatch
+   * @return {Node|Element?}
+   */
   function findParent(elem, selectormatch){
     var node = elem;
     while(node = node.parentNode){
@@ -285,6 +350,10 @@ reference:
   }
 
 
+  /** Find a seemingly matching LABEL element.
+   * @param {Element} fieldelem
+   * @return {Element?}
+   */
   function labelFor(fieldelem){
     var label;
     if(fieldelem.id || fieldelem.name){
@@ -295,7 +364,11 @@ reference:
     return null;
   }
 
-  /* Retrieve form fields' data; */
+  /** Retrieve form fields' data;
+   * @param {Element} element
+   * @param {boolean=} friendly
+   * @return {Object}
+   */
   function generateFormData(element, friendly){
     var i = element.length; // enumerate fields within the form.
     var field, name, _values = [], t;
@@ -376,6 +449,9 @@ reference:
     if(config.LISTEN_AUTO) activatePirateListeners();
   }
 
+  /** Enqueue functions for processing when DOM is ready.
+   * @param {Function=} handler
+   */
   function onready(handler){
     var queue = (onready.queue = onready.queue || []);
     if(handler && handler.call){
@@ -391,7 +467,12 @@ reference:
     }
   }
 
-  // Inject a precursor to all calls on this method...
+  /** Inject a precursor to all calls on this method...
+   * @param {Object|Array} context
+   * @param {string} methodName
+   * @param {Function} handler
+   * @return {Function}
+   */
   function insert(context, methodName, handler){
     var orig = context[methodName];
     return (context[methodName] = function(){
@@ -403,6 +484,9 @@ reference:
     });
   }
 
+  /** Wipe out cached state periodically to avoid false triggers.
+   * @param {Array.<Object>} dataLayer
+   */
   function deferClearPirateState(dataLayer){
     setTimeout(function(){
       if(state.RESET_DUE){
@@ -451,6 +535,10 @@ reference:
   });
 
 
+  /** Retrieve the data context from a series of elements (by CSS selector) and
+   * stash them as independent context objects in the dataLayer.
+   * @param {string} selector
+   */
   function persistDataScope(selector){
     var results = select(selector);
     var i = results.length;
@@ -459,14 +547,27 @@ reference:
     }
   }
 
+  /** Extract the input values of a form.
+   * @param {Element|string} formelem
+   * @param {boolean=} friendly
+   * @return {Object}
+   */
   exports.swipe = function(formelem, friendly){
     if(formelem.nodeType){
-      return generateFormData(formelem, friendly);
+      return generateFormData(/** @type {Element} */ (formelem), friendly);
     } else {
-      return mapElementsSelector(formelem, function(e){ return generateFormData(e, friendly) });
+      return mapElementsSelector(formelem, function(e){
+        return generateFormData(e, friendly)
+      });
     }
   };
 
+  /** Generic delegated event listener by CSS selector
+   * @param {string} events
+   * @param {string} selector
+   * @param {Function} callback
+   * @param {boolean=} capture
+   */
   exports.attach = function(events, selector, callback, capture){
     var elems = document.querySelectorAll(selector);
     var i = elems.length;
@@ -475,18 +576,23 @@ reference:
     }
   };
 
+  // Expose a few more methods
   exports.ondeck = onready;
   exports.moor = persistDataScope;
   exports.mute = mute;
 
+  // Attend to some initialization events...
   listen('load', document, onready);
   listen('DOMContentLoaded', document, onready);
   listen('readystatechange', document, function(){
     if(document.readyState == 'interactive') onready();
   });
 
+  // If we're late, initialize now.
   if(document && document.body) onready(null);
 
+
+  // Listen for all events on the datalayer.
   attachDelegate(null, function(event){
     var elem = this;
     if (!(state.events.muted[event.type])){
@@ -503,6 +609,7 @@ reference:
   });
 
 
+  // Attach listeners for other interactions (after DOM ready)
   onready(onready_listen);
 
 }(window, document, (void 0) ));

@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "compile": "gulp"
+  },
+  "dependencies": {
+    "google-closure-compiler-js": "^20160916.0.0",
+    "gulp": "^3.9.1",
+    "gulp-front-matter": "^1.3.0",
+    "gulp-swig": "^0.8.0",
+    "swig": "^1.4.2",
+    "vinyl": "^1.2.0"
+  }
+}

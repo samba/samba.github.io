@@ -10,3 +10,4 @@ _site
 .jekyll-metadata
 *.orig
 *.gz
+node_modules/

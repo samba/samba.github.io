@@ -24,7 +24,7 @@ _sass/code.scss:
 	docker run -it -v `pwd`:/root samba.github.io  \
 		bundle exec rougify style github > $@
 
-deploy:
+deploy: compile-javascript
 	git commit -a && git push github
 
 
@@ -56,3 +56,5 @@ docker-shell:
 newpost:
 	sh scripts/newpost.sh
 
+compile-javascript:
+	npm run compile
