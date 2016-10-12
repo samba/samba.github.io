@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Test kit for Pirate framework.</title>
+        <script src="./testkit.js"></script>
+        <script src="../dist/pirate.min.js"></script>
+        <script src="./unittest.js"></script>
+
+        <style>
+            .hidden { display: none; }
+        </style>
+    </head>
+    <body>
+        <h1 data-elem="header title">Test environment.</h1>
+        <p class='description' data-some-value="This value is awesome.">
+            This page demonstrates the Pirate kit in the DataLayer, and provides
+            the testbed for various unit-tests.
+        </p>
+
+        <div class="not-hidden test" data-scope="test-case">
+            <ul>
+                <li id='one' data-item="the first one">One</li>
+                <li id='two' data-item="the second one">Two</li>
+                <li id='three' data-item="the third one">One</li>
+            </ul>
+
+            <form name="test">
+                <label>One <input id='testinput' name='testinput' type='text' value='test text'></label>
+            </form>
+        </div>
+    </body>
+</html>

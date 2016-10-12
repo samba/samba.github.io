@@ -115,7 +115,6 @@ To enable persistent properties, see the `pirate.moor` function below.
 
 The kit also adds new event types for fine-grained interaction observers:
 
-
 * `focus` and `blur` events on the main window, as well as form fields.
 * `scroll` events on the main window.
 * `touchstart` and `mousedown` for when `click` is too late.
@@ -124,8 +123,21 @@ The kit also adds new event types for fine-grained interaction observers:
 If needed, additional event types can be added to the listening environment:
 
 ```javascript
-window.pirate.config.EVENTS.BODY.push('mouseup');
+window.pirate.observe('mouseup', 'contextmenu');
 ```
+
+And if there's an event you decide you don't care for:
+
+```javascript
+window.pirate.mute('mouseup');
+```
+
+> Some colleagues have indicated that the volume of events produced by Pirate
+> seems excessive. The standard event configuration aims to "observe" the most
+> common interactions that many sites require, however most sites will not use
+> all or even most of the general set. GTM will basically ignore any events that
+> Pirate produces until triggers are configured to read from them, and there
+> should be no significant performance impact.
 
 
 ## Utility methods
@@ -134,19 +146,7 @@ This framework also provides a global interface `pirate`.
 
 ```javascript
 /** Enable debug logging to console */
-window.pirate.yellow();
-
-
-/** Register a handler method for DOM event listening, filtered by Regular Expression
- * param {RegExp} filterExpressionOptional default null
- * param {function(this: DOMElement, DOMEvent)} eventHandlerMethod
- */
-window.pirate.gangway(
-  /eventNameExpr/i,
-  function(/* DOMEvent */ event){
-    // this: the DOM element producing the event
-    // ... do something with the element + event.
-  });
+window.pirate.yellow('debug');
 
 
 /** Retrieve the inherited data context of a specific element.
@@ -168,6 +168,20 @@ window.pirate.hornswaggle('li a.download'); // => [Object, Object...]
  * param {String} cssSelectorExpression
  */
 window.pirate.moor('body.post article[data-author] section');
+
+// Pirate also provides some sensible DOM abstractions:
+window.pirate.ondeck(function(){  // runs when the DOM is completely ready.
+  // Attach an event listener to matching elements.
+  window.pirate.attach("click", "li.awesome-links", function(e){
+    // Maybe you should push a business-semantic event here?
+    // This would be a good place to hornswaggle properties from other parts of
+    // the page, so they can be presented in more relevant DataLayer events.
+    // Drop a block like this in a Custom HTML tag, and you can quickly add
+    // significant context to your trickier interactions.
+  })
+});
+
+
 
 ```
 

@@ -11,3 +11,4 @@ _site
 *.orig
 *.gz
 node_modules/
+js/dist/pirate.min.js
