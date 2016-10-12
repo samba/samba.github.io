@@ -1,57 +1,46 @@
 DIR=$(PWD)
-EDITABLE_TYPES='html md css js textile'
-# EDITOR=$(shell which mvim || which vim)
 DATE:=$(shell date +%Y-%m-%d)
-
-# Which rules to evaluate perpetually
-AUTOBUILD:=.docker-build
-
 
 # Which Pygments stylesheet to adapt?
 HIGHLIGHT_STYLE:=github
 
-
 .PHONY:  docker-setup docker-run deploy cleanslate
 
-
-all:  .docker-build
-
-
-watch:
-	(while true; do make --silent ${AUTOBUILD}; sleep 1; done) | grep -v 'make\[1\]'
+all:  serve
 
 _sass/code.scss:
-	docker run -it -v `pwd`:/root samba.github.io  \
-		bundle exec rougify style github > $@
+	vagrant ssh -c "cd /vagrant; bundle exec rougify style $(HIGHLIGHT_STYLE)" > $@
+
 
 deploy: compile-javascript
 	git commit -a && git push github
 
+clean remove-site:
+	vagrant ssh -c "cd /vagrant; bundle exec jekyll clean"
 
-.docker-build: Dockerfile Gemfile scripts/serve.sh
-	docker build ${CACHE} -t samba.github.io .
-	touch $@
+newsite:
+	@echo "THIS IS DANGEROUS." >&2
+	vagrant ssh -c "cd /vagrant; bundle install && bundle exec jekyll new . --force"
 
-clean-site:
-	docker run -it -v `pwd`:/root samba.github.io \
-		find /root/_site -type f -print -delete
+.vagrant/up: Vagrantfile Gemfile
+	vagrant plugin list | grep vbguest || vagrant plugin install vagrant-vbguest
+	vagrant up --provision
+	vagrant ssh -c "cd /vagrant; bundle install"
+	touch -r $< $@
 
+.vagrant/down:
+	vagrant halt
+	rm .vagrant/up
 
-clean cleanslate:
-	docker run -it -v `pwd`:/root -p 4000:4000 samba.github.io  \
-		bundle exec jekyll clean
+serve: _sass/code.scss _config.yml .vagrant/up
+	@echo "Starting Jekyll in Vagrant; to enable drafts, run as 'DRAFT=1 make $@'"
+ifeq ($(DRAFT), 1)
+	$(eval DRAFT := --drafts --unpublished --verbose)
+else
+	$(eval DRAFT := )
+endif
+	vagrant ssh -c "cd /vagrant; bundle exec jekyll serve $(DRAFT) --watch --force_polling --incremental --host=0.0.0.0 "
 
-docker-setup: .docker-build
-	docker run -it -v `pwd`:/root samba.github.io  bundle install
-	docker run -it -v `pwd`:/root samba.github.io  bundle exec jekyll new . --force
-
-serve docker-run: .docker-build _sass/code.scss _config.yml
-	@echo "To activate draft feature, run with DRAFT=draft;" >&2
-	docker run -e DRAFT="${DRAFT}" -it -v `pwd`:/root -p 4000:4000 samba.github.io
-
-
-docker-shell:
-	docker run -it -v `pwd`:/root samba.github.io bash
 
 newpost:
 	sh scripts/newpost.sh

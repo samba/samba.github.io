@@ -1,0 +1,12 @@
+---
+title: post listing
+permalink: /posts/all.yaml
+---
+
+posts:
+{% for p in site.posts %}
+  - title: {{ p.title }}
+    date: {{ p.date }}
+    published: {{ p.published | default: false }}
+    url: {{ p.url }}
+{% endfor %}

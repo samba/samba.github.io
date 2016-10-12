@@ -12,3 +12,4 @@ _site
 *.gz
 node_modules/
 js/dist/pirate.min.js
+.vagrant
