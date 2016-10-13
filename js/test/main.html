@@ -8,6 +8,16 @@
         <style>
             .hidden { display: none; }
         </style>
+
+
+        <script>
+            test_assertions = false;
+            try {
+                if(test_assertions) console.assert(1 == 2, "trying to catch an assertion error")
+            } catch (e) {
+                console.info("the error was caught.", e.stack);
+            }
+        </script>
     </head>
     <body>
         <h1 data-elem="header title">Test environment.</h1>

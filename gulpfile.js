@@ -40,5 +40,18 @@ gulp.task('pirate.min.js', function() {
       .pipe(gulp.dest('./_includes/'));
 });
 
+gulp.task('testkit.min.js', function(){
+  return gulp.src(['./js/test/testkit.js'], {base: './js/'})
+    .pipe(compiler({
+      compilationLevel: 'SIMPLE',
+      warningLevel: 'VERBOSE',
+      languageIn: 'ECMASCRIPT5',
+      languageOut: 'ECMASCRIPT5',
+      outputWrapper: "%output%",
+      jsOutputFile: "./dist/testkit.min.js"
+    }))
+    .pipe(gulp.dest('./js/test/'));
+});
+
 
 gulp.task('default', ['pirate.min.js']);

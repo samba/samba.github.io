@@ -13,6 +13,8 @@
         throw new Error("The pirate kit appears to be absent.")
 
 
+    var exercise_testkit_scenarios = false;
+
     test.group('Pirate Interface', function(done){
 
         this.assertCallable(pirate.yellow);
@@ -44,7 +46,7 @@
 
     test.onready(function(){
         // DOM inspection requires ready-state.
-        test.group("Pirate Data", function(done){
+        test.group("Pirate Data", function pirateDataTest(done){
             var data = pirate.hornswaggle('#three');
             this.assertLikeArray(data);
 
@@ -67,19 +69,41 @@
         });
 
 
-        test.group('Pirate Forms', function(done){
+        test.group('Pirate Forms', function (done){
             var elem = pirate.select('input#testinput');
             var data = pirate.swipe(elem[0].form);
 
             this.assertEqual(data['testinput'], 'test text');
-
-            // intentional failure
-            this.assertEqual(2, 1);
             done();
         });
 
-        // Just demonstratinging the test kit...
-        test.skipGroup("(example skipped group)", function(){ return null });
+        if(exercise_testkit_scenarios){
+            // Just demonstratinging the test kit...
+            test.skipGroup("(example skipped group)", function(){ return null });
+            test.group("(a known error)", function(){ throw new SyntaxError("an error") });
+
+            test.group("(another known error)", function(){
+                this.assertEqual(2, 1);
+                return done;
+            });
+
+            // Exploring asynchronous tests.
+            test.group('(an async test case)', function testAsync(done){
+                var state = { counter: 0, limit: 10 };
+                var testcase = this;
+                var int = setInterval(function(){
+
+                    state.counter ++;
+                    if(state.counter == state.limit){
+                        done();
+                        clearInterval(int);
+                    }
+
+                    // raises exceptions.
+                    testcase.assert((state.counter % 2) == 0, state.counter, "was not a multiple of", 2, 2);
+                }, 13);
+            });
+        }
 
         function prepareEvent(name){
             var e = document.createEvent('Event');
@@ -87,7 +111,7 @@
             return e;
         }
 
-        test.group("Pirate Events", function(done){
+        test.group("Pirate Events", function pirateEventsTest(done){
             var $test = this;
             var state = { clicked: 0, active: true, touched_datalayer: 0 };
 
