@@ -13,4 +13,5 @@ reference:
 
 ---
 
+/** The pirate framework. http://cdn.samb.io/js/pirate.js */
 {% include dist/pirate.min.js %}

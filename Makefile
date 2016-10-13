@@ -35,7 +35,7 @@ newsite:
 serve: _sass/code.scss _config.yml .vagrant/up
 	@echo "Starting Jekyll in Vagrant; to enable drafts, run as 'DRAFT=1 make $@'"
 ifeq ($(DRAFT), 1)
-	$(eval DRAFT := --drafts --unpublished --verbose)
+	$(eval DRAFT := --drafts --unpublished)
 else
 	$(eval DRAFT := )
 endif
