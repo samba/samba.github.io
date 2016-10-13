@@ -6,7 +6,7 @@
 
         test.group("this is a test", function(done){ // a console group
 
-            test.profile("it might fail", function(){ wraps an aggregate warning
+            this.profile(function aProfilingTest(){ // activates performance profiling.
                 this.assertContains([ 1, 2, 3 ], 2);
                 this.assertNotContains([1, 2, 3], 4);
                 this.assertNotEqual(1, 2);
@@ -37,6 +37,14 @@
         - Errors from each test group listed within the console group.
 
     The console group is generated when `done` is executed (or returned).
+
+    By default, timing is active, but performance profiling is disabled.
+    Tests wrapped in profiled functions are always exercised, regardless of
+    profile measurement.
+
+    These parameters are configurable:
+        window.test.profiling = true  // activate profiles
+        window.test.timing = false // deactivate timing
 
     Because this kit is focused on front-end testing, some utility functions are
     provided that really have no bearing on non-browser Javascript environs

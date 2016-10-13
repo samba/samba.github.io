@@ -13,3 +13,4 @@ _site
 node_modules/
 js/dist/pirate.min.js
 .vagrant
+js/test/dist/
