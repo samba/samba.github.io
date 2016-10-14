@@ -89,6 +89,7 @@ $activator-background: #fff;
 #{$sidebar-wrapper} a {
   font-weight: normal;
   color: $sidebar-link-color;
+  text-decoration: none;
 }
 
 #{$sidebar-wrapper} section {
