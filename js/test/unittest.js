@@ -138,10 +138,18 @@
             this.assertEqual(state.clicked, 2);
             this.assertEqual(state.touched_datalayer, 2);
 
-            pirate.mute('click'); // Mute the event to prevent it from reaching the datalayer.
+            // Mute the event to prevent it from reaching the datalayer.
+            // pirate.mute('click');
+            window.dataLayer.push({
+                'pirate.eventsMute': 'click'
+            });
+
             elem.dispatchEvent(prepareEvent('click'));
             this.assertEqual(state.clicked, 3); // Confirm it was clicked.
             this.assertEqual(state.touched_datalayer, 2); // But did not reach the datalayer.
+
+
+
             done();
         });
     });

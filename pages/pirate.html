@@ -133,6 +133,18 @@ And if there's an event you decide you don't care for:
 window.pirate.mute('mouseup');
 ```
 
+These event configurations can also be stashed in the DataLayer before (or after)
+Pirate loads:
+
+```javascript
+dataLayer.push({
+  'event': 'pirate.config',
+  'pirate.eventsMute': '*', // mute all, or a space-separated list
+  'pirate.eventsObserve': "mouseup mousedown" // or '*' to unmute all muted
+})
+```
+
+
 > Some colleagues have indicated that the volume of events produced by Pirate
 > seems excessive. The standard event configuration aims to "observe" the most
 > common interactions that many sites require, however most sites will not use
