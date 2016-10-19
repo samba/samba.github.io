@@ -5,7 +5,7 @@ author: Sam Briesemeister
 category: devops/business-intelligence
 tags: devops business-intelligence amazon redshift
 layout: post
-description: Some of the more painful lessons of data warehousing in Amazon Redshift.
+description: Techniques for flexible growth of a data warehouse in Amazon Redshift
 
 redirect_from:
 - /redshift-data-warehouse
