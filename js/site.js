@@ -7,7 +7,7 @@ twitter_enabled: true
 
 (function(window, document, jQuery, undefined){
 	var $ = jQuery;
-	var article_selector = 'article.card';
+	var article_selector = 'article.post';
 	var tag_selector = 'span.tag';
 
 

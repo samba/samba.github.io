@@ -96,6 +96,7 @@ iframe.flex {
 
 div.twitter-widget {
 	@extend %clearfix;
+	height: 50em;
 }
 
 iframe.twitter-timeline {

@@ -3,21 +3,22 @@ title: The Agile Data Warehouse on Amazon Redshift
 date: 2016-09-12 12:23:21
 author: Sam Briesemeister
 category: devops/business-intelligence
-tags: devops business-intelligence amazon redshift
+tags: devops business-intelligence amazon redshift lean agile
 layout: post
 description: Techniques for flexible growth of a data warehouse in Amazon Redshift
 
 redirect_from:
 - /redshift-data-warehouse
 
----
+excerpt: >
+    Redshift is a great OLAP database environment, though its limitations may surprise you. Many of its benefits are derived from its simplicity, belied by these limitations. Provided these techniques and design considerations can be applied, Redshift offers the flexibility needed for growing, evolving organizations to leverage their data at massive scale. Overcoming these limitations requires a tooling ecosystem *surrounding* Redshift, whereas Redshift must be respected for the simple, efficient, and yet robustly queriable datastore that it is.
 
-On the complexities of modern data, in a rapidly evolving organization.
+---
 
 * TOC
 {:toc}
 
-## Aiming for Progress 
+## Evolution through Continuous Deployment
 
 As with any good improvement model, some goals, guidelines, and a basic framework for success must be established. In the case of business intelligence projects like this, the purpose is ultimately to support accellerating organizational change with better insights. Delivering valueable analysis quickly becomes the goal, in an environment with an ever growing set of data sources to integrate.
 
@@ -27,7 +28,7 @@ The guidelines for this work align to the goals of DevOps:
 - Minimize complexity of work to make small evolutionary changes to configuration, schemata and data models
 - Reduce lead-time for data model changes and new data source integration
 - Provide sensible utilities to accelerate (preferably automate) data discovery
-- Provide robust logging of all deployments, data modeling workloads (e.g. ETL), 
+- Provide robust logging of all deployments, data modeling workloads (e.g. ETL),
 - Provide snapshots of both source and modeled data as *build artifacts*
 - Provide assurances à la integration testing for all schema definition (DDL) and data modeling processes
 
@@ -37,11 +38,11 @@ The guidelines for this work align to the goals of DevOps:
 
 ## What Redshift Isn't
 
-Truly the hardest lesson, in adopting Amazon Redshift, is to accept its strengths and limitations. 
+Truly the hardest lesson, in adopting Amazon Redshift, is to accept its strengths and limitations.
 
 Redshift is a columnar datastore, with *relational query capabilities*, but it is **not** a relational database in the traditional sense. There are no foreign key constraints; foreign keys, when specified, are used only for _query planning_ and optimization.
 
-While Redshift behaves more-or-less compatibly with PostgreSQL in many ways, it lacks many of the modern capabilities that PostgreSQL provides. Notable among these differences is Redshift's lack of support for **materialized** views ([detailed below](#getting-material)), very primitive support for JSON, and basically terrible performance on anything that isn't purely tabular. 
+While Redshift behaves more-or-less compatibly with PostgreSQL in many ways, it lacks many of the modern capabilities that PostgreSQL provides. Notable among these differences is Redshift's lack of support for **materialized** views ([detailed below](#getting-material)), very primitive support for JSON, and basically terrible performance on anything that isn't purely tabular.
 
 In many respects, it's appropriate to view Redshift as a SQL query layer built over distributed storage, much like other map-reduce analytics solutions. There **are** distribution and sort keys, which make perfect sense for partitioning and sequencing à la map-reduce. It performs profoundly well on large datasets, where aggregation can be aligned to the distribution key structure (i.e. siloed within a segment of the data, to minimize network cost).
 
@@ -67,7 +68,7 @@ A few important considerations:
 
 ## Don't Flake Out
 
-Because Redshift is _columnar_, it's also well-suited to a relatively high degree of _denormalized_ data, rather than fully snow-flaked structures, as the columnar storage lends itself to compression. Redshift is also best suited to batch-processing large datasets, as frequent loading of small changes tends to be inefficient. 
+Because Redshift is _columnar_, it's also well-suited to a relatively high degree of _denormalized_ data, rather than fully snow-flaked structures, as the columnar storage lends itself to compression. Redshift is also best suited to batch-processing large datasets, as frequent loading of small changes tends to be inefficient.
 
 With these in mind, I've found Redshift to perform better when modeling time-series data, with slowly-changing dimensionality, under something resembling a [Pure Type-6 fact table][2]. In general, process follows this model:
 
@@ -76,15 +77,15 @@ CREATE SCHEMA IF NOT EXISTS temp;
 CREATE TABLE temp.ts_target$temp
 	INTERLEAVED SORTKEY (timestamp, id)
 	AS (
-		SELECT 
+		SELECT
 			SYSDATE as timestamp,
 			id,
 			other_fields_etc
 		FROM
 			source_table NATURAL JOIN other_source
-	
+
 	);
-	
+
 CREATE TABLE IF NOT EXISTS ts_target (LIKE temp.ts_target$temp);
 ALTER TABLE ts_target APPEND FROM temp.ts_target$temp;
 DROP TABLE IF EXISTS temp.ts_target$temp;
@@ -99,16 +100,16 @@ Basically the same approach applies to materializing snapshots of views, without
 
 ## The Brittleness of JSON
 
-Redshift has [some JSON support][5]. Yep. 
+Redshift has [some JSON support][5]. Yep.
 
 In some cases, where organizations treat Redshift as a *data lake*, they may want to store raw stream data as JSON directly in Redshift, with the intent of making it easily queriable in the future. Two major limitations of Redshift pose significant challenges to this approach.
 
-In my observation, it's almost always preferable to **avoid putting JSON in Redshift**. While it's possible to mitigate some of the below issues, doing so justifies some sort of up-front validation process on a JSON stream before it reaches Redshift. 
+In my observation, it's almost always preferable to **avoid putting JSON in Redshift**. While it's possible to mitigate some of the below issues, doing so justifies some sort of up-front validation process on a JSON stream before it reaches Redshift.
 
 Simply replacing that validation approach with a preliminary extraction process, before load, offers greater advantage.
 
 
-### JSON Correctness 
+### JSON Correctness
 
 Redshift requires that all of the records containing JSON **must** be 100% valid UTF-8 encoded JSON. If any record deviates, it will block the _entire_ query from returning any results. When one record in millions has an error, it can prevent access to *all* of them.
 
@@ -116,7 +117,7 @@ In large-scale, evolving software environments, errors will occasionally occur, 
 
 Two approaches seem sensible to mitigate for this problem _within_ Redshift, however neither offer a long-term holistic advantage:
 
-1. Perform some kind of validation in Redshift, either in SQL (i.e. a validation view, even materialized), or as a [Python user-defined function][6]. 
+1. Perform some kind of validation in Redshift, either in SQL (i.e. a validation view, even materialized), or as a [Python user-defined function][6].
 2. Build other assurance into your data pipeline, such that invalid JSON _never_ reaches Redshift.
 
 There are certainly other approaches. In either case above, the performance cost at scale has been simply untenable, even if you can assure 100% valid JSON.
@@ -128,18 +129,18 @@ For the description below, please consider a view such as this:
 
 ```sql
 CREATE VIEW my_json_extractor AS (
-	SELECT 
-		id, 
+	SELECT
+		id,
 		jsontext,
 		json_extract_path_text(jsontext, 'triangle', 'base') as t_base
 		json_extract_path_text(jsontext, 'triangle', 'height') as t_height,
 		json_extract_path_text(jsontext, 'area') as area
-	FROM 
+	FROM
 		my_base_table_with_json_field
 );
 ```
 
-In Redshift, JSON is stored as pure text, and never treated as an "object" until one of Redshift's functions attempts to read from it. Further, from what I observe, it seems when a query processes the JSON text, it does so separately for each function call. 
+In Redshift, JSON is stored as pure text, and never treated as an "object" until one of Redshift's functions attempts to read from it. Further, from what I observe, it seems when a query processes the JSON text, it does so separately for each function call.
 
 In the example above, it would create 3 separate object instances for each record. For 100,000 records with 3 properties extracted from one JSON field, it would create 300,000 separate JSON objects.
 
@@ -154,7 +155,7 @@ In the end, our conclusion is to prefer avoiding JSON in Redshift altogether. A 
 
 ## Avoiding Lock-in
 
-Another painpoint of working with Redshift, especially when supporting integration from third-party data services, is *column locking* by views.  
+Another painpoint of working with Redshift, especially when supporting integration from third-party data services, is *column locking* by views.
 
 When you query a `view` in Redshift, it does **not** perform the text of the SQL query "on the fly" every time. Instead, when you create the view, it "binds" to the columns (by node, not by name) as a way to improve performance in the query planning process.
 
@@ -165,14 +166,14 @@ This has some benefits to the database operation, but its side-effects on human 
 
 Because columns' types (including the **number** of characters allowed in a text field) are effectively locked-in and cannot be changed directly, the basic approach to structural adjustments requires:
 
-1. Creating a new column, 
-2. Copying in the existing data, 
-3. Dropping the old column, and 
+1. Creating a new column,
+2. Copying in the existing data,
+3. Dropping the old column, and
 4. Renaming the new column to replace the old.
 
 The net effect is that even the smallest of structural changes requires completely dropping related views, applying the desired changes, and then re-creating the views.
 
-This might be fine for some workflows, but when integrating data from multiple third-party vendors, across schemata they manage (and therefore occasionally change), it becomes a strong detraction from _using views at all_ in those cases. 
+This might be fine for some workflows, but when integrating data from multiple third-party vendors, across schemata they manage (and therefore occasionally change), it becomes a strong detraction from _using views at all_ in those cases.
 
 
 ### Getting Material
@@ -190,7 +191,7 @@ A few more steps and considerations may be appropriate, as views are often a sui
 
 ## Realized Benefits
 
-The general principals in [Aiming for Progress](#aiming-for-progress), and the techniques outlined to address specific challenges have proven their worth many times.
+The general principals in [Evolution through Continuous Deployment](#evolution-through-continuous-deployment), and the techniques outlined to address these specific challenges have proven their worth many times.
 
 1. When new data streams begin loading, we have workloads and models (i.e. views) built against them, tuned for initial roll-out to business users, within 30 minutes.
 2. Maintenance is mostly automatic, operating scheduled jobs with logging and notifications directly in the Continuous Integration environment.
@@ -200,7 +201,7 @@ The general principals in [Aiming for Progress](#aiming-for-progress), and the t
 
 ## Conclusions
 
-Redshift is actually a fantastic tool, a great OLAP database environment. Its benefits are derived in part from the simplicity, belied by these limitations. Provided these approaches above can be applied, the flexibility needed for growing, evolving organizations should be expressed in a tooling ecosystem *surrounding* Redshift, whereas Redshift must be respected for the simple, efficient, and yet robustly queriable datastore that it is.
+Redshift is a great OLAP database environment, though its limitations may surprise you. Many of its benefits are derived from its simplicity, belied by these limitations. Provided these techniques and design considerations can be applied, Redshift offers the flexibility needed for growing, evolving organizations to leverage their data at massive scale. Overcoming these limitations requires a tooling ecosystem *surrounding* Redshift, whereas Redshift must be respected for the simple, efficient, and yet robustly queriable datastore that it is.
 
 
 [1]: https://about.gitlab.com/gitlab-ci/

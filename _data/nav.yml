@@ -33,10 +33,11 @@ tags:
     business-intelligence: "Business Intelligence"
     github: "GitHub"
     gitlab: "GitLab"
+    lean/agile: "Lean"
 
 # This gets rendered as the Topics menu
 topics:
   - Business Intelligence
-  - Continuous Deployment
   - DevOps
+  - Lean
 

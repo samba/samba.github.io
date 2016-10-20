@@ -39,6 +39,45 @@ $material-card-depth: 1em;
 
 .material {
 
+
+	article.post {
+
+		@include framed($material-card-depth, $material-card-radius, 0);
+
+		margin: {
+			top: 0.5em;
+			left: 0.5em;
+			bottom: 1em;
+			right: 0.5em;
+		}
+
+		.post-header, .post-excerpt, .post-link, .post-meta {
+			margin: 0;
+			padding: 0.5em;
+		}
+
+		.post-meta {
+			padding-top: 0;
+			padding-bottom: 0;
+			.date {
+
+			}
+		}
+
+		.post-header {
+			@extend %clearfix;
+			@include inlineheader;
+		}
+
+		.post-excerpt {
+
+		}
+
+		.post-link {
+
+		}
+	}
+
 	.card {
 		@include framed($material-card-depth, $material-card-radius, 0);
 
