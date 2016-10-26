@@ -3,10 +3,14 @@
 const gulp = require('gulp');
 const sourcemap = require('gulp-sourcemaps');
 const compiler = require('google-closure-compiler-js').gulp();
+const prettify = require('gulp-js-prettify')
+const util = require('gulp-util')
 // const frontMatter = require('gulp-front-matter');
 // const swig = require('gulp-swig');
 
 const dense = true;
+const pretty = false;
+const do_sourcemap = false;
 
 
 const gulp_frontmatter_options = {
@@ -24,9 +28,10 @@ const consume_files = [
   './src/*.js'              // The main {pirate.js}
 ];
 
-console.log('Path: ' + process.cwd())
+// console.log('Path: ' + process.cwd())
 
 gulp.task('pirate.min.js', function() {
+  var noop = util.noop();
   return gulp.src(consume_files, gulp_options)
       // .pipe(frontMatter(gulp_frontmatter_options))
       // .pipe(swig())
@@ -36,13 +41,16 @@ gulp.task('pirate.min.js', function() {
           warningLevel: 'VERBOSE',
           languageIn: 'ECMASCRIPT6',
           languageOut: 'ECMASCRIPT5',
-          // defines: {},
+          defines: {
+            // ENABLE_LOGGING: (!dense)
+          },
           processCommonJsModules: true,
           outputWrapper: '(function(){\n%output%\n}).call(this)',
           jsOutputFile: './dist/pirate.min.js',  // outputs single file
-          // createSourceMap: './dist/pirate.min.js.map'
+          createSourceMap: (do_sourcemap ? './dist/pirate.min.js.map' : null)
         }))
-      .pipe(sourcemap.write('./'))
+      .pipe((dense && !pretty) ? noop : prettify({ collapseWhitespace: true }))
+      .pipe(do_sourcemap ? sourcemap.write('./') : noop)
       .pipe(gulp.dest('./_includes/'));
 });
 
