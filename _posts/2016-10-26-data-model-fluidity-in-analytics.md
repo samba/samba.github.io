@@ -5,6 +5,10 @@ tags: analytics agile
 title: Data Model Fluidity in Analytics
 published: true
 date: 2016-10-26 16:10:56
+
+redirect_from:
+  - /fluid-analytics-data-model
+
 ---
 
 The world of data, intelligence and analytics perpetually evolves, so too will the data structures we work with. With the rising popularity of [data lakes][4], there's a steadily increasing need for developers, consultants, and vendors to work with all kinds of data, be it [structured][2], [unstructured][3], or [semistructured][1].
@@ -18,9 +22,9 @@ While this piece focuses in part on the Google Analytics ecosystem, the major pr
 
 ## Ode to Structured Data
 
-The problems of [structured data models][2] arise from its legacy: many vendors' systems are built around performance, from an age when the most obvious way to achieve performance was to constrain the fields that your application could populate. 
+The problems of [structured data models][2] arise from its legacy: many vendors' systems are built around performance, from an age when the most obvious way to achieve performance was to constrain the fields that your application could populate.
 
-Who of you, consultants in the Google Analytics field, remember its genesis as [Urchin][6]? You may recall the days when we had only Pageviews, and then Google's extension of the data model to incorporate Events (interactions). Many consultants found the Category/Action/Label model too limiting, so they tucked multiple other values (concatenated) into the Label field. This often proved unweildy for analysis, so we asked Google for [Custom Variables][9], and they gave us 5 "slots" to combine any key/values we wanted, initially. 
+Who of you, consultants in the Google Analytics field, remember its genesis as [Urchin][6]? You may recall the days when we had only Pageviews, and then Google's extension of the data model to incorporate Events (interactions). Many consultants found the Category/Action/Label model too limiting, so they tucked multiple other values (concatenated) into the Label field. This often proved unweildy for analysis, so we asked Google for [Custom Variables][9], and they gave us 5 "slots" to combine any key/values we wanted, initially.
 
 See a trend here? They've long operated on *fixed structures*, which imposes limits on the kinds of things we can express about a particular interaction. With the addition of [Custom Dimensions][10] and Metrics, our capabilities in GA have improved, however we're still bound by a structure, even if it's so "wide" that we may rarely find its limits.
 
@@ -28,12 +32,12 @@ These trends persist, in any analytics platform which attempts to *extract* a fi
 
 ## The Rise of Semistructured Data
 
-Vendors such as [Keen.io][7] and [Mixpanel][8] took a fundamentally different approach, because they built their products on newer technology and under newer paradigms of computing. They turned the legacy problem on its head, focusing on *a dynamic query* capability at _reporting_ time, and rather than modeling the data to a fixed structure at _collection_ time. 
+Vendors such as [Keen.io][7] and [Mixpanel][8] took a fundamentally different approach, because they built their products on newer technology and under newer paradigms of computing. They turned the legacy problem on its head, focusing on *a dynamic query* capability at _reporting_ time, and rather than modeling the data to a fixed structure at _collection_ time.
 
 They operate on a different assumption: you, the developer or consultant, need to collect everything you know in the app, rather than *just* what the analytics platform planned for (years prior).
 
 
-To support this, these and other vendors adopted a simple convention: **let a developer push anything** _as JSON_. 
+To support this, these and other vendors adopted a simple convention: **let a developer push anything** _as JSON_.
 
 Two important points to that assumption:
 
@@ -50,17 +54,17 @@ In mobile applications, Firebase now accommodates some semi-structured analytics
 
 ## Model Mutation
 
-I love the flexibility that semi-structured models provide. Instead of warping our *business context* to fit the abstract, generic things in a prescribed structure (e.g. Event's Category, Action, Label), our data can be *semantically* modeled. 
+I love the flexibility that semi-structured models provide. Instead of warping our *business context* to fit the abstract, generic things in a prescribed structure (e.g. Event's Category, Action, Label), our data can be *semantically* modeled.
 
-That's great, until things change... which is, of course, inevitable. 
+That's great, until things change... which is, of course, inevitable.
 
-The chaos monkey takes many forms. The business case evolves when new services plans are added, the UI changes when new payment options are added, and occasionally a developer will alter the attributes of an analytics (or `dataLayer`) event without notifying the analytics stakeholders. Something you couldn't have planned for will throw a wrench in your beautifully architected data model. 
+The chaos monkey takes many forms. The business case evolves when new services plans are added, the UI changes when new payment options are added, and occasionally a developer will alter the attributes of an analytics (or `dataLayer`) event without notifying the analytics stakeholders. Something you couldn't have planned for will throw a wrench in your beautifully architected data model.
 
 ### The Hazards Of Weak Structure
 
-Models with great flexibility increase the propensity of errors, when developers are given general rules instead of explicit templates. These errors include communication factors, such as differences in naming convention. 
+Models with great flexibility increase the propensity of errors, when developers are given general rules instead of explicit templates. These errors include communication factors, such as differences in naming convention.
 
-When errors occur, the development cost multiplies, especially when relying on third-party software teams. The communication overhead of scheduling calls or meetings, and the hours invested in review and testing cycles become expensive and unsustainable. This often results in software teams **deprioritizing** analytics integration from the rest of their backlog, because they separate it from the rest of the feature development. 
+When errors occur, the development cost multiplies, especially when relying on third-party software teams. The communication overhead of scheduling calls or meetings, and the hours invested in review and testing cycles become expensive and unsustainable. This often results in software teams **deprioritizing** analytics integration from the rest of their backlog, because they separate it from the rest of the feature development.
 
 In some cases, I've seen teams defer analytics integration until **after launch**. As a result, the launch is basically *unmeasured*, so there's limited means (if any) of reporting the success of the development team in business terms. This should be seen as _disastrous_.
 
@@ -69,7 +73,7 @@ To the other extreme, providing only strict templates also inhibits the broader 
 
 ## Sustainable Flow in Analytics Development
 
-For a thriving analytics ecosystem within an organization, all stakeholders must be engaged to add value to the analytics model wherever possible. Analytics must be treated as an *intrinsic* part of the development workflow, by emphasizing the *measurement of results* especially at launch, and with every software release. 
+For a thriving analytics ecosystem within an organization, all stakeholders must be engaged to add value to the analytics model wherever possible. Analytics must be treated as an *intrinsic* part of the development workflow, by emphasizing the *measurement of results* especially at launch, and with every software release.
 
 The goals of a sustainable flow are simple:
 
@@ -144,7 +148,7 @@ trackBusinessState("userLogin", { servicePlan: "premium" });
 
 You may notice this bears some resemblance to the Firebase model for custom events in iOS; quite intentional.
 
-A **critical** component of this semantic process is communication, though, and documentation can fulfill part of that requirement. The essential goal is to ensure that naming conventions, and any applicable constraints on associated attribute values are respected. 
+A **critical** component of this semantic process is communication, though, and documentation can fulfill part of that requirement. The essential goal is to ensure that naming conventions, and any applicable constraints on associated attribute values are respected.
 
 In widely dispersed teams, or multiple teams across large organizations, this may justify rigourous documentation of the naming conventions in use, in conjunction with a *workflow* that requires developers to validate the naming convention. In smaller, closely-collaborating teams conversation may be sufficient where the developers and analytics integrators convene regularly, however keeping a central record of adopted naming conventions still provides future value.
 
@@ -181,7 +185,7 @@ As the business case evolves, the *availability* of certain business attributes 
 
 With these principles in mind, and enacted by developers and other analytics stakeholders alike, you should find your software projects *accelerated*, with better data flowing sooner, and adapting faster with the business needs. There will be more time, less confusion, easier successes and a more flexible workflow for all stakeholders.
 
-In a future post I'll also address an _agile model of analytics integration_ for new projects. 
+In a future post I'll also address an _agile model of analytics integration_ for new projects.
 
 
 ## Coming Soon: an iOS Reference Implementation
