@@ -9,7 +9,7 @@ slug () {
 }
 
 target_file () {
-  echo "${workdir}/_posts/${DATE}-`slug`.markdown"
+  echo "${workdir}/_drafts/${DATE}-`slug`.markdown"
 }
 
 
@@ -21,12 +21,20 @@ echo ${TARGET}
 [ -f ${TARGET} ] || cat >${TARGET} <<EOF
 ---
 layout: post
-category: null
+category: {some_categories}
+tags: {some tags}
 title: ${title}
 date: ${DATE} ${TIME}
 ---
 
-## ${title}
+Some content
+
+- [Link][1]
+
+
+## References: 
+
+[1]: http://example.com/
 
 EOF
 
