@@ -8,7 +8,7 @@ const util = require('gulp-util')
 // const frontMatter = require('gulp-front-matter');
 // const swig = require('gulp-swig');
 
-const debug = true;
+const debug = false;
 const dense = !debug; // Should the code be compiled?
 const pretty = debug; // Should the code be reformatted with sensible whitespace?
 

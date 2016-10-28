@@ -11,16 +11,21 @@ tweet_bottom: false
 dont_tweet: true
 header_content:
   script: >
-    window.dataLayer.push({
+    window.pirate = window.pirate || { config: {} };
+    window.pirate.config.DATALAYER_NAME = "dataLayer2";
+
+    window.dataLayer2 = [];
+    window.dataLayer2.push({
       'event': 'pirate.config',
-      'pirate.logLevel': 'debug',
+      /* 'pirate.logLevel': 'debug', */
       'pirate.spyglass': function(config){
         config['h1[id]'] = 1.0;
         config['h2[id]'] = 1.0;
         config['h3[id]'] = 1.0;
         config['[id]'] = null;
+        return config;
       }
-    })
+    });
 
     window.pirate.ondeck(function(){
       window.pirate.attach('submit', 'form.donothing', function(e){
@@ -69,18 +74,35 @@ body_data:
 Augments standard Google Tag Manager but adding *data context* to each event,
 based on the event's placement in the document.
 
+* TOC
+{:toc}
+
 ## Usage
 
 This page shows example structure for defining `data-` attributes.
 
 *Requirements:*
 
-1. The content of <a href='/js/pirate.js'>`pirate.js`</a> must be loaded <em>after</em> Google Tag Manager. Including it as a custom Javascript within GTM is sufficient.
+1. [Install the script](#installation) Google Tag Manager.
 2. Data attributes (`data-` prefix) must be added to elements of interest in the page.
 3. Click triggers and (most importantly) built-in variables `Click Element` and `Form Element` must be activiated in Tag Manager.
 4. Variables within Tag Manager must be configured to access related properties within the datalayer.
-5. Triggers within Google Tag Manager must be configured with conditions related to those data attributes.
+5. Triggers within Google Tag Manager must be configured with conditions related to those variables.
 
+
+### Installation
+
+The following should be installed as a Custom HTML tag in GTM, and loaded _on all pages_.
+
+```html
+<script>
+(function(p,i,r,a,t,e){
+t = (i.getElementsByTagName(p)[0]); e = i.createElement(p); a = i.location;
+e.src = "//cdn.samb.io/js/pirate.js?h=" + i.hostname; e.async = true;
+t.parentNode.insertBefore(e, t.nextSibling);
+}('script', document, window));
+</script>
+```
 
 ## Example
 
@@ -123,12 +145,13 @@ do not persist into subsequent events.
 
 To enable persistent properties, see the `pirate.moor` function below.
 
+### Observing New Interactions
 
 The kit also adds new event types for fine-grained interaction observers:
 
-* `focus` and `blur` events on the main window, as well as form fields.
-* `scroll` events on the main window.
+* `focus` and `blur` events on the main window.
 * `touchstart` and `mousedown` for when `click` is too late.
+* `change`, `focus` and `blur` on form fields.
 * ... and several others.
 
 If needed, additional event types can be added to the listening environment:
@@ -140,7 +163,7 @@ window.pirate.observe('mouseup', 'contextmenu');
 And if there's an event you decide you don't care for:
 
 ```javascript
-window.pirate.mute('mouseup');
+window.pirate.mute('mousedown');
 ```
 
 These event configurations can also be stashed in the DataLayer before (or after)
@@ -149,11 +172,10 @@ Pirate loads:
 ```javascript
 dataLayer.push({
   'event': 'pirate.config',
-  'pirate.eventsMute': '*', // mute all, or a space-separated list
+  'pirate.eventsMute': "*", // mute all, or a space-separated list
   'pirate.eventsObserve': "mouseup mousedown" // or '*' to unmute all muted
 })
 ```
-
 
 > Some colleagues have indicated that the volume of events produced by Pirate
 > seems excessive. The standard event configuration aims to "observe" the most
@@ -162,6 +184,80 @@ dataLayer.push({
 > Pirate produces until triggers are configured to read from them, and there
 > should be no significant performance impact.
 
+
+### Scrolling and Content visibility
+
+Pirate offers tracking of when specific elements become visible to the user.
+This is especially useful on very long content pages, and single-page apps.
+
+By default, Pirate will observe visibility changes on all elements in `BODY` that
+have an assigned `ID` attribute. Additional selectors can be applied like the
+example below:
+
+```javascript
+dataLayer.push({
+  'event': 'pirate.config',
+  'pirate.spyglass': function(config){
+    // Report when this element is fully visible.
+    config["div#my_interesting_content"] = 1;
+
+    // Report when this element is more than 10% visible.
+    config["p.important"] = 0.10;
+
+    // Disable the default visibility tracking:
+    config['body [id]'] = null;
+
+    return config; // this is important.
+  }
+})
+```
+
+When using other selectors, it's advisible to retain an `ID` attribute on these
+elements anyway. A *signature* of the element is used to track its visibility
+over time, based on several attributes: `ID`, `name`, `href`, `data-name`, `alt`,
+`action`, and `title` especially. If any of these are guaranteed to be unique
+within a page, the visibility tracking should work as expected. (The elements'
+`class` attribute is *not* included, as it's prone to frequent change in some
+modern applications, for other visual effects.)
+
+Pirate checks visibility of elements *one second* after scrolling stops; this
+is to filter out events produced by users rapidly flipping through a page in
+search of a specific paragraph or feature, and focus only on users who are
+actively engaging with the content. The events are pushed to the `dataLayer`
+like so:
+
+```javascript
+dataLayer.push({
+  "event": "pirate.elementVisible",
+  "gtm.element": /** DOM element */ the_visible_element
+})
+```
+
+This enables GTM's native variables (e.g. element ID) to work as usual.
+
+Pirate also observes the *scroll depth* of the page: for every 10% benchmark
+passed in the page, Pirate emits a similar event:
+
+```javascript
+dataLayer.push({
+  "event": "pirate.scrollTracking",
+  "pirate.scrollDepth": (/** number */ scrollDepth) // e.g. 10, 20, 30
+})
+```
+
+### Using a Different DataLayer
+
+If for some reason you don't use GTM's default `dataLayer` instance, you can
+instruct Pirate to look for a different one:
+
+```javascript
+window.pirate = window.pirate || { config: {} };
+window.pirate.config.DATALAYER_NAME = "otherDataLayer";
+```
+
+This takes effect immediately, but if applied *after* other configuration
+(in the default datalayer) any events dispatched to a default dataLayer will not
+be re-dispatched to the new one.
 
 ## Utility methods
 
@@ -185,6 +281,15 @@ window.pirate.pillage(element); // => Object
  * return {Array.<Object>}
  */
 window.pirate.hornswaggle('li a.download'); // => [Object, Object...]
+
+/** Retrieve the (fractional) visibility of an element.
+ * A fully visibile element will return 1, and an invisible element will return 0.
+ * Partially visible elements will return a number between 0 and 1, representing
+ * the section of the element's area that is currently visible in the viewport.
+ * @param {DOMElement} element
+ * @return {number}  (ranging [0, 1])
+ */
+window.pirate.spyglass(element); // => number
 
 
 /** Persist the properties of a particular element to the DataLayer
