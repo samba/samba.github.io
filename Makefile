@@ -22,7 +22,8 @@ newsite:
 	@echo "THIS IS DANGEROUS." >&2
 	vagrant ssh -c "cd /vagrant; bundle install && bundle exec jekyll new . --force"
 
-.vagrant/up: Vagrantfile Gemfile
+.vagrant/up: Vagrantfile Gemfile Makefile
+	test -f .vagrant/up && $(MAKE) .vagrant/down
 	vagrant plugin list | grep vbguest || vagrant plugin install vagrant-vbguest
 	vagrant up --provision
 	vagrant ssh -c "cd /vagrant; bundle install"
