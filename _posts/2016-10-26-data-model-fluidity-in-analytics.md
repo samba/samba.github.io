@@ -5,7 +5,7 @@ tags: analytics agile
 title: Data Model Fluidity in Analytics
 published: true
 date: 2016-10-26 16:10:56
-
+description: Disciplines for a Sustainable Analytics Development Workflow
 redirect_from:
   - /fluid-analytics-data-model
 
@@ -24,7 +24,7 @@ While this piece focuses in part on the Google Analytics ecosystem, the major pr
 
 The problems of [structured data models][2] arise from its legacy: many vendors' systems are built around performance, from an age when the most obvious way to achieve performance was to constrain the fields that your application could populate.
 
-Who of you, consultants in the Google Analytics field, remember its genesis as [Urchin][6]? You may recall the days when we had only Pageviews, and then Google's extension of the data model to incorporate Events (interactions). Many consultants found the Category/Action/Label model too limiting, so they tucked multiple other values (concatenated) into the Label field. This often proved unweildy for analysis, so we asked Google for [Custom Variables][9], and they gave us 5 "slots" to combine any key/values we wanted, initially.
+Who of you, consultants in the Google Analytics field, remember its genesis as [Urchin][6]? You may recall the days when we had only Pageviews, and then Google's extension of the data model to incorporate Events (interactions). Many consultants found the Category/Action/Label model too limiting, so they tucked multiple other values (concatenated) into the Label field. This often proved unwieldy for analysis, so we asked Google for [Custom Variables][9], and they gave us 5 "slots" to combine any key/values we wanted, initially.
 
 See a trend here? They've long operated on *fixed structures*, which imposes limits on the kinds of things we can express about a particular interaction. With the addition of [Custom Dimensions][10] and Metrics, our capabilities in GA have improved, however we're still bound by a structure, even if it's so "wide" that we may rarely find its limits.
 
@@ -44,7 +44,7 @@ Two important points to that assumption:
 - The developer knows what they need to record; the analytics platform shouldn't limit the business context.
 - There's a flexible, standard data format available basically anywhere: JSON.
 
-JSON is just the *encoding*, while the semantics of the data model are left to the developer, removed from the analystics platform's own logic.
+JSON is just the *encoding*, while the semantics of the data model are left to the developer, removed from the analytics platform's own logic.
 
 ### Psuedo-structured
 
@@ -93,7 +93,7 @@ The realized benefits:
 
 ## Provide some *stricture* for the mundane
 
-What are the most common tracking cases you can think of, for *all* of your organization's applications? Probably screenviews and button clicks, maybe some kind of form entry. Can you think of others that aren't intrinsicly linked to your business case?
+What are the most common tracking cases you can think of, for *all* of your organization's applications? Probably screenviews and button clicks, maybe some kind of form entry. Can you think of others that aren't intrinsically linked to your business case?
 
 For these common cases, some simple, standard models are quite sufficient:
 
