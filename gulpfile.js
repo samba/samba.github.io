@@ -8,8 +8,14 @@ const util = require('gulp-util')
 // const frontMatter = require('gulp-front-matter');
 // const swig = require('gulp-swig');
 
-const dense = true;
-const pretty = false;
+const debug = true;
+const dense = !debug; // Should the code be compiled?
+const pretty = debug; // Should the code be reformatted with sensible whitespace?
+
+// Expose the original source to the browser.
+// In theory this would make it easier to debug, but somehow Chrome is failing
+// to set breakpoints in the mapped source, and things get wonky in the ES5
+// runtime.
 const do_sourcemap = false;
 
 

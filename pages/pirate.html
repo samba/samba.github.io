@@ -13,7 +13,13 @@ header_content:
   script: >
     window.dataLayer.push({
       'event': 'pirate.config',
-      'pirate.logLevel': 'debug'
+      'pirate.logLevel': 'debug',
+      'pirate.spyglass': function(config){
+        config['h1[id]'] = 1.0;
+        config['h2[id]'] = 1.0;
+        config['h3[id]'] = 1.0;
+        config['[id]'] = null;
+      }
     })
 
     window.pirate.ondeck(function(){
