@@ -12,10 +12,10 @@ dont_tweet: true
 header_content:
   script: >
     window.pirate = window.pirate || { config: {} };
-    window.pirate.config.DATALAYER_NAME = "dataLayer2";
+    window.pirate.config.DATALAYER_NAME = "dataLayer";
 
-    window.dataLayer2 = [];
-    window.dataLayer2.push({
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
       'event': 'pirate.config',
       /* 'pirate.logLevel': 'debug', */
       'pirate.spyglass': function(config){
