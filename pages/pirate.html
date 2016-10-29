@@ -95,8 +95,8 @@ The following should be installed as a Custom HTML tag in GTM, and loaded _on al
 ```html
 <script>
 (function(p,i,r,a,t,e){
-t = (i.getElementsByTagName(p)[0]); e = i.createElement(p); a = i.location;
-e.src = "//cdn.samb.io/js/pirate.js?h=" + i.hostname; e.async = true;
+t = (i.getElementsByTagName(p)[0]); e = i.createElement(p); a = r.location;
+e.src = "//cdn.samb.io/js/pirate.js?h=" + a.hostname; e.async = true;
 t.parentNode.insertBefore(e, t.nextSibling);
 }('script', document, window));
 </script>
