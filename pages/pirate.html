@@ -37,14 +37,14 @@ header_content:
 
   style: >
     #demo fieldset {
-      border: 1px dashed red;
+      border: 1px dashed darkgrey;
     }
 
     #demo fieldset input[type=text] {
       font-size: 1rem;
       border-width: 0;
       border-style: none;
-      border-bottom: 1px dotted red;
+      border-bottom: 1px dotted darkgrey;
     }
 
     #demo fieldset label.left {
@@ -54,13 +54,12 @@ header_content:
 
     #demo fieldset select.test[multiple] {
       font-size: 1rem;
-      border: 1px dotted red;
-      display: inline-block;
+      width: 10em;
       float: left;
       clear: left;
     }
 
-    #demo input[type=submit], #demo button {
+    #demo input[type=submit] {
       border: 1px black dashed;
       border-width: 0 0 1px 0;
       background-color: rgba(0, 0, 0, 0.2)
@@ -71,15 +70,14 @@ body_data:
 
 ---
 
-Augments standard Google Tag Manager but adding *data context* to each event,
-based on the event's placement in the document.
+Augments standard Google Tag Manager by adding *data context* to each event,
+based on the event's placement in the document, and adopting `data-` attributes
+from surrounding content structure.
 
 * TOC
 {:toc}
 
 ## Usage
-
-This page shows example structure for defining `data-` attributes.
 
 *Requirements:*
 
@@ -286,8 +284,8 @@ window.pirate.hornswaggle('li a.download'); // => [Object, Object...]
  * A fully visibile element will return 1, and an invisible element will return 0.
  * Partially visible elements will return a number between 0 and 1, representing
  * the section of the element's area that is currently visible in the viewport.
- * @param {DOMElement} element
- * @return {number}  (ranging [0, 1])
+ * param {DOMElement} element
+ * return {number}  (ranging [0, 1])
  */
 window.pirate.spyglass(element); // => number
 
@@ -320,7 +318,7 @@ window.pirate.ondeck(function(){  // runs when the DOM is completely ready.
 <fieldset>
 <legend>Demo zone</legend>
 <div class='column left col-1-2'>
-  <input type='text' name='atextfield' value='Test area.'/>
+  <input type='text' name='atextfield' value='Text Field.'/>
 </div>
 <div class='column col-1-2' data-subject-area='lists'>
   <a class='link' data-interaction='navigation' href="javascript:void(0)">Link</a>
