@@ -27,6 +27,33 @@ hide_meta: true
 <div class='blog col-2-3 material'>
 <h2>Think Big, Start Small.</h2>
 <em>Some recent reflections...</em>
+	{% for post in site.posts %}
+  {% if (post.pinned) %}
+		<article class='post'>
+			<div class='post-header'>
+				<h3 class="post-title"><a href="{{post.url}}">{{ post.title }}</a></h3>
+			</div>
+
+			<div class='post-meta meta'>
+				<span class='date'>{{ post.date |date:"%d. %b %Y" }}</span>
+				<aside class='inline'>
+				{% for tag in post.tags %}
+					<span class='tag'>{{ tag }}</span>
+				{% endfor %}
+				</aside>
+			</div>
+			<div class='post-excerpt'>
+				{{ post.excerpt | remove: "<p>" | remove: "</p>" | truncatewords: 500 | markdownify}}
+
+			</div>
+			<div class='post-link'>
+				<a href="{{ post.permalink |default: post.url }}">Continue Reading</a>
+			</div>
+		</article>
+    {% endif %}
+	{% endfor %}
+
+
 	{% for post in site.posts limit:3 %}
   {% unless (post.hidden or post.sensitive) %}
 		<article class='post'>
@@ -52,6 +79,7 @@ hide_meta: true
 		</article>
     {% endunless %}
 	{% endfor %}
+
 </div>
 
 <div class='col-1-3'>
