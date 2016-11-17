@@ -10,6 +10,9 @@ excerpt: >
   As long as we're voting for the lesser of two evils, the next election will
   bring a greater evil. Let's start voting for Good, regardless of popularity.
 
+redirect_from:
+- /vote-for-evil-too
+
 ---
 
 ## Abstract

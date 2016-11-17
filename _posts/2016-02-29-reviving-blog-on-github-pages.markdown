@@ -5,9 +5,9 @@ title: Reviving Blog on GitHub Pages
 date: 2016-02-29 12:23:21
 author: Sam Briesemeister
 description: Building a serious blog using Jekyll and GitHub Pages, and the Git workflow.
-tags: github
+tags: github blogging
 
-project_url: 
+project_url:
   site: http://github.com/samba/samba.github.io
   tackle: http://github.com/samba/tackle-wsgi
 
@@ -15,11 +15,11 @@ excerpt: >
     In which I remark on the long hiatus in blogging, and efforts to reinvigorate
     my blog presence with a new platform.
 
-tool: 
+tool:
   sublime: https://www.sublimetext.com/
   materialize: http://www.materializecss.com/
 
-blog_reference: 
+blog_reference:
  - https://www.analyticspros.com/blog/google-analytics/analytics-everywhere-the-universal-measurement-protocol-c-library/
  - https://www.analyticspros.com/blog/google-analytics/analytics-everywhere-the-really-big-picture-cross-platform-measurement/
  - https://www.analyticspros.com/blog/google-analytics/analytics-everywhere-universal-analytics-library-for-php/
@@ -52,11 +52,11 @@ The Docker environment was chosen due to the very desirable separation of its Ru
 
 ### Alternatives Considered.
 
-"Why not WordPress on PHP?", you might ask. I'd tell you, but then the fear and loathing might kill you. I've administered WordPress sites for too long, so quite frankly, I know better than to trust WordPress. I don't have time to work around its security problems anymore. I need tools that work reliably, aren't going to implode in 6 months when a plugin is out of date, and don't cause me to lose sleep due to the long-term administrative complexity. I lose enough sleep as it is. No thanks, WordPress. 
+"Why not WordPress on PHP?", you might ask. I'd tell you, but then the fear and loathing might kill you. I've administered WordPress sites for too long, so quite frankly, I know better than to trust WordPress. I don't have time to work around its security problems anymore. I need tools that work reliably, aren't going to implode in 6 months when a plugin is out of date, and don't cause me to lose sleep due to the long-term administrative complexity. I lose enough sleep as it is. No thanks, WordPress.
 
 I considered several other blogging tools in other environments, especially in Python (which I admittedly favor), to run on my Gandi hosting, which provides a simple WSGI environment, and provides a Git-based deployment workflow. I went so far as to begin writing my own blog environment (based on my own [tackle-wsgi]({{page.project_url.tackle}})), but facing the complications of Gandi's deployment process, backed away from that.
 
-Gandi's deployment process reconstructs a new Virtual Machine every time the `master` branch gets deployed. It's a fairly clever approach, actually, but doesn't quite fit. Unfortunately it doesn't lend itself to the workflow I'm looking for. Short of completely re-creating Jekyll in Python (generating static content files), which I then serve through Python anyway, there's no **convenient** way to deploy _content_ with Git to Gandi. Instead, it's more like deploying the _entire application_. As I prefer not to store compiled/generated content in Git, the server-side application would have to generate the page content within the Python environment, which should then be cached for the life of the deployment... justifying that complexity is hard, when Jekyll already exists. 
+Gandi's deployment process reconstructs a new Virtual Machine every time the `master` branch gets deployed. It's a fairly clever approach, actually, but doesn't quite fit. Unfortunately it doesn't lend itself to the workflow I'm looking for. Short of completely re-creating Jekyll in Python (generating static content files), which I then serve through Python anyway, there's no **convenient** way to deploy _content_ with Git to Gandi. Instead, it's more like deploying the _entire application_. As I prefer not to store compiled/generated content in Git, the server-side application would have to generate the page content within the Python environment, which should then be cached for the life of the deployment... justifying that complexity is hard, when Jekyll already exists.
 
 ### Features Considered.
 
@@ -69,7 +69,7 @@ GitHub Pages (not uniquely) presents solely static content to the end-user, comp
 - It's fast.
 - It doesn't support dynamic queries.
 - It's not going to let evil people upload and execute code.
-- It plays nice with Markdown. 
+- It plays nice with Markdown.
 - It deploys with Git, of course.
 
 It also has a few downsides:

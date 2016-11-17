@@ -39,7 +39,6 @@ exclude_meta: false
 		<div class='navigation sidebar no-print'>
 		<nav>
 			{% include nav.html %}
-			{% comment %}{% include twitter_widget.html %}{% endcomment %}
 			{% include contact.html %}
 			<section>
 			<em id='copyright'>
@@ -77,7 +76,12 @@ exclude_meta: false
 
 				{% unless (page.dont_tweet and (page.dont_tweet != blank) or page.hidden) %}
 				<aside class='no-print no-mobile inline pad'>
-				{% include twitter_tweetbutton.html top_offset='0.5em' %}
+					<!-- page layout ({{ page.layout }}) -->
+					{% if page.layout == 'post' %}
+						{% include twitter_tweetbutton_post.html top_offset='0.5em' %}
+					{% else %}
+						{% include twitter_tweetbutton.html top_offset='0.5em' %}
+					{% endif %}
 				</aside>
 				{% endunless %}
 

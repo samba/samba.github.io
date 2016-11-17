@@ -10,6 +10,9 @@ tags:
     - game-theory
     - social-science
 
+redirect_from:
+  - /game-theory-prisoners-dilemma
+
 ---
 
 
