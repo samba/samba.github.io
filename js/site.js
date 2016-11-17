@@ -30,11 +30,16 @@ twitter_enabled: true
 
 
 	function twitter_sharebuttonstyle(elements){
-		return elements.filter('.twitter-share-button').addClass('no-print').css({
+		var buttons = elements.filter('.twitter-share-button');
+		 buttons.addClass('no-print').css({
 			'display': 'inline-block',
-			'position': 'relative',
 			'top': '0.4em'
 		});
+		setTimeout(function(){
+			buttons.css({
+				'position': 'relative'
+			})
+		}, 100);
 	}
 
 	function twitter_widgetstyle(elements){
@@ -69,7 +74,7 @@ twitter_enabled: true
 					setTimeout(function(){
 						twitter_sharebuttonstyle(jQuery(e.target));
 						twitter_widgetstyle(jQuery(e.target));
-					}, 200);
+					}, 100);
 				});
 			});
 
