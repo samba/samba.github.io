@@ -2,12 +2,12 @@
 title: Refactoring Business Intelligence with DevOps
 date: 2016-05-11 14:45:00
 layout: post
-tags: devops business-intelligence conference presentation jamaica superweek lean agile
+tags: devops business-intelligence jamaica superweek
 categories: devops business-intelligence-refactored
 
 redirect_from:
-    - /spwk2016
     - /devops-business-intelligence
+    - /spwk2016
 
 link:
     phoenix:

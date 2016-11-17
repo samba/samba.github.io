@@ -2,7 +2,7 @@
 title: Continuous Deployment with Python Packages
 date: 2016-06-12 12:24:00
 categories: devops python gitlab continuous-deployment
-tags: devops continuous-deployment python gitlab lean agile
+tags: devops continuous-deployment python gitlab
 redirect_from:
   - /continuous-python-packaging
 layout: post
