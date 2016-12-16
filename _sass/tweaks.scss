@@ -96,14 +96,24 @@ iframe.flex {
 
 div.twitter-widget {
 	@extend %clearfix;
+}
+
+iframe.twitter-timeline, div.twitter-widget {
 	height: 50em;
-}
-
-iframe.twitter-timeline {
+	max-height: 50em;
 	min-height: 30em;
-	// min-height: 100%;
-
 }
+
+
+@include media-query($small){
+	/* on mobile, when it's single column. */
+	iframe.twitter-timeline, div.twitter-widget {
+		height: 35em;
+		min-height: 35em;
+	}
+}
+
+
 
 .no-mobile {
 	@include media-query($on-laptop){
