@@ -28,17 +28,17 @@ const gulp_options = {
   base: './src/'
 };
 
-const consume_files = [
-  './src/module/logger.js', // Provide logger first (core dependency)
-  './src/module/*.js',      // All modules and internal dependencies
-  './src/*.js'              // The main {pirate.js}
-];
+// const consume_files = [
+//   './src/module/logger.js', // Provide logger first (core dependency)
+//   './src/module/*.js',      // All modules and internal dependencies
+//   './src/*.js'              // The main {pirate.js}
+// ];
 
 // console.log('Path: ' + process.cwd())
 
 gulp.task('pirate.min.js', function() {
   var noop = util.noop();
-  return gulp.src(consume_files, gulp_options)
+  return gulp.src(['./_includes/pirate.js'], gulp_options)
       // .pipe(frontMatter(gulp_frontmatter_options))
       // .pipe(swig())
       .pipe(sourcemap.init())
