@@ -11,12 +11,28 @@ tweet_bottom: false
 dont_tweet: true
 header_content:
   script: >
-    window.pirate.yellow();
-    window.pirate.ondeck(function(){
-      window.pirate.attach('submit', 'form.donothing', function(e){
-        // e.stopPropagation();
-        e.preventDefault();
-        return false;
+
+    function awaitPirate(callback){
+      var q = (awaitPirate.q = awaitPirate.q || []);
+      var t = (awaitPirate.t = awaitPirate.t || setInterval(function(){
+        if(window.pirate){
+          clearTimeout(t);
+          awaitPirate.t = null;
+          while(q.length) q.pop().call(document, window.pirate);
+        }
+      }, 100));
+      q.push(callback);
+    }
+
+
+    awaitPirate(function(pirate){
+      pirate.yellow();
+      pirate.ondeck(function(){
+        pirate.attach('submit', 'form.donothing', function(e){
+          // e.stopPropagation();
+          e.preventDefault();
+          return false;
+        });
       });
     });
 

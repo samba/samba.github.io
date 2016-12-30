@@ -9,23 +9,25 @@
 <!-- <link rel="stylesheet" href="/css/main.css"/> -->
 <link rel='stylesheet' href='/css/site.min.css'/>
 <script src='/js/site.js'></script>
-<script src='/js/pirate.js'></script>
 
+<!-- NOTE relying now on Pirate from independent project through GTM. -->
+<!-- <script src='/js/pirate.js/REMOVED'></script> -->
 
 <!-- Google Tag Manager -->
 
 <script>
 window.dataLayer = window.dataLayer || [];
-var firstEvent = { 'event': 'page-init' };
 
-{% for item in page.analytics %}
-{% if item.setPageCategory %}
-firstEvent['pageCategory'] = "{{item.setPageCategory}}";
-{% endif %}
-{% endfor %}
-
-
-window.dataLayer.push(firstEvent);
+window.dataLayer.push(
+  (function(event){
+    {% for item in page.analytics %}
+    {% if item.setPageCategory %}
+    event['pageCategory'] = "{{item.setPageCategory}}";
+    {% endif %}
+    {% endfor %}
+    return event;
+  })({'event': 'page-init'})
+);
 
 
 (function(w,d,s,l,i,j,f,dl,k,q){
