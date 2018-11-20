@@ -1,5 +1,6 @@
 DIR=$(PWD)
 DATE:=$(shell date +%Y-%m-%d)
+DRAFT?=0
 
 # Which Pygments stylesheet to adapt?
 HIGHLIGHT_STYLE:=github
