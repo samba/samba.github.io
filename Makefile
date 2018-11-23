@@ -5,47 +5,62 @@ DRAFT?=0
 # Which Pygments stylesheet to adapt?
 HIGHLIGHT_STYLE:=github
 
+DOCKER_IMAGE?=github-pages:local
+DOCKER_IMAGE_FILE?=$(subst :,_,$(DOCKER_IMAGE))
+DOCKER_NAME?=github_pages
+CACHE?=./cache
+GEMFILES:=$(shell ls -1 Gemfile*)
+FILEMOUNT:=$(PWD):/srv/jekyll:rw
+
+ifeq ($(shell uname -s),Darwin)
+FILEMOUNT:=$(FILEMOUNT),delegated
+endif
+
 .PHONY:  docker-setup docker-run deploy cleanslate
 
 all:  serve
 
-_sass/code.scss:
-	vagrant ssh -c "cd /vagrant; bundle exec rougify style $(HIGHLIGHT_STYLE)" > $@
+_sass/code.scss: | docker-build
+	docker run -it --rm  $(DOCKER_IMAGE) bundle exec rougify style $(HIGHLIGHT_STYLE) > $@
 
+.PHONY: clean
+clean:
+	$(MAKE) docker-stop && sleep 5 && $(MAKE) docker-clean
 
-deploy: compile-javascript
-	git commit -a && git push github
+$(CACHE):
+	mkdir -p $@
 
-clean remove-site:
-	vagrant destroy
-	rm  -vf .vagrant/prov .vagrant/setup .vagrant/up
+.PHONY: docker-build
+docker-build: $(CACHE)/$(DOCKER_IMAGE_FILE)
+$(CACHE)/$(DOCKER_IMAGE_FILE): Dockerfile $(GEMFILES) | $(CACHE)
+	test -f Gemfile.lock || touch Gemfile.lock
+	chmod a+w Gemfile.lock
+	docker build -t "$(DOCKER_IMAGE)" -f $< .
+	touch $@
 
-newsite:
-	@echo "THIS IS DANGEROUS." >&2
-	vagrant ssh -c "cd /vagrant; bundle install && bundle exec jekyll new . --force"
+.PHONY: docker-stop
+docker-stop:
+	docker ps  --format="{{.ID}}" -f "name=$(DOCKER_NAME)" -f "status=running" | xargs -t docker kill
 
-.vagrant/prov:  Vagrantfile
-	vagrant plugin list | grep vbguest || vagrant plugin install vagrant-vbguest
-	vagrant up --provision
-	touch -r $< $@
+.PHONY: docker-clean
+docker-clean:
+	docker ps  --format="{{.ID}}" -f "name=$(DOCKER_NAME)" -f "status=exited" | xargs -t docker rm 
 
-.vagrant/setup: Gemfile
-	vagrant ssh -c "cd /vagrant; bundle install"
-	touch -r $< $@
-
-.vagrant/up: Gemfile Makefile | .vagrant/prov .vagrant/setup
-	vagrant status | grep running || vagrant up
-
-
-serve: _sass/code.scss _config.yml .vagrant/up
-	@echo "Starting Jekyll in Vagrant; to enable drafts, run as 'DRAFT=1 make $@'"
+.PHONY: docker-up
+docker-up:  | docker-build
 ifeq ($(DRAFT), 1)
 	$(eval DRAFT := --drafts --unpublished)
 else
 	$(eval DRAFT := )
 endif
-	vagrant ssh -c "cd /vagrant; bundle exec jekyll serve $(DRAFT) --watch --force_polling --incremental --host=0.0.0.0 "
+	$(MAKE) docker-clean
+	docker ps  --format="{{.ID}}" -f "name=$(DOCKER_NAME)" -f "status=running" | grep -q '^[0-9a-f]+$$' || \
+		docker run -it --rm -p 4000:4000 --name $(DOCKER_NAME) -v "$(FILEMOUNT)" $(DOCKER_IMAGE) \
+			bundle exec jekyll serve $(DRAFT) --watch --force_polling --incremental --host=0.0.0.0
 
+
+serve: _sass/code.scss _config.yml 
+	$(MAKE) docker-up
 
 newpost:
 	sh scripts/newpost.sh
