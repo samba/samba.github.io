@@ -1,24 +1,14 @@
-FROM ruby:2.3
 
-WORKDIR /root
+FROM jekyll/jekyll:pages
 
-RUN apt-get -q update && apt-get -q upgrade -y
-RUN apt-get -q install -y vim-nox
+COPY Gemfile* /srv/jekyll/
 
+WORKDIR /srv/jekyll
 
-# This provides Jekyll, Kramdown, etc as dependencies.
-RUN ruby -S gem install github-pages therubyracer
-# RUN ruby -S gem install therubyracer
-# RUN ruby -S gem install jekyll-assets
-RUN mkdir /opt/bin
+RUN apk update && \
+	apk add ruby-dev gcc make curl build-base libc-dev libffi-dev zlib-dev libxml2-dev libgcrypt-dev libxslt-dev python
 
-COPY scripts/*.sh /opt/bin/
-COPY Gemfile /tmp/Gemfile
-RUN chmod +x /opt/bin/*.sh
-
-RUN bundle install --gemfile=/tmp/Gemfile
-
-CMD DRAFT="${DRAFT}" /opt/bin/serve.sh
-
+RUN bundle config build.nokogiri --use-system-libraries && \
+	bundle install
 
 EXPOSE 4000

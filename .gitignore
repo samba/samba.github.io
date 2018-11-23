@@ -15,3 +15,4 @@ js/dist/pirate.min.js
 .vagrant
 js/test/dist/
 *.map
+cache/*
