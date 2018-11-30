@@ -1,6 +1,8 @@
 DIR=$(PWD)
 DATE:=$(shell date +%Y-%m-%d)
+TIME:=$(shell date +%H:%M:%S)
 DRAFT?=0
+TITLE?=
 
 # Which Pygments stylesheet to adapt?
 HIGHLIGHT_STYLE:=github
@@ -62,8 +64,16 @@ endif
 serve: _sass/code.scss _config.yml 
 	$(MAKE) docker-up
 
-newpost:
-	sh scripts/newpost.sh
+.PRECIOUS: _drafts/%.md
+_drafts/%.md: _template/post.md
+	sed -E 's@\$${TITLE}@$(TITLE)@; s@\$${DATE}@$(DATE)@; s@\$${TIME}@$(TIME)@;' $< > $@
+
+.PHONY: newpost
+newpost: 
+	test -n "$(TITLE)"  # must define TITLE environment
+	$(eval SLUG := $(shell echo "$(TITLE)" | tr "[:upper:]" "[:lower:]" | sed -E 's@[^a-z0-9]+@-@g; s@\-$$@@g;'))
+	$(MAKE) _drafts/$(DATE)-$(SLUG).md
+
 
 compile-javascript:
 	npm run compile
