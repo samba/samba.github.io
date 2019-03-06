@@ -1,7 +1,8 @@
 
 # An explicit list of links
-menus:
-  Security:
+menu:
+  - group: Security
+    links:
     - url: https://keybase.io/samba/
       name: keybase.io
       target: new
@@ -11,19 +12,6 @@ menus:
     - url: /assets/sbriesemeister.rsa.pub
       name: SSH Public Key
       target: new
-
-
-
-  # Contact:
-  #   - url: https://github.com/samba
-  #     name: GitHub
-  #   - url: https://twitter.com/systemalias
-  #     name: Twitter
-  #   - url: http://www.linkedin.com/in/sambriesemeister
-  #     name: LinkedIn
-  #   - url: "#modalContactForm"
-  #     name: Email me
-  #     modal: true
 
 
 tags:
