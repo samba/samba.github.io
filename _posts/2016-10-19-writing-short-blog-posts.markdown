@@ -4,7 +4,7 @@ date: 2016-10-19 14:00:00
 categories: writing blog content marketing
 tags: writing-style content-marketing
 layout: post
-
+author: samba
 excerpt: >
     Finding the optimal *length* of a blog post is tricky, and depends on your subject matter, your audience, and
     the purpose of your publication. I've turned up a few _solid recommendations_ for targeting Social media, organic search, and reader engagement with different formats.

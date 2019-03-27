@@ -1,6 +1,7 @@
 ---
 title: Business Intelligence is your Product
 date: 2016-05-17 13:41:00
+author: samba
 categories: devops business-intelligence product-thinking
 tags: devops business-intelligence lean product
 layout: post
