@@ -1,5 +1,5 @@
 ---
-permalink: /index.html
+permalink: /
 layout: home
 body_class: blog home
 ---
