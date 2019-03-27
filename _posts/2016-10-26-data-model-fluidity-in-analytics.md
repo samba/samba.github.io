@@ -4,6 +4,7 @@ categories: agile analytics data-structure
 tags: analytics measure lean agile
 title: Data Model Fluidity in Analytics
 published: true
+pinned: true
 author: samba
 date: 2016-10-26 16:10:56
 description: Disciplines for a Sustainable Analytics Development Workflow

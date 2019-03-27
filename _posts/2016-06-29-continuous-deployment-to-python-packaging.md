@@ -6,7 +6,7 @@ tags: devops continuous-deployment python gitlab
 redirect_from:
   - /continuous-python-packaging
 layout: post
-pinned: true
+sticky: true
 excerpt: >
   Streamline your Python development with GitLab CI; automate build,
   test, and publication of libraries to PyPI package repositories.
