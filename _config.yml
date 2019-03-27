@@ -8,7 +8,7 @@ description: >
   Technology, Ethics, Information Security, Politics, and life in general.
 
 # Uncomment this line to use the solace theme properly
-remote_theme: samba/jekyll-solace-theme
+remote_theme: samba/jekyll-solace-theme@master
 
 
 # Let Google verify this site.
