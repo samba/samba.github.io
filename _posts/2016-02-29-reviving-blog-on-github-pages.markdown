@@ -3,7 +3,7 @@ layout: post
 categories: git-based blog workflow
 title: Reviving Blog on GitHub Pages
 date: 2016-02-29 12:23:21
-author: Sam Briesemeister
+author: samba
 description: Building a serious blog using Jekyll and GitHub Pages, and the Git workflow.
 tags: github blogging
 

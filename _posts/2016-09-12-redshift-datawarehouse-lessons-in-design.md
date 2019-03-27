@@ -1,7 +1,7 @@
 ---
 title: The Agile Data Warehouse on Amazon Redshift
 date: 2016-09-12 12:23:21
-author: Sam Briesemeister
+author: samba
 category: devops/business-intelligence
 tags: devops business-intelligence redshift
 layout: post

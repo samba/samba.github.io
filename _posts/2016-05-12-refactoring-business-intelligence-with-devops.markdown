@@ -4,7 +4,7 @@ date: 2016-05-11 14:45:00
 layout: post
 tags: devops business-intelligence jamaica superweek
 categories: devops business-intelligence-refactored
-
+author: samba
 redirect_from:
     - /devops-business-intelligence
     - /spwk2016

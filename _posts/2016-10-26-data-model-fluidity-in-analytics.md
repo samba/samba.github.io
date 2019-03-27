@@ -4,11 +4,11 @@ categories: agile analytics data-structure
 tags: analytics measure lean agile
 title: Data Model Fluidity in Analytics
 published: true
+author: samba
 date: 2016-10-26 16:10:56
 description: Disciplines for a Sustainable Analytics Development Workflow
 redirect_from:
   - /fluid-analytics-data-model
-
 ---
 
 The world of data, intelligence and analytics perpetually evolves, so too will the data structures we work with. With the rising popularity of [data lakes][4], there's a steadily increasing need for developers, consultants, and vendors to work with all kinds of data, be it [structured][2], [unstructured][3], or [semistructured][1].
