@@ -20,7 +20,7 @@ This reinforces the neurological patterns of that learning; it's important to ac
 
 Unfortunately I had set a roadblock in my own path: I was rather tired of the visual layout of my site here, and had begun work (in several failed attempts) to develop a new theme. 
 I've always found the _clean_ look of publications on Medium, but I've always felt leary of some of their policies. 
-Finally, after much recent effort, I've crafted [a new, separate Jekyll theme][solace], specifically designed to emulate some of the feel of Medium, while publishing via GitHub pages.
+Finally, after much recent effort, I've crafted [a new, separate Jekyll theme][solace], specifically designed to emulate some of the feel of Medium, while publishing via GitHub pages.  (*Note* I'm still tuning the theme a bit, based on my observations on this site.)
 
 Therefore this post serves two purposes
 - Announcing the rollout of my Jekyll theme on this site, and as an independent theme that others can use for their own sites
