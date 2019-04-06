@@ -28,6 +28,18 @@ jekyll-mentions:
 # alternative:  base_url: https://github.com
 
 
+
+
+sharing:
+  disabled: false
+  facebook: false
+  twitter: true
+  linkedin: true
+  reddit: false
+  email: true
+  style:
+    color-mode: medium                     # options: "medium", "grayscale", "black" or (nil) 
+
 # Configuration for navigation behavior
 # NB: external links are managed in /_data/navigation.yml
 navigation:
