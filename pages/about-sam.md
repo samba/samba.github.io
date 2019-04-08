@@ -32,15 +32,16 @@ These days my main focus is on building an excellent, enterprise-capable ecosyst
 
 ## Projects
 
-The list of projects is getting a bit long, and sadly some of my work is not open-source. Hopefully you'll find some of these helpful though:
+Notably, my recent work has been focused much less on writing code. I now lead teams, and while I contribute code occasionally, my time is spent largely on architecture and coaching.
+Sadly some of my work is not open-source. 
+
+Hopefully you'll find some of these helpful though:
 
 - [Solace theme for Jekyll][7] (as used on this site)
 - [My dotfiles][9] ([repo][8])
 - Universal Analytics Measurement Protocol libraries in [Python][1], [C][2], and [PHP][3].
 - [trombone][4] - an extensible tool for converting Tomboy notes into Evernote.
 - [tackle-wsgi][5] because none of the myriad other WSGI frameworks quite suited my taste.
-
-Also notably, my work has been focused much less on writing code. I now lead teams, and while I contribute code occasionally, my time is spent largely on architecture and coaching.
 
 
 
