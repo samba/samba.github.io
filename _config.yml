@@ -28,6 +28,9 @@ jekyll-mentions:
 # alternative:  base_url: https://github.com
 
 
+analytics:
+  google_tag_manager:
+    id: GTM-52L37C
 
 
 sharing:
