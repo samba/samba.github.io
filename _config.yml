@@ -2,10 +2,12 @@
 title: "Fluid Thinking"                 # change me
 
 description: >
-  Blog of Sam Briesemeister;
-  advancing strategic business agility with DevOps in the evolving world of
-  tech. On Software, Continuous Delivery, Business Intelligence, Analytics,
-  Technology, Ethics, Information Security, Politics, and life in general.
+  Think big, start small. Leading teams and organizations with agility.
+  Blog of Sam Briesemeister.
+  Developing new strategic capabilities through organizational learning,
+  Lean process improvement in software engineering, continuous delivery,
+  DevOps, business intelligence and analtyics.
+  Also the occasional post on personal reflections, cultural and political.
 
 # Uncomment this line to use the solace theme properly
 remote_theme: samba/jekyll-solace-theme@master
