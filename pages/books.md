@@ -1,4 +1,7 @@
-# Recommended Reading
+---
+title: Recommended Reading
+excerpt: Expanding your mind advances your career. Here's some highlights I've found helpful.
+---
 
 I find _reading_ is a fundamentally important part of developing one's career, primarily when we _intentionally_ challenge our own ways of thinking.
 When consulting with friends and colleagues, I find myself referencing learnings and insights from the books listed below, so hopefully you'll find them equally beneficial.
