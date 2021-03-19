@@ -31,7 +31,7 @@ endif
 
 # Show draft posts in the blog
 ifeq ($(DRAFT),1)
-$(eval DRAFT_ARG:="--drafts --unpublished")
+$(eval DRAFT_ARG:=--drafts --unpublished)
 else
 $(eval DRAFT_ARG:="")
 endif
@@ -95,8 +95,9 @@ docker-clean:
 _drafts/%.md: _template/post.md
 	sed -E 's@\$${TITLE}@$(TITLE)@; s@\$${DATE}@$(DATE)@; s@\$${TIME}@$(TIME)@;' $< > $@
 
-.PHONY: newpost
-newpost: 
+.PHONY: newpost draft
+draft: newpost
+newpost:
 	test -n "$(TITLE)"  # must define TITLE environment
 	$(eval SLUG := $(shell echo "$(TITLE)" | tr "[:upper:]" "[:lower:]" | sed -E 's@[^a-z0-9]+@-@g; s@\-$$@@g;'))
 	$(MAKE) _drafts/$(DATE)-$(SLUG).md
