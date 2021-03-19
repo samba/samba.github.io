@@ -7,7 +7,7 @@ date: 2021-03-18 11:37:07
 excerpt: Kubernetes is becoming a defacto standard for cloud computing, and the platform of choice for hosting blogs. Perhaps in the declining minority, however, I will not adopt Kubernetes as a blogging platform, and here's why.
 ---
 
-You can find several [unironic][unironic] blogs describing how [static content][staticcontent] sites can be delivered on Kubernetes; some will admit that this qualifies as "[applied over-engineering][applied-over-engineering]", but they're just being silly. Clearly, Kubernetes is a great blogging platform. Nonetheless, I don't blog on Kubernetes. Here's why.
+You can find several [unironic][unironic] blogs describing how [static content][staticcontent] sites can be delivered on Kubernetes; some will admit that this qualifies as "[applied over-engineering][applied-over-engineering]", but they're just being silly. Clearly, Kubernetes is a great blogging platform. Nonetheless, I don't blog on Kubernetes.
 
 Let's face it, you probably don't need Kubernetes for your startup or enterprise.
 
