@@ -1,7 +1,11 @@
 ---
 layout: post
 category: kubernetes
-tags: kubernetes blogging satire
+tags:
+- kubernetes 
+- devops
+- blogging
+- satire
 title: You don't need Kubernetes when...
 date: 2021-03-18 11:37:07
 excerpt: Kubernetes is becoming a defacto standard for cloud computing, and the platform of choice for hosting blogs. Perhaps in the declining minority, however, I will not adopt Kubernetes as a blogging platform, and here's why.

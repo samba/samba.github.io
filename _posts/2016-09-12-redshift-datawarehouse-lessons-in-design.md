@@ -3,7 +3,10 @@ title: The Agile Data Warehouse on Amazon Redshift
 date: 2016-09-12 12:23:21
 author: samba
 category: devops/business-intelligence
-tags: devops business-intelligence redshift
+tags: 
+- devops 
+- business-intelligence 
+- redshift
 layout: post
 description: Techniques for flexible growth of a data warehouse in Amazon Redshift
 

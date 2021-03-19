@@ -1,7 +1,11 @@
 ---
 layout: post
 categories: agile analytics data-structure
-tags: analytics measure lean agile
+tags: 
+- analytics 
+- measure 
+- lean
+- agile
 title: Data Model Fluidity in Analytics
 published: true
 pinned: true

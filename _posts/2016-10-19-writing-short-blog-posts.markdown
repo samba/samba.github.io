@@ -2,7 +2,9 @@
 title: Writing Short Blog Posts is Difficult and That's OK.
 date: 2016-10-19 14:00:00
 categories: writing blog content marketing
-tags: writing-style content-marketing
+tags: 
+- writing-style
+- content-marketing
 layout: post
 author: samba
 excerpt: >

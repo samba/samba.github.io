@@ -5,7 +5,9 @@ title: Reviving Blog on GitHub Pages
 date: 2016-02-29 12:23:21
 author: samba
 description: Building a serious blog using Jekyll and GitHub Pages, and the Git workflow.
-tags: github blogging
+tags: 
+- github 
+- blogging
 
 project_url:
   site: http://github.com/samba/samba.github.io

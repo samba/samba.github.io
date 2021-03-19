@@ -1,6 +1,8 @@
 ---
 layout: post
-tags: blogging theme
+tags: 
+- blogging 
+- theme
 title: Blogging again, after great delay 
 published: true
 author: samba

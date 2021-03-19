@@ -2,7 +2,10 @@
 title: Refactoring Business Intelligence with DevOps
 date: 2016-05-11 14:45:00
 layout: post
-tags: devops business-intelligence jamaica superweek
+tags: 
+- devops 
+- business-intelligence 
+- superweek
 categories: devops business-intelligence-refactored
 author: samba
 redirect_from:

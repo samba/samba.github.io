@@ -2,7 +2,13 @@
 title: "Orchestrated Chaos: a Tale of Radical Progress"
 date: 2019-12-10 21:17:20
 categories: lean software agile product
-tags: lean software agile product management leadership
+tags: 
+- lean 
+- software 
+- agile 
+- product 
+- management 
+- leadership
 excerpt_separator: "<!-- more -->"
 ---
 

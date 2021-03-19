@@ -22,6 +22,13 @@ tags:
     github: "GitHub"
     gitlab: "GitLab"
     lean/agile: "Lean"
+  featured:
+  - leadership
+  - devops
+  - lean
+  - agile
+  - kubernetes
+  - business-intelligence
 
 # This gets rendered as the Topics menu
 topics:
