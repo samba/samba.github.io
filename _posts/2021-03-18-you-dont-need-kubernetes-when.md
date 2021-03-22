@@ -30,7 +30,7 @@ _This post is satire._
 
 Seriously though, my blog doesn't run on Kubernetes, _as far as I know_, because hosted static-site solutions are good enough for my needs. They probably use Kubernetes behind the scenes. 🤷‍♂️  
 
-If you run mission-critical apps on resilient infrastructure, I'd be happpy to help you evaluate Kubernetes. When needed, we can talk about the enterprise management solutions I've helped develop around Kubernetes. 
+If you run mission-critical apps on resilient infrastructure, I'd be happpy to help you evaluate Kubernetes. When needed, we can talk about the enterprise-scale Kubernetes management solutions I've helped develop. (Wait, why didn't we name them _Picard_ and _Riker_?!)
 
 
 
