@@ -17,7 +17,7 @@ remote_theme: samba/jekyll-solace-theme@master
 google_site_verification: FZoDU79BdIo92Bmm-y8w7msNuiqSB7uENwumXr77zIs
 
 # Populate the following with actual usernames, or delete them to prevent showing links
-author: 
+author:
   name: Sam Briesemeister                      # change me
   twitter: systemalias               # change me
   linkedin: sambriesemeister             # change me
@@ -30,9 +30,9 @@ jekyll-mentions:
 # alternative:  base_url: https://github.com
 
 
-analytics:
-  google_tag_manager:
-    id: GTM-52L37C
+analytics: null
+#  google_tag_manager:
+#    id: GTM-52L37C
 
 
 sharing:
