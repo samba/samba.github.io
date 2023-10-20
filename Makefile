@@ -12,6 +12,7 @@ SPACE +=
 # Which Pygments stylesheet to adapt?
 HIGHLIGHT_STYLE:=github
 
+DOCKER_BIN := $(shell command -v docker 2>/dev/null)
 DOCKER_IMAGE?=$(notdir $(PWD)):local
 DOCKER_IMAGE_FILE?=$(subst :,_,$(subst :,_,$(DOCKER_IMAGE)))
 DOCKER_NAME?=samba_github_pages
@@ -24,9 +25,17 @@ FILEMOUNT:=$(PWD):/srv/jekyll:rw
 JEKYLL_CONFIG:=$(wildcard _config*.yml)
 JEKYLL_BUILD_ARGS:=--watch --force_polling --incremental --config $(subst $(SPACE),$(COMMA),$(JEKYLL_CONFIG)) --host=0.0.0.0
 
+
 # On Mac, special mount features have to be activated for file change events to propagate
 ifeq ($(shell uname -s),Darwin)
 FILEMOUNT:=$(FILEMOUNT),delegated
+endif
+
+$(info "docker: " $(shell $(DOCKER_BIN) --version))
+
+ifeq ($(shell $(DOCKER_BIN) --version | grep -o podman),podman)
+PODMAN_SECOPT:=--security-opt label=disable --userns=keep-id
+FILEMOUNT:=$(FILEMOUNT),Z
 endif
 
 # Show draft posts in the blog
@@ -37,6 +46,8 @@ $(eval DRAFT_ARG:="")
 endif
 
 
+
+
 all: serve
 
 .PHONY: clean
@@ -45,8 +56,8 @@ clean:
 
 .PHONY: serve
 serve: $(JEKYLL_CONFIG)
-	@echo $(notdir $(shell which docker))
-ifeq ($(notdir $(shell which docker)),docker)
+	@echo $(notdir $(DOCKER_BIN))
+ifeq ($(notdir $(DOCKER_BIN)),docker)
 	$(MAKE) docker-up
 else
 	jekyll serve $(DRAFT_ARG) $(JEKYLL_BUILD_ARGS) 
@@ -61,12 +72,12 @@ DOCKER_ENV.local: DOCKER_ENV
 docker-up:  DOCKER_ENV.local | docker-build
 	$(MAKE) docker-clean
 	docker ps  --format="{{.ID}}" -f "name=$(DOCKER_NAME)" -f "status=running" | grep -q '^[0-9a-f]+$$' || \
-		docker run -it --env-file $^ --rm -p $(DOCKER_PORT):4000 --name $(DOCKER_NAME) -v "$(FILEMOUNT)" $(DOCKER_IMAGE) \
+		docker run -it --env-file $^ --rm -p $(DOCKER_PORT):4000 --name $(DOCKER_NAME) $(PODMAN_SECOPT) -v "$(FILEMOUNT)" $(DOCKER_IMAGE) \
 			 jekyll serve $(DRAFT_ARG) $(JEKYLL_BUILD_ARGS) --trace
 
 .PHONY: docker-run-test
 docker-run-test:  DOCKER_ENV.local
-	docker run -it --env-file $^ --rm --name test-$(DOCKER_NAME) -v "$(FILEMOUNT)" $(DOCKER_IMAGE) \
+	docker run -it --env-file $^ --rm --name test-$(DOCKER_NAME) $(PODMAN_SECOPT) -v "$(FILEMOUNT)" $(DOCKER_IMAGE) \
 		/bin/bash
 
 $(CACHE):
@@ -82,18 +93,18 @@ $(CACHE)/$(DOCKER_IMAGE_FILE): $(DOCKERFILE_PATH) $(GEMFILES) | $(CACHE)
 
 .PHONY: docker-stop
 docker-stop:
-	docker ps  --format="{{.ID}}" -f "name=$(DOCKER_NAME)" -f "status=running" | xargs -t docker kill
+	docker ps  --format="{{.ID}}" -f "name=$(DOCKER_NAME)" -f "status=running" | xargs -t -r docker kill
 
 .PHONY: docker-clean
 docker-clean:
-	docker ps  --format="{{.ID}}" -f "name=$(DOCKER_NAME)" -f "status=exited" | xargs -t docker rm 
+	docker ps  --format="{{.ID}}" -f "name=$(DOCKER_NAME)" -f "status=exited" | xargs -t -r docker rm
 
 
 
 ## Generates a new draft post
 .PRECIOUS: _drafts/%.md
 _drafts/%.md: _template/post.md
-	sed -E 's@\$${TITLE}@$(TITLE)@; s@\$${DATE}@$(DATE)@; s@\$${TIME}@$(TIME)@;' $< > $@
+	sed -E 's@\$$\{TITLE\}@$(TITLE)@; s@\$$\{DATE\}@$(DATE)@; s@\$$\{TIME\}@$(TIME)@;' $< > $@
 
 .PHONY: newpost draft
 draft: newpost
