@@ -25,23 +25,27 @@ At the time, I could not shake the feeling that my talents in engineering leader
 Whether indicative of the challenges, or a byproduct of my own departure, several other colleagues' departure only confirmed my sense of turmoil in the company culture.
 Sadly, even more recent layoffs confirmed it again.
 
-Turns out, ideas shape behaviors, behaviors drive culture, and culture determines business outcomes. Who knew.
+Turns out, ideas shape behaviors, behaviors drive culture, and culture determines business outcomes. 
 
-Well, that's a lot of water under the bridge. Mistakes were made, and possibly my own actions were mistaken.
+Well, that's a lot of water under the bridge. Mistakes were made; I made a few too.
+
+A few key lessons from D2IQ:
+
+* Launch as fast as you can, but start by consciously iterating with internal feedback loops from the people who know your customer best. Accept that your first product will not meet all your customer's needs, and you will have to change it as you learn more about their needs. "2.0" happens for good reasons.
+* People are sometimes more committed to _how to work_ than to _which customer needs to meet_.  This leads to various dysfunctions in the organization. People (organizations) struggle to grasp that changing _how_ we work and _how_ we organize is often necessary to meeting customer's needs. Empowering the "lowest" people in the org-chart to change _how_ they work and how they organize, to meet customers' needs fastest, will always win the market.
+* Culture needs to embrace change, not resist it -- this is probably the hardest, because people fear what they don't know. They perceive "chaos", but this should be guided by a central mandate, to reorganize as quickly as possible to meet customers' needs -- as quickly as possible. Speed matters.
+* Surprising people with changes they didn't approve will always lead to debate. This has to be managed carefully, because it can a waste of precious time. Embracing change requires constantly re-inforcing trust -- this counteracts the fear. Relationships between people (across all teams) are vital to maintain. In your culture, the "why" and the "what" (outcome) must be more important than the "how" (method, design, plan). Plans will always change. Perfect planning is waste. We must accept that we will learn, and learning requires change. Get good at change.
 
 ## Mycelial
 
 I spent the next six months attempting to kickstart another startup with another product, this time taking systems orchestration into new frontiers -- the farther reaches of civilization.
 Generally that group of cofounders were great. That company is still going, and I'm glad to see their persistence and I hope for their success.
-Ultimately I left it for one major reason, one with side effects.
-Leadership, again. It matters very much, How we treat each other early on, when the problems are ambiguous and the stresses run high.
+Ultimately I left it for one major reason, one with side effects: leadership, again. It matters very much, How we treat each other early on, when the problems are ambiguous and the stresses run high.
 Lesson learned though: before committing, make sure the people you're committing to know how to manage their stress, with compassion and kindness.
 
-> *Pro Tip:* if you feel like you have to yell at someone at work,you should probably start by taking the day off.
-> If your cofounder yells at you, you should probably find a new gig.
+> *Pro Tip:* if you feel like you have to yell at someone at work, you should probably start by taking the day off. Cofounders should not yell at each other.
 
-Side note, I got to learn that some people are more committed to the new shiny thing than they are to acually shipping product quickly and iterating.
-That's also a red flag, in a startup.
+Seconarily, another case when the _how_ was too important. Some people are more committed to the new shiny thing than they are to acually shipping product quickly and iterating. That's a serious red flag, in a startup. (Ironically, the same people kept quoting, "choose boring technology.")
 
 Again, water under the bridge.  The yelling dude since left that startup too, and their product direction seems to be evolving rapidly.
 I sincerely wish them all well, but in particular, I hope dude starts a meditation practice, and I hope his new crew benefit from his newfound tranquility.
@@ -104,21 +108,22 @@ I tried something new in that setting though, which proved extremely impactful (
 
 By the time we finished, we had reduced failure rates on critical processes from 8 cycles to 4 per release, and reduced its duration (i.e. cost of failure) from 1 week per cycle to 1 day. This meant that every failure could recover faster, without impacting the project timeline, but also shortened the timeline by removing several causes of failure.
 
-In the context of EKS at Amazon, this was a paradigm-shift exercise, because the culture tends to focus on micro-optimizations.
-The improvement project methodology allowed us focus on small actions, while avoiding unnecessary system changes, minimizng change effort in total, and achieving significant overall performance gains in a fairly short time and relatively few headcount.
+This all sounds like project management, and it is... but at EKS, this was a culture change (i.e. leadership), because the legacy culture focused heavily on micro-optimizations.
+The improvement project methodology allowed us focus on the _broader impact_ of small actions, while avoiding unnecessary system changes, minimizng change effort in total, and achieving significant overall performance gains in a fairly short time and relatively few headcount.
 
 In short, we met our business goal with the minimum investment, as early as possible.
 
-The major learning here was actually about organizational thinking. It was not feasible to radically shift thinking, even in half a year.
+The major learning here was actually about organizational thinking. It was not feasible to radically shift organizational thinking, even in half a year. In part this is due to a lack of executive mandate across the whole organization. Historically most such projects are "owned" by individual teams, but success requires change across all teams.
+
 It was necessary to fit some of the existing habits of the organization, and adapt them gradually.
 Further, it was not possible to actually teach the principles as theory alone. Believe me, I tried.
 Alas, in that organizational setting, they cannot be taught -- only demonstrated, and through outcomes, proven.
 
-Again none of this success would have been possible, a 400% improvement in release process efficiency, and meeting a business goal that had been missed for all of the preceding 5 years without the critical analysis, proactive experimentation, and collaboration of my team, and support of certain peers. In particular, a special thanks to Ahmed Ibrahim, a highly effective colleague and even better friend, who partnered with me in these endeavors, running the day-to-day recurring projects across many teams, and employing the tools, processes, and disciplines we identified to improve it.
+By the end, we achieved a 400% improvement in release process efficiency, and met a business goal that had been missed for all of the preceding 5 years. None of this would have been possible without the broad critical analysis, proactive experimentation, and collaboration of my team, and support of certain peers. In particular, a special thanks to Ahmed Ibrahim, a highly effective colleague and even better friend, who partnered with me in these endeavors, running the day-to-day recurring projects across many teams, and employing the tools, processes, and disciplines we identified to improve it.
 
 I will always remember one specific comment Ahmed, in a private conversation after I left. I will paraphrase:
 
-> In my culture, we don't value hard managers; we recognize that good managers love their teams.
+> In my culture, we don't value hard managers; we recognize that good managers have a kind of *love* their teams.
 
 I left Amazon in good conscience, putting them in a better position than when I joined, and with measureable, market-visible impact.
 
@@ -127,10 +132,12 @@ I left Amazon in good conscience, putting them in a better position than when I 
 
 I've since joined a stealth startup working in AI. (Who doesn't love a buzzword?) Naturally my work also has something to do with Kubernetes, at this point.
 
-This project is uniquely ambitious though. While some weeks are harder than others, I know that every day is a step toward a bigger impact on an industry, and I sleep well knowing that my skills are applied in a multiplicative effect.
+This project is uniquely ambitious. While some weeks are harder than others, I know that every day is a step toward a bigger impact on an industry, and I sleep well knowing that my skills are applied in a multiplicative effect.
 
-I love the team I'm building. I love their attitude, always learning, always supporting each other, and moving as fast as possible toward something we've never done before.
-We believe we can do it, because we trust each other, and we're collectively accountable for our combined success. We are in it, to win it, together.
+I love the team I'm building. I love their attitude: always learning, always supporting each other, and moving as fast as possible toward something we've never done before.
+We believe we can do it, because we trust each other, and we're collectively accountable for our combined success.
+We listen humbly, because we value the diverse wisdom and experience, and we'll adapt our plans to avoid the problems we've seen before.
+We are in it, to win it, together.
 
 The methods I've learned for leadership, cultural influence, teaching, organizational evolution, systems thinking, customer empathy, product iteration, automation, and quality management all apply, every day.
 The principles of kindness, hope, persistence, determination, experimentation and collective learning all continue to prove worthy for the biggest undertaking I've contemplated.
@@ -140,7 +147,7 @@ I'm also hiring, rapidly, for a variety of specialty skills. If you want to work
 
 ## And the next one after that...
 
-Somehow, amid all this, my thoughts turn to the distant future, of what humanity can become with the right ideas, values, and changes to our systems.
+Somehow, amid all this, my thoughts turn to the distant future in the stars, of what humanity can become with the right ideas, values, and changes to our systems.
 Our future is bright, if we can change ourselves to be worthy of it. (I am writing on this topic separately, to pubilsh another time, in another place.)
 
 For tonight, and until next time -- good luck to you.
